@@ -5,8 +5,12 @@ CONFIG += console
 CONFIG -= qt
 
 SOURCES += main.cpp \
-    ReconstruccionImagenes.cpp
+    ReconstruccionImagenes.cpp \
+    Poblacion.cpp \
+    Individuo.cpp
 
 HEADERS += \
-    ReconstruccionImagenes.h
+    ReconstruccionImagenes.h \
+    Poblacion.h \
+    Individuo.h
 
