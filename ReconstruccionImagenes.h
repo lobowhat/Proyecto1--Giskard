@@ -37,6 +37,7 @@ public:
     int getPixeles(IplImage *pImagen, int pI, int pJ, int pK);  //obtiene los pixeles de una imagen
     void imprimeMatriz();                                       //imprime la matriz 3D
     void initReconstruccionImagen();                            //inicia la reconstrucción de la imagen
+    void creaImagenReconstruida();                              //crea la imagen ya reconstruida desde la matriz 3D
 
 
 };//fin de la clase

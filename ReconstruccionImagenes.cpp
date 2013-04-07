@@ -95,6 +95,21 @@ int ReconstruccionImagenes::getPixeles( IplImage *pImagen, int pI, int pJ, int p
 }//fin de getPixeles
 
 /**
+  Crea la imagen ya reconstruida desde la matriz 3D
+  */
+void ReconstruccionImagenes::creaImagenReconstruida(){
+    IplImage * img = cvCreateImage(cvSize(_filas, _columnas), IPL_DEPTH_8U, 3);
+    for(int i = 0; i < _filas; i++) {
+        for (int j = 0; j < _columnas; j++){
+            ((uchar *)(img->imageData + i*img->widthStep))[j*img->nChannels + 0] = this->_ptrMatriz[i][j][0]; // B
+            ((uchar *)(img->imageData + i*img->widthStep))[j*img->nChannels + 1] = this->_ptrMatriz[i][j][1]; // G
+            ((uchar *)(img->imageData + i*img->widthStep))[j*img->nChannels + 2] = this->_ptrMatriz[i][j][2]; // R
+        }//fin for de filas o ancho
+    }//fin for de columnas o largo
+    muestraImagen( img );
+}//fin de creaImagenAnalizada
+
+/**
   Muestra la imagen en pantalla
   @param pImagenAMostrar, imagen que se desea mostrar
   */
