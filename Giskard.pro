@@ -14,3 +14,6 @@ HEADERS += \
     Poblacion.h \
     Individuo.h
 
+OTHER_FILES += \
+    raya1.jpg
+
