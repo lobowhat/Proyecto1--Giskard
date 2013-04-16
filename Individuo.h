@@ -1,34 +1,33 @@
 #ifndef INDIVIDUO_H
 #define INDIVIDUO_H
 
-class Individuo
-{
+#include <iostream>
+
+using namespace std;
+
+class Individuo{
+
 public:
-    Individuo(int pId,unsigned short pCromosoma);//constructor
-    ~Individuo();//destructor
+    Individuo( int pId,unsigned short pCromosoma );     //Constructor
+    ~Individuo();                                       //Destructor
+
 
 //***** GETTERS Y SETTERS *****
-    unsigned short getCromosoma();
-    int getId();
-    void setFitness(double pFitness);
-    void setId(int id);
-    void setSiguiente(Individuo *siguiente);
-    Individuo * getSiguiente();
-    void setCromosoma(unsigned short pCromosoma);
-    int getPadre();
-    int getMadre();
-    void setPadre(int pPadre);
-    void setMadre(int pMadre);
-    int  getGeneracion();
-    void setGeneracion(int pGeneracion);
+    unsigned int getId();                               //Retorna el ID del individuo
+    unsigned int  getGeneracion();                      //Retorna el numero de generacion
+    void setGeneracion( unsigned int pGeneracion );     //Cambia el numero de generacion
+    void printDatosIndividuo();                         //Imprime informacion acerca de un individuo
+    void setSiguienteIndividuo( Individuo *pSiguienteIndividuo );
+    Individuo* getSiguienteIndividuo();
+
 private:
-    unsigned short _cromosoma; // cromosoma, un cromosoma esta formado por 32 genes
-    int _id; // Identificador del individuo
-    double _valorFitness; // valor de su funcion de fitness
-    Individuo * _siguiente;
-    int _padre;
-    int _madre;
-    int _generacion;
+    unsigned short _cromosoma;      // cromosoma, un cromosoma esta formado por 32 genes
+    int _id;                        // Identificador del individuo
+    double _valorFitness;           // valor de su funcion de fitness
+    Individuo *_siguienteIndividuo;          // siguiente individuo (lista simple de individuos)
+    int _generacion;                // generacion a la que pertenece un individuo
+
+
 };
 
 #endif // INDIVIDUO_H
