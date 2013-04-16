@@ -3,7 +3,7 @@
 
 using namespace std;
 
-int main()
+int main1()
 {
     cout << "Hello Giskard!" << endl;
     ReconstruccionImagenes *p = new ReconstruccionImagenes();
