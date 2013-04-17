@@ -3,6 +3,7 @@
 
 #include <iostream>
 #include <cstdlib>
+#include <QDebug>
 #include "Individuo.h"
 
 using namespace std;
@@ -25,6 +26,7 @@ private:
     Individuo *_poblacion;                  //representa la poblacion de individuos
     int _contadorIndividuos;                //cantidad de individuos que han sido creados
     int _generacion;                        //generacion a la que pertenece una poblacion
+
 
 };
 

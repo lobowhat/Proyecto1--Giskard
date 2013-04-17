@@ -31,7 +31,7 @@ void Poblacion::crearPoblacionInicial()
  */
 void Poblacion::printPoblacion()
 {
-    cout << "---------------- Imprimiendo Poblacion ----------------" << endl;
+    qDebug() << "---------------- Imprimiendo Poblacion ----------------" << endl;
     cout << "Generacion # "<< this->_generacion << endl;    //numero de la generacion poblacional
     Individuo * tmp = this->_poblacion;                     //inicia a revisar la poblacion(cantidad de individuos)
     while( tmp != NULL ){

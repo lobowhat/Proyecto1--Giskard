@@ -2,7 +2,9 @@ TEMPLATE = app
 CONFIG += link_pkgconfig
 PKGCONFIG += opencv
 CONFIG += console
-CONFIG -= qt
+CONFIG += qt
+
+QT +=  core
 
 SOURCES += main.cpp \
     ReconstruccionImagenes.cpp \
