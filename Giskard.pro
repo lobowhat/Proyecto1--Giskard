@@ -14,7 +14,8 @@ SOURCES += main.cpp \
 HEADERS += \
     ReconstruccionImagenes.h \
     Poblacion.h \
-    Individuo.h
+    Individuo.h \
+    IConfiguracionParametros.h
 
 OTHER_FILES += \
     raya1.jpg \

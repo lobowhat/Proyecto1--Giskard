@@ -5,9 +5,9 @@
 #include <stdlib.h>
 #include <iomanip>
 #include <opencv2/core/core.hpp>
-#include <iostream>
 #include <opencv2/highgui/highgui.hpp>
 #include <opencv2/imgproc/imgproc.hpp>
+#include "IConfiguracionParametros.h"
 
 using namespace std;
 using namespace cv;

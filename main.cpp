@@ -1,6 +1,7 @@
 #include <iostream>
 #include "ReconstruccionImagenes.h"
 #include "Poblacion.h"
+#include "IConfiguracionParametros.h"
 
 int main()
 {

@@ -40,7 +40,7 @@ void ReconstruccionImagenes::recibeImagenGuardada( char* pPathImagenGuardada )
 {
     this->_imagenGuardada = cvLoadImage( pPathImagenGuardada );
 //    muestraImagen( _imagenGuardada );
-//    detectarEspacioBorrado(_imagenGuardada);
+//   detectarEspacioBorrado(_imagenGuardada);
 }//recibeImagenGuardada
 
 void ReconstruccionImagenes::initReconstruccionImagen()
@@ -62,7 +62,10 @@ void ReconstruccionImagenes::detectarEspacioBorrado( IplImage *pImagen)
     Mat sector(pImagen) ;                               //se covierte imagen desde IplImage a Mat
     assert( sector.type() == CV_8UC3 );
     _espacioBorradoImagen = sector;
-    inRange( sector, Scalar(0, 0, 254), Scalar(0, 0, 255), _espacioBorradoImagen );//rango a detectar del color ROJO
+    inRange( sector,
+             Scalar(IConfiguracionParametros::R_MINIMO, IConfiguracionParametros::G_MINIMO, IConfiguracionParametros::B_MINIMO),
+             Scalar(IConfiguracionParametros::R_MAXIMO, IConfiguracionParametros::G_MAXIMO, IConfiguracionParametros::B_MAXIMO),
+             _espacioBorradoImagen );//rango a detectar del color ROJO (color por default)
     //return _espacioBorradoImagen;
     imshow("Giskard: Espacio Borrado de la imagen", _espacioBorradoImagen);
     imshow("Giskard: Imagen Actual", sector);
