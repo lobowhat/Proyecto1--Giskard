@@ -40,6 +40,7 @@ void ReconstruccionImagenes::recibeImagenGuardada( char* pPathImagenGuardada )
 {
     this->_imagenGuardada = cvLoadImage( pPathImagenGuardada );
 //    muestraImagen( _imagenGuardada );
+//    detectarEspacioBorrado(_imagenGuardada);
 }//recibeImagenGuardada
 
 void ReconstruccionImagenes::initReconstruccionImagen()
@@ -49,6 +50,24 @@ void ReconstruccionImagenes::initReconstruccionImagen()
     cout << "Se agregan Pixeles a la Matriz" << endl;
     agregaPixelesAMatriz();
 }//Fin de initReconstruccionImagen()
+
+/**
+ * @brief ReconstruccionImagenes::detectarEspacioBorrado
+ * Detecta el espacio borrado de una imagen (detecta el color rojo)
+ * @param pImagen
+ * @return
+ */
+void ReconstruccionImagenes::detectarEspacioBorrado( IplImage *pImagen)
+{
+    Mat sector(pImagen) ;                               //se covierte imagen desde IplImage a Mat
+    assert( sector.type() == CV_8UC3 );
+    _espacioBorradoImagen = sector;
+    inRange( sector, Scalar(0, 0, 254), Scalar(0, 0, 255), _espacioBorradoImagen );//rango a detectar del color ROJO
+    //return _espacioBorradoImagen;
+    imshow("Giskard: Espacio Borrado de la imagen", _espacioBorradoImagen);
+    imshow("Giskard: Imagen Actual", sector);
+    waitKey();
+}
 
 /**
   Crea la matriz que contendrá un arreglo de RGB en cada celda

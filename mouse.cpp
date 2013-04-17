@@ -12,7 +12,7 @@ void mouseEvent(int evt, int x, int y, int flags, void* param){
 }
 
 
-int main()
+int main2()
 {
 
         cvNamedWindow("Identificacion de X y Y");
