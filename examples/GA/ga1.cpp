@@ -121,27 +121,27 @@ inline void swap(ga_vector *&population,
     buffer = temp;
 }
 
-int main1()
-{
-    srand(unsigned(time(NULL)));
+//int main1()
+//{
+//    srand(unsigned(time(NULL)));
 
-    ga_vector pop_alpha, pop_beta;
-    ga_vector *population, *buffer;
+//    ga_vector pop_alpha, pop_beta;
+//    ga_vector *population, *buffer;
 
-    init_population(pop_alpha, pop_beta);
-    population = &pop_alpha;
-    buffer = &pop_beta;
+//    init_population(pop_alpha, pop_beta);
+//    population = &pop_alpha;
+//    buffer = &pop_beta;
 
-    for (int i = 0; i < GA_MAXITER; i++) {
-        calc_fitness(*population);      // calculate fitness
-        sort_by_fitness(*population);   // sort them
-        print_best(*population);        // print the best one
+//    for (int i = 0; i < GA_MAXITER; i++) {
+//        calc_fitness(*population);      // calculate fitness
+//        sort_by_fitness(*population);   // sort them
+//        print_best(*population);        // print the best one
 
-        if ((*population)[0].fitness == 0) break;
+//        if ((*population)[0].fitness == 0) break;
 
-        mate(*population, *buffer);     // mate the population together
-        swap(population, buffer);       // swap buffers
-    }
+//        mate(*population, *buffer);     // mate the population together
+//        swap(population, buffer);       // swap buffers
+//    }
 
-    return 0;
-}
+//    return 0;
+//}

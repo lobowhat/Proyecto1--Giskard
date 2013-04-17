@@ -8,7 +8,8 @@ SOURCES += main.cpp \
     ReconstruccionImagenes.cpp \
     Poblacion.cpp \
     Individuo.cpp \
-    examples/GA/ga1.cpp
+    examples/GA/ga1.cpp \
+    mouse.cpp
 
 HEADERS += \
     ReconstruccionImagenes.h \
@@ -16,5 +17,6 @@ HEADERS += \
     Individuo.h
 
 OTHER_FILES += \
-    raya1.jpg
+    raya1.jpg \
+    figuras.jpg
 
