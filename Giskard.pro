@@ -12,13 +12,15 @@ SOURCES += main.cpp \
     Individuo.cpp \
     examples/GA/ga1.cpp \
     mouse.cpp \
-    CirclesDetecting.cpp
+    CirclesDetecting.cpp \
+    FigureDetection.cpp
 
 HEADERS += \
     ReconstruccionImagenes.h \
     Poblacion.h \
     Individuo.h \
-    IConfiguracionParametros.h
+    IConfiguracionParametros.h \
+    FigureDetection.h
 
 OTHER_FILES += \
     raya1.jpg \
