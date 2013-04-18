@@ -12,24 +12,24 @@ void mouseEvent(int evt, int x, int y, int flags, void* param){
 }
 
 
-int main2()
-{
+//int main2()
+//{
 
-        cvNamedWindow("Identificacion de X y Y");
+//        cvNamedWindow("Identificacion de X y Y");
 
-        //Asignacion de las llamadas para los eventos
-        cvSetMouseCallback("Identificacion de X y Y", mouseEvent, 0);
+//        //Asignacion de las llamadas para los eventos
+//        cvSetMouseCallback("Identificacion de X y Y", mouseEvent, 0);
 
-        //carga la imagen
-        IplImage* img = cvLoadImage("figuras.jpg");
-        cvShowImage("Identificacion de X y Y", img);
+//        //carga la imagen
+//        IplImage* img = cvLoadImage("figuras.jpg");
+//        cvShowImage("Identificacion de X y Y", img);
 
-        //espera
-        cvWaitKey(0);
+//        //espera
+//        cvWaitKey(0);
 
-        //destruye ventana
-        cvDestroyWindow("Identificacion de X y Y");
-        cvReleaseImage(&img);
+//        //destruye ventana
+//        cvDestroyWindow("Identificacion de X y Y");
+//        cvReleaseImage(&img);
 
-        return 0;
-}
+//        return 0;
+//}

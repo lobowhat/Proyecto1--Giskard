@@ -11,7 +11,8 @@ SOURCES += main.cpp \
     Poblacion.cpp \
     Individuo.cpp \
     examples/GA/ga1.cpp \
-    mouse.cpp
+    mouse.cpp \
+    CirclesDetecting.cpp
 
 HEADERS += \
     ReconstruccionImagenes.h \
