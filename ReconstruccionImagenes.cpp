@@ -85,8 +85,8 @@ void ReconstruccionImagenes::detectarEspacioBorrado( IplImage *pImagen)
 void ReconstruccionImagenes::muestraLimitesEspacioBorrado(){
     bool bandera = false;
     int i = 0;
-    int j = 0;
     for( i; i < _filas; ++i){                                //recorre filas
+        int j = 0;
         for( j; j < _columnas; ++j){                         //recorre columnas
             if (this->_ptrMatriz[i][j][2] <= IConfiguracionParametros::R_MAXIMO && this->_ptrMatriz[i][j][2] >=
                     IConfiguracionParametros::R_MINIMO && this->_ptrMatriz[i][j][1] == IConfiguracionParametros::G_MAXIMO
@@ -99,14 +99,14 @@ void ReconstruccionImagenes::muestraLimitesEspacioBorrado(){
                    _columnaInicial = i;
                    bandera = true;
                 }
+                _filaFinal = j;
+                _columnaFinal = i;
             }
-
         }//fin for interno
+
     }//fin for externo
-    _filaFinal = j;
-    _columnaFinal = i;
-    cout << "Inicial" << "(" << _filaInicial << "," << _columnaInicial << ")" << " \n"
-         << "Final" << "(" << _filaFinal << "," << _columnaFinal << ")" << endl;
+    cout << "Coordenada Inicial del Espacio BORRADO: " << "(" << _filaInicial << "," << _columnaInicial << ")" << " \n"
+         << "Coordenada Final del Espacio BORRADO: " << "(" << _filaFinal << "," << _columnaFinal << ")" << endl;
 }//fin agregaPixelesAMatriz
 
 
@@ -203,8 +203,91 @@ void ReconstruccionImagenes::imprimeMatriz(){
     }//fin for externo
 }//fin agregaPixelesAMatriz
 
+/**
+ * @brief ReconstruccionImagenes::getFilaInicial
+ * @return _filaInicial del espacio borrado
+ */
+int ReconstruccionImagenes::getFilaInicial()
+{
+    return _filaInicial;
+}
+
+/**
+ * @brief ReconstruccionImagenes::getFilaFinal
+ * @return _filaFinal del espacio borrado
+ */
+int ReconstruccionImagenes::getFilaFinal()
+{
+    return _filaFinal;
+}
+
+/**
+ * @brief ReconstruccionImagenes::setFilaInicial
+ * @param pFilaInicial
+ */
+void ReconstruccionImagenes::setFilaInicial( int pFilaInicial )
+{
+    this->_filaInicial = pFilaInicial;
+}
+
+/**
+ * @brief ReconstruccionImagenes::setFilaFinal
+ * @param pFilaFinal
+ */
+void ReconstruccionImagenes::setFilaFinal( int pFilaFinal )
+{
+    this->_filaFinal = pFilaFinal;
+}
+
+/**
+ * @brief ReconstruccionImagenes::getColumnaInicial
+ * @return columna inicial del espacio borrado
+ */
+int ReconstruccionImagenes::getColumnaInicial()
+{
+    return _columnaInicial;
+}
+
+/**
+ * @brief ReconstruccionImagenes::getColumnaFinal
+ * @return columna final del espacio borrado
+ */
+int ReconstruccionImagenes::getColumnaFinal()
+{
+    return _columnaFinal;
+}
+
+/**
+ * @brief ReconstruccionImagenes::setColumnaInicial
+ * @param pColumnaInicial
+ */
+void ReconstruccionImagenes::setColumnaInicial(int pColumnaInicial)
+{
+    this->_columnaInicial = pColumnaInicial;
+}
+
+/**
+ * @brief ReconstruccionImagenes::setColumnaFinal
+ * @param pColumnaFinal
+ */
+void ReconstruccionImagenes::setColumnaFinal(int pColumnaFinal)
+{
+    this->_columnaFinal = pColumnaFinal;
+}
+
 
 /**
   Destructor
   */
 ReconstruccionImagenes::~ReconstruccionImagenes(){}//fin del destructor
+
+
+
+
+
+
+
+
+
+
+
