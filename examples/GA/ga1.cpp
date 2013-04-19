@@ -121,7 +121,7 @@ inline void swap(ga_vector *&population,
     buffer = temp;
 }
 
-int main()
+int ga1()
 {
     srand(unsigned(time(NULL)));
 

@@ -8,7 +8,8 @@ SOURCES += main.cpp \
     ReconstruccionImagenes.cpp \
     Poblacion.cpp \
     Individuo.cpp \
-    examples/GA/ga1.cpp
+    examples/GA/ga1.cpp \
+    examples/GA/ga2.cpp
 
 HEADERS += \
     ReconstruccionImagenes.h \
