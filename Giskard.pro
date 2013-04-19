@@ -24,7 +24,5 @@ HEADERS += \
     FigureDetection.h
 
 OTHER_FILES += \
-    raya1.jpg \
-    figuras.jpg \
     raya1.png
 

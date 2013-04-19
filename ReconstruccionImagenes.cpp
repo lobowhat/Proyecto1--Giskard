@@ -83,7 +83,7 @@ void ReconstruccionImagenes::muestraPixelesRED(){
         for(int j = 0; j < _columnas; ++j){                         //recorre columnas
             if (this->_ptrMatriz[i][j][2] <= 255 && this->_ptrMatriz[i][j][2] >= 253
                     && this->_ptrMatriz[i][j][1] == 0 && this->_ptrMatriz[i][j][0] == 0){
-                cout << "(" << i << "," << j << ")" << " ---> " << "(" << this->_ptrMatriz[i][j][2] << ","
+                cout << "(" << j << "," << i << ")" << " ---> " << "(" << this->_ptrMatriz[i][j][2] << ","
                      << this->_ptrMatriz[i][j][1] << "," << this->_ptrMatriz[i][j][0] << ")" << endl;
             }
         }//fin for interno
