@@ -83,17 +83,30 @@ void ReconstruccionImagenes::detectarEspacioBorrado( IplImage *pImagen)
  * Recordar que los valores en la imagen vienen dados BGR
  */
 void ReconstruccionImagenes::muestraLimitesEspacioBorrado(){
-    for(int i = 0; i < _filas; ++i){                                //recorre filas
-        for(int j = 0; j < _columnas; ++j){                         //recorre columnas
+    bool bandera = false;
+    int i = 0;
+    int j = 0;
+    for( i; i < _filas; ++i){                                //recorre filas
+        for( j; j < _columnas; ++j){                         //recorre columnas
             if (this->_ptrMatriz[i][j][2] <= IConfiguracionParametros::R_MAXIMO && this->_ptrMatriz[i][j][2] >=
                     IConfiguracionParametros::R_MINIMO && this->_ptrMatriz[i][j][1] == IConfiguracionParametros::G_MAXIMO
                     && this->_ptrMatriz[i][j][0] == IConfiguracionParametros::B_MAXIMO){
 
                 cout << "(" << j << "," << i << ")" << " ---> " << "(" << this->_ptrMatriz[i][j][2] << ","
                      << this->_ptrMatriz[i][j][1] << "," << this->_ptrMatriz[i][j][0] << ")" << endl;
+                if(!bandera){
+                   _filaInicial = j;
+                   _columnaInicial = i;
+                   bandera = true;
+                }
             }
+
         }//fin for interno
     }//fin for externo
+    _filaFinal = j;
+    _columnaFinal = i;
+    cout << "Inicial" << "(" << _filaInicial << "," << _columnaInicial << ")" << " \n"
+         << "Final" << "(" << _filaFinal << "," << _columnaFinal << ")" << endl;
 }//fin agregaPixelesAMatriz
 
 

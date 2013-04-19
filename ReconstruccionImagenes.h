@@ -23,6 +23,10 @@ private:
     int _columnas;                  //delimita el tamaño de la celda
     int ***_ptrMatriz;              //puntero a una matriz3D
     Mat _espacioBorradoImagen;      //espacio borrado de la imagen que hay que reconstruir
+    short _filaInicial;
+    short _filaFinal;
+    short _columnaInicial;
+    short _columnaFinal;
 
 
 public:
