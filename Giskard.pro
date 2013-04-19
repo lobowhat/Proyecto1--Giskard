@@ -25,5 +25,6 @@ HEADERS += \
 
 OTHER_FILES += \
     raya1.jpg \
-    figuras.jpg
+    figuras.jpg \
+    raya1.png
 
