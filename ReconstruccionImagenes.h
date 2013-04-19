@@ -43,9 +43,8 @@ public:
     void imprimeMatriz();                                       //imprime la matriz 3D
     void initReconstruccionImagen();                            //inicia la reconstrucción de la imagen
     void creaImagenReconstruida();                              //crea la imagen ya reconstruida desde la matriz 3D
-    void detectarEspacioBorrado( IplImage* pImagen );            //detecta el espacio barrado en la imagen (color rojo)
-
-void muestraPixelesRED();
+    void detectarEspacioBorrado( IplImage* pImagen );           //detecta el espacio barrado en la imagen (color rojo)
+    void muestraLimitesEspacioBorrado();                        //imprime las coordenadas xy del espacio borrado
 
 };//fin de la clase
 

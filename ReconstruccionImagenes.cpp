@@ -49,7 +49,7 @@ void ReconstruccionImagenes::initReconstruccionImagen()
     cout << "Se agregan Pixeles a la Matriz" << endl;
     agregaPixelesAMatriz();
     cout << "MUESTRA COORDENADAS" << endl;
-    muestraPixelesRED();
+    muestraLimitesEspacioBorrado();
 }//Fin de initReconstruccionImagen()
 
 /**
@@ -77,12 +77,18 @@ void ReconstruccionImagenes::detectarEspacioBorrado( IplImage *pImagen)
     cvDestroyAllWindows();
 }
 
-
-void ReconstruccionImagenes::muestraPixelesRED(){
+/**
+ * @brief ReconstruccionImagenes::muestraLimitesEspacioBorrado
+ * Imprime las coordenadas xy del espacio borrado
+ * Recordar que los valores en la imagen vienen dados BGR
+ */
+void ReconstruccionImagenes::muestraLimitesEspacioBorrado(){
     for(int i = 0; i < _filas; ++i){                                //recorre filas
         for(int j = 0; j < _columnas; ++j){                         //recorre columnas
-            if (this->_ptrMatriz[i][j][2] <= 255 && this->_ptrMatriz[i][j][2] >= 253
-                    && this->_ptrMatriz[i][j][1] == 0 && this->_ptrMatriz[i][j][0] == 0){
+            if (this->_ptrMatriz[i][j][2] <= IConfiguracionParametros::R_MAXIMO && this->_ptrMatriz[i][j][2] >=
+                    IConfiguracionParametros::R_MINIMO && this->_ptrMatriz[i][j][1] == IConfiguracionParametros::G_MAXIMO
+                    && this->_ptrMatriz[i][j][0] == IConfiguracionParametros::B_MAXIMO){
+
                 cout << "(" << j << "," << i << ")" << " ---> " << "(" << this->_ptrMatriz[i][j][2] << ","
                      << this->_ptrMatriz[i][j][1] << "," << this->_ptrMatriz[i][j][0] << ")" << endl;
             }

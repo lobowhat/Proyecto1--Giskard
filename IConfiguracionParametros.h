@@ -19,14 +19,14 @@ public:
 //    static const char* PATHFILE_IMAGEN = "/home/darayavilla/Qt_projects/lobowhat-Proyecto1--Giskard/raya1.jpg";
 
     //***** RANGO MINIMO PARA LA DETECCION DE COLOR RGB DEL ESPACIO BORRADO *****
-    static const int R_MINIMO = 0;      //R valor minimo
+    static const int R_MINIMO = 253;      //R valor minimo
     static const int G_MINIMO = 0;      //G valor minimo
-    static const int B_MINIMO = 254;    //B valor minimo
+    static const int B_MINIMO = 0;    //B valor minimo
 
     //***** RANGO MAXIMO PARA LA DETECCION DE COLOR RGB DEL ESPACIO BORRADO *****
-    static const int R_MAXIMO = 0;      //R valor maximo
+    static const int R_MAXIMO = 255;      //R valor maximo
     static const int G_MAXIMO = 0;      //R valor maximo
-    static const int B_MAXIMO = 255;    //R valor maximo
+    static const int B_MAXIMO = 0;    //R valor maximo
 
 };
 
