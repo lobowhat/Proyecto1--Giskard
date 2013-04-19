@@ -10,8 +10,12 @@ int main()
     cout << "Hello Giskard!" << endl;
     ReconstruccionImagenes *p = new ReconstruccionImagenes();
 
+    /*
+     * Para hacerlo con QtCreator, se van a Projects, Build & Run, Run, y en
+     * Working directory, cambian el que tienen por la dirección donde está el
+     * proyecto
+     */
     p->recibeImagenGuardada( "raya1.png" );//insertar path de imagen
-//    p->recibeImagenGuardada( "/home/brallan/qtCreator/Giskard/raya1.png" );//insertar path de imagen
 //    p->recibeImagenCapturada();//inicia la captura de video
     p->initReconstruccionImagen();
     delete p;
