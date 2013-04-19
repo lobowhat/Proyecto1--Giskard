@@ -5,7 +5,7 @@
 
 using namespace cv;
 
-int main(int argc, char** argv)
+int main3(int argc, char** argv)
 {
  Mat Image, Image_gray;
 

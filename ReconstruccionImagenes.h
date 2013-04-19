@@ -8,6 +8,8 @@
 #include <opencv2/highgui/highgui.hpp>
 #include <opencv2/imgproc/imgproc.hpp>
 #include "IConfiguracionParametros.h"
+#include <cv.h>
+#include <highgui.h>
 
 using namespace std;
 using namespace cv;
@@ -21,6 +23,7 @@ private:
     int _columnas;                  //delimita el tamaño de la celda
     int ***_ptrMatriz;              //puntero a una matriz3D
     Mat _espacioBorradoImagen;      //espacio borrado de la imagen que hay que reconstruir
+
 
 public:
     ReconstruccionImagenes();//constructor
@@ -42,6 +45,7 @@ public:
     void creaImagenReconstruida();                              //crea la imagen ya reconstruida desde la matriz 3D
     void detectarEspacioBorrado( IplImage* pImagen );            //detecta el espacio barrado en la imagen (color rojo)
 
+void muestraPixelesRED();
 
 };//fin de la clase
 

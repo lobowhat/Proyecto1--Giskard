@@ -29,7 +29,6 @@ void ReconstruccionImagenes::recibeImagenCapturada()
     }//fin del while
     cvDestroyWindow( "Giskard" );//destroy the opened window
     cvReleaseCapture( &_capturaCamara );//release memory
-
 }//recibeImagenCapturada
 
 /**
@@ -39,8 +38,8 @@ void ReconstruccionImagenes::recibeImagenCapturada()
 void ReconstruccionImagenes::recibeImagenGuardada( char* pPathImagenGuardada )
 {
     this->_imagenGuardada = cvLoadImage( pPathImagenGuardada );
-//    muestraImagen( _imagenGuardada );
-//   detectarEspacioBorrado(_imagenGuardada);
+    //muestraImagen( _imagenGuardada );
+    //detectarEspacioBorrado(_imagenGuardada);
 }//recibeImagenGuardada
 
 void ReconstruccionImagenes::initReconstruccionImagen()
@@ -49,6 +48,8 @@ void ReconstruccionImagenes::initReconstruccionImagen()
     crearMatrizColores( _imagenGuardada->height, _imagenGuardada->width );//CAMBIAR EL TAMAÑO DE LA MATRIZ
     cout << "Se agregan Pixeles a la Matriz" << endl;
     agregaPixelesAMatriz();
+    cout << "MUESTRA COORDENADAS" << endl;
+    muestraPixelesRED();
 }//Fin de initReconstruccionImagen()
 
 /**
@@ -59,18 +60,36 @@ void ReconstruccionImagenes::initReconstruccionImagen()
  */
 void ReconstruccionImagenes::detectarEspacioBorrado( IplImage *pImagen)
 {
-    Mat sector(pImagen) ;                               //se covierte imagen desde IplImage a Mat
+    Mat sector(pImagen) ;                                                       //se convierte imagen desde IplImage a Mat
     assert( sector.type() == CV_8UC3 );
     _espacioBorradoImagen = sector;
     inRange( sector,
              Scalar(IConfiguracionParametros::R_MINIMO, IConfiguracionParametros::G_MINIMO, IConfiguracionParametros::B_MINIMO),
              Scalar(IConfiguracionParametros::R_MAXIMO, IConfiguracionParametros::G_MAXIMO, IConfiguracionParametros::B_MAXIMO),
              _espacioBorradoImagen );//rango a detectar del color ROJO (color por default)
-    //return _espacioBorradoImagen;
+//    IplImage ipl_img = _espacioBorradoImagen;                                   //conversion de Mat imagen a IplImage
+//    IplImage *_imagenEspacioBorrado = &ipl_img;                                 //conversion de IplImage a IplImage*
+    //muestraImagen(_imagenEspacioBorrado );                                      //hay que poner el Ampersand
     imshow("Giskard: Espacio Borrado de la imagen", _espacioBorradoImagen);
     imshow("Giskard: Imagen Actual", sector);
-    waitKey();
+    waitKey(0);
+    cvReleaseImage( &pImagen );
+    cvDestroyAllWindows();
 }
+
+
+void ReconstruccionImagenes::muestraPixelesRED(){
+    for(int i = 0; i < _filas; ++i){                                //recorre filas
+        for(int j = 0; j < _columnas; ++j){                         //recorre columnas
+            if (this->_ptrMatriz[i][j][2] <= 255 && this->_ptrMatriz[i][j][2] >= 253
+                    && this->_ptrMatriz[i][j][1] == 0 && this->_ptrMatriz[i][j][0] == 0){
+                cout << "(" << i << "," << j << ")" << " ---> " << "(" << this->_ptrMatriz[i][j][2] << ","
+                     << this->_ptrMatriz[i][j][1] << "," << this->_ptrMatriz[i][j][0] << ")" << endl;
+            }
+        }//fin for interno
+    }//fin for externo
+}//fin agregaPixelesAMatriz
+
 
 /**
   Crea la matriz que contendrá un arreglo de RGB en cada celda
@@ -137,13 +156,13 @@ void ReconstruccionImagenes::creaImagenReconstruida(){
   */
 void ReconstruccionImagenes::muestraImagen( IplImage *pImagenAMostrar ){
     if( !pImagenAMostrar ){
-        cout << "¡Error!, No se puede leer imagen." << endl;
+        cout << "¡Error!, No se puede mostrar imagen." << endl;
     }//fin del if
     else{
-        cvNamedWindow( "Giskard", CV_WINDOW_AUTOSIZE );//nombre a la ventana que contiene la imagen
-        cvShowImage( "Giskard", pImagenAMostrar );// muestra la imagen
+        cvNamedWindow( "Giskard", CV_WINDOW_AUTOSIZE );             //nombre a la ventana que contiene la imagen
+        cvShowImage( "Giskard", pImagenAMostrar );                  // muestra la imagen
         cvWaitKey( 0 );
-        cvReleaseImage( &pImagenAMostrar );// Wait for a keystroke in the window
+        cvReleaseImage( &pImagenAMostrar );                         // Wait for a keystroke in the window
         cvDestroyWindow( "Giskard" );
     }//fin del else
 }//fin de muestraImagen
@@ -152,9 +171,9 @@ void ReconstruccionImagenes::muestraImagen( IplImage *pImagenAMostrar ){
   Imprime la matriz 3D que se usa para almacenar los dator RGB de una imagen
   */
 void ReconstruccionImagenes::imprimeMatriz(){
-    for(int i = 0; i < _filas; ++i){//recorre filas
+    for(int i = 0; i < _filas; ++i){                                //recorre filas
         cout << i << endl;
-        for(int j = 0; j < _columnas; ++j){//recorre columnas
+        for(int j = 0; j < _columnas; ++j){                         //recorre columnas
             cout << endl;
             for(int k = 0; k <= 2; ++k){
                 cout << '\t' << this->_ptrMatriz[i][j][k];
@@ -164,6 +183,7 @@ void ReconstruccionImagenes::imprimeMatriz(){
     cout << endl << endl;
     }//fin for externo
 }//fin agregaPixelesAMatriz
+
 
 /**
   Destructor
