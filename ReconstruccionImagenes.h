@@ -23,10 +23,10 @@ private:
     int _columnas;                  //delimita el tamaño de la celda
     int ***_ptrMatriz;              //puntero a una matriz3D
     Mat _espacioBorradoImagen;      //espacio borrado de la imagen que hay que reconstruir
-    short _filaInicial;
-    short _filaFinal;
-    short _columnaInicial;
-    short _columnaFinal;
+    short _filaInicial;             //valor minimo en filas(x) para la region borrada
+    short _filaFinal;               //valor maximo en filas(x) para la region borrada
+    short _columnaInicial;          //valor minimo en columnas(y) para la region borrada
+    short _columnaFinal;            //valor maximo en columnas(y) para la region borrada
 
 
 public:
@@ -37,6 +37,15 @@ public:
     IplImage* getImagenCapturada();                             //Se obtiene imagen capturada desde camara
     void setImagenGuardada(IplImage *_pImagenGuardada);         //cambia imagen guardada
     void setImagenCapturada(IplImage *_pImagenCapturada);       //cambia imagen capturada desde camara
+    int getFilaInicial();                                     //obtiene fila inicial del espacio borrado
+    int getFilaFinal();                                       //obtiene fila final del espacio borrado
+    void setFilaInicial( int pFilaInicial );                     //cambia fila inicial del espacio borrado
+    void setFilaFinal( int pFilaFinal );                         //cambia fila final del espacio borrado
+    int getColumnaInicial();                                  //obtiene columna inicial del espacio borrado
+    int getColumnaFinal();                                    //obtiene columna final del espacio borrado
+    void setColumnaInicial( int pColumnaInicial );               //cambia columna inicial del espacio borrado
+    void setColumnaFinal( int pColumnaFinal );                   //cambia columna final del espacio borrado
+
 //***** METODOS DE CLASE *****
     void recibeImagenGuardada(char* pPathImagenGuardada);       //recibe imagen desde un path
     void recibeImagenCapturada();                               //recibe imagen desde la cámara de video
