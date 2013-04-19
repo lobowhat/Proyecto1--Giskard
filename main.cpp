@@ -11,6 +11,7 @@ int main()
     ReconstruccionImagenes *p = new ReconstruccionImagenes();
 
     p->recibeImagenGuardada( "/home/darayavilla/Qt_projects/lobowhat-Proyecto1--Giskard/raya1.png" );//insertar path de imagen
+//    p->recibeImagenGuardada( "/home/brallan/qtCreator/Giskard/raya1.png" );//insertar path de imagen
 //    p->recibeImagenCapturada();//inicia la captura de video
     p->initReconstruccionImagen();
     delete p;
