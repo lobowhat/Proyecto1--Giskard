@@ -6,7 +6,7 @@ class BaseConversion
 public:
     BaseConversion(); // constructor
     int binaryToDecimal(int pNumber); // convierte de binario a decimal
-    int decimalToBinary(int pNumber); // convierte
+    int decimalToBinary(int pNumber); // convierte de decimal a binario
 
 private:
     int p; // valores de potencia
