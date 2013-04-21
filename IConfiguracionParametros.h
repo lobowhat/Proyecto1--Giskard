@@ -25,8 +25,8 @@ public:
 
     //***** RANGO MAXIMO PARA LA DETECCION DE COLOR RGB DEL ESPACIO BORRADO *****
     static const int R_MAXIMO = 255;        //R valor maximo
-    static const int G_MAXIMO = 0;          //R valor maximo
-    static const int B_MAXIMO = 0;          //R valor maximo
+    static const int G_MAXIMO = 0;          //G valor maximo
+    static const int B_MAXIMO = 0;          //B valor maximo
 
     //***** SECCION DE PIXELES ******
     static const int SECCION_FILA = 5;      //tamaño de pixeles por filas

@@ -6,6 +6,7 @@ Poblacion::Poblacion(int pPoblacionInicial)
     this->_probabilidadCruce = 1.0;                         //1 * 100 = 100% debe tomar valores desde 0.5 hasta 1
     this->_probabilidadMutacion = 0.5;                      /*50% ###se recomienda: utilizacion de una probabilidad
                                                             de mutacion del bit de l−1 , siendo l la longitud del string.*/
+    this->_contadorIndividuos = 1;
 }//constructor
 
 /**
@@ -14,15 +15,13 @@ Poblacion::Poblacion(int pPoblacionInicial)
  */
 void Poblacion::crearPoblacionInicial()
 {
-    cout << "Creando poblacion inicial de " << this->_tamanoPoblacion << endl;
-    this->_poblacion = new Individuo(this->_contadorIndividuos, 0);     //individuo inicial(MATUZALEM)
-    for(int i = 0; i < this->_tamanoPoblacion; i++){
+    this->_poblacion = new Individuo(this->_contadorIndividuos);     //individuo inicial(MATUZALEM)
+    for(int i = 0; i < this->_tamanoPoblacion - 1; i++){
         this->_contadorIndividuos++;                                    //lleva la cuenta de la cantidad de individuos
-        Individuo *tmp = new Individuo(this->_contadorIndividuos, 2);   //se crea otro individuo
+        Individuo *tmp = new Individuo(this->_contadorIndividuos);   //se crea otro individuo
         tmp->setSiguienteIndividuo(this->_poblacion);                   //se agrega otro individuo a la lista simple
         this->_poblacion = tmp;
     }//fin del for
-
 }
 
 /**
@@ -31,8 +30,8 @@ void Poblacion::crearPoblacionInicial()
  */
 void Poblacion::printPoblacion()
 {
-    qDebug() << "---------------- Imprimiendo Poblacion ----------------" << endl;
-    cout << "Generacion # "<< this->_generacion << endl;    //numero de la generacion poblacional
+    qDebug() << "---------------- Imprimiendo Poblacion ----------------" << "Generacion # " << this->_generacion << endl;
+    //cout << "Generacion # "<< this->_generacion << endl;    //numero de la generacion poblacional
     Individuo * tmp = this->_poblacion;                     //inicia a revisar la poblacion(cantidad de individuos)
     while( tmp != NULL ){
         tmp->printDatosIndividuo();
@@ -40,5 +39,65 @@ void Poblacion::printPoblacion()
     }//fin del while
 }
 
+/**
+ * @brief Poblacion::seleccionIndividuos
+ * Retorna un Individuo
+ * @return tmp; individuo
+ */
+Individuo *Poblacion::seleccionIndividuos()
+{
+    int fitnessTotal = 0;               //this->getSumatoriaFitness();
+    Individuo *tmp = this->_poblacion;
+    while( tmp != NULL ){
+        if( tmp->getIndividuoSeleccionado() == false && fitnessTotal == tmp->getValorFitness() ){
+            tmp->setIndividuoSeleccionado( true );                  //Individuo ha sido seleccionado, no volverá a ser escogido
+            break;
+        }//fin del if
+
+        tmp = tmp->getSiguienteIndividuo();
+    }//fin del while
+    return tmp;
+}
+
+/**
+ * @brief Poblacion::getMejorIndividuo
+ * Retorna al mejor Individuo
+ * @return mejorIndividuo
+ */
+Individuo *Poblacion::getMejorIndividuo()
+{
+    Individuo *tmp = this->_poblacion;
+    Individuo *mejorIndividuo = tmp;
+    while ( tmp != NULL ){
+        if( mejorIndividuo->getValorFitness() < tmp->getValorFitness() ){
+            mejorIndividuo = tmp;
+        }
+        tmp = tmp->getSiguienteIndividuo();
+    }
+    qDebug() << "El mejor individuo es: " << endl;
+    mejorIndividuo->printDatosIndividuo();
+    return mejorIndividuo;
+}
+
+/**
+ * @brief Poblacion::getPeorIndividuo
+ * Retorna al peorIndividuo
+ * @return peorIndividuo
+ */
+Individuo *Poblacion::getPeorIndividuo()
+{
+    Individuo *tmp = this->_poblacion;
+    Individuo *peorIndividuo = tmp;
+    while ( tmp != NULL ){
+        if( peorIndividuo->getValorFitness() > tmp->getValorFitness() ){
+            peorIndividuo = tmp;
+        }
+        tmp = tmp->getSiguienteIndividuo();
+    }
+    qDebug() << "El peor individuo es: " << endl;
+    peorIndividuo->printDatosIndividuo();
+    return peorIndividuo;
+}
 
 Poblacion::~Poblacion(){}//destructor
+
