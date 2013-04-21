@@ -18,18 +18,18 @@ public:
     unsigned int  getGeneracion();                                      // Retorna el numero de generacion
     void setGeneracion( unsigned int pGeneracion );                     // Cambia el numero de generacion
     void printDatosIndividuo();                                         // Imprime informacion acerca de un individuo
-    void setSiguienteIndividuo( Individuo *pSiguienteIndividuo );
-    Individuo *getSiguienteIndividuo();
+    void setSiguienteIndividuo( Individuo *pSiguienteIndividuo );       // Cambia el siguiente individuo (Lista Simple)
+    Individuo *getSiguienteIndividuo();                                 // Obtiene el siguiente individuo (Lista Simple)
     unsigned short getR_RGB();
     unsigned short getG_RGB();
     unsigned short getB_RGB();
     void setR_RGB( unsigned short pR );
     void setG_RGB( unsigned short pG );
     void setB_RGB( unsigned short pB );
-    unsigned short *getCromosoma();
-    void setCromosoma( unsigned short *pCromosoma );
-    int getValorFitness();
-    int setValorFitness( int pValorFitness );
+    unsigned short *getCromosoma();                                     // Obtiene el arreglo cromosoma del individuo
+    void setCromosoma( unsigned short *pCromosoma );                    // Cambia el arreglo cromosoma del individuo
+    int getValorFitness();                                              // Obtiene el valor fitness del individuo
+    int setValorFitness( int pValorFitness );                           // Cambia el valor fitness del individuo
     bool getIndividuoSeleccionado();                                    // Obtiene si el individuo ha sido seleccionado
     void setIndividuoSeleccionado( bool pIndividuoSeleccionado );       // Cambia si el individuo ha sido seleccionado
     int getPadre();                                                     // Obtiene el ID del padre del individuo

@@ -22,12 +22,14 @@ public:
     void printPoblacion();                  // imprime la poblacion segun las generaciones
     void generarNuevaPoblacion();           // genera una nueva generacion
     Individuo *seleccionIndividuos();       // selecciona un individuo de la poblacion
+
+    //***** GETTERS Y SETTERS *****
     Individuo *getMejorIndividuo();         // obtiene mejor individuo de la poblacion
     Individuo *getPeorIndividuo();          // obtiene peor individuo de la poblacion
 
 
 private:
-    int _tamanoPoblacion;                   // tamaño de la poblacion
+    int _tamanoPoblacion;                   // tamaño de la poblacion inicial
     int _probabilidadCruce;                 // probabilidad de que hayan apareamientos
     Individuo *_poblacion;                  // representa la poblacion de individuos
     int _contadorIndividuos;                // cantidad de individuos que han sido creados

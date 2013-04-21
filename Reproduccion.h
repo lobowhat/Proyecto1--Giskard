@@ -15,10 +15,10 @@ public:
     ~Reproduccion();    //destructor
 
     //***** METODOS DE CLASE *****
-    Individuo *cruce( Individuo *pPadre, Individuo *pMadre, int pContador);
-    void mutacion( Individuo *pIndividuo );
-    void inversion( Individuo *pIndividuo );
-    void fitness( Individuo *pIndividuo );
+    Individuo *cruce( Individuo *pPadre, Individuo *pMadre, int pContador); // genera el cruce entre 2 individuos
+    void mutacion( Individuo *pIndividuo );                                 // muta el cromosoma del individuo
+    void inversion( Individuo *pIndividuo );                                // invierte el cromosoma del individuo
+    void fitness( Individuo *pIndividuo );                                  // funcion fitness
 
     //***** GETTERS Y SETTERS *****
     int getProbabilidadMutacion();                                      // obtiene la probabilidad de mutacion
