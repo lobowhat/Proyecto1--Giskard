@@ -1,12 +1,18 @@
 #include "Individuo.h"
 
-Individuo::Individuo( int pId, unsigned short pCromosoma )
+Individuo::Individuo( int pId )
 {
     this->_id = pId;
-    this->_cromosoma = pCromosoma;
-    this->_r = rand() % 255;
-    this->_g = rand() % 255;
-    this->_b = rand() % 255;
+    this->_individuoSeleccionado = false;
+    this->_r = rand() % 255;            //Parte del cromosoma
+    this->_g = rand() % 255;            //Parte del cromosoma
+    this->_b = rand() % 255;            //Parte del cromosoma
+    //srand (time(NULL));                 //reinicia el random//ARREGLAR EL RANDOM
+    this->_cromosoma = new unsigned short[2];   //se crea el arreglo que contendrá los valores RGB
+    this->_cromosoma[0] = this->getR_RGB();
+    this->_cromosoma[1] = this->getG_RGB();
+    this->_cromosoma[2] = this->getB_RGB();
+    this->_valorFitness = _r + _g + _b;
 }//constructor
 
 /**
@@ -61,7 +67,7 @@ Individuo* Individuo::getSiguienteIndividuo(){
  */
 unsigned short Individuo::getR_RGB()
 {
-    return _r;
+    return _r;//_cromosoma[0]
 }
 
 /**
@@ -70,7 +76,7 @@ unsigned short Individuo::getR_RGB()
  */
 unsigned short Individuo::getG_RGB()
 {
-    return _g;
+    return _g;//_cromosoma[1]
 }
 
 /**
@@ -79,7 +85,7 @@ unsigned short Individuo::getG_RGB()
  */
 unsigned short Individuo::getB_RGB()
 {
-    return _b;
+    return _b;//_cromosoma[2]
 }
 
 /**
@@ -89,7 +95,7 @@ unsigned short Individuo::getB_RGB()
  */
 void Individuo::setR_RGB(unsigned short pR)
 {
-    this->_r = pR;
+    this->_r = pR; //this->_cromosoma[0] = pR
 }
 
 /**
@@ -99,7 +105,7 @@ void Individuo::setR_RGB(unsigned short pR)
  */
 void Individuo::setG_RGB(unsigned short pG)
 {
-    this->_g = pG;
+    this->_g = pG;  //this->_cromosoma[1] = pG
 }
 
 /**
@@ -109,8 +115,73 @@ void Individuo::setG_RGB(unsigned short pG)
  */
 void Individuo::setB_RGB(unsigned short pB)
 {
-    this->_b = pB;
+    this->_b = pB;  //this->_cromosoma[2] = pB
 }
+
+/**
+ * @brief Individuo::getCromosoma
+ * Retorna el arreglo que contiene el cromosoma (RGB)
+ * @return _cromosoma
+ */
+unsigned short *Individuo::getCromosoma()
+{
+    return _cromosoma;
+}
+
+/**
+ * @brief Individuo::setCromosoma
+ * Cambia todos los valores del cromosoma
+ * @param pR
+ * @param pG
+ * @param pB
+ */
+void Individuo::setCromosoma(unsigned short pR, unsigned short pG, unsigned short pB)
+{
+    this->_cromosoma[0] = pR;
+    this->_cromosoma[1] = pB;
+    this->_cromosoma[2] = pG;
+}
+
+/**
+ * @brief Individuo::getValorFitness
+ * Obtiene el valor fitness del individuo
+ * @return _valorFitness
+ */
+int Individuo::getValorFitness()
+{
+    return _valorFitness;
+}
+
+/**
+ * @brief Individuo::setValorFitness
+ * @param pValorFitness
+ * Cambia el valor fitness del individuo
+ */
+int Individuo::setValorFitness(int pValorFitness)
+{
+    this->_valorFitness = pValorFitness;
+}
+
+/**
+ * @brief Individuo::getIndividuoSeleccionado
+ * Obtiene si el individuo ha sido seleccionado
+ * @return _individuoSeleccionado
+ */
+bool Individuo::getIndividuoSeleccionado()
+{
+    return _individuoSeleccionado;
+}
+
+/**
+ * @brief Individuo::setIndividuoSeleccionado
+ * Cambia si el individuo ha sido seleccionado
+ * @param pIndividuoSeleccionado
+ */
+void Individuo::setIndividuoSeleccionado( bool pIndividuoSeleccionado )
+{
+    this->_individuoSeleccionado = pIndividuoSeleccionado;
+}
+
 
 /**
  * @brief Individuo::printDatosIndividuo
@@ -120,8 +191,10 @@ void Individuo::printDatosIndividuo()
 {
     qDebug() << "Individuo ID: " << this->_id << " Generacion: " << this->_generacion << " RGB: "
              << "( " << this->_r << ", " << this->_g << ", " << this->_b << " )"
-             << " Cromosoma: " << this->_cromosoma << endl;
+             << " Cromosoma: " << this->_cromosoma[0] << this->_cromosoma[1] << this->_cromosoma[2]
+             << "Fitness: " << this->_valorFitness << endl;
 }
 
 
 Individuo::~Individuo(){}//destructor
+

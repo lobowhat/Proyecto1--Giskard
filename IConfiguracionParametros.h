@@ -16,6 +16,7 @@ class IConfiguracionParametros{
 
 public:
 
+    //***** DIRECCION DE LA IMAGEN EN LA COMPUTADORA *****
 //    static const char* PATHFILE_IMAGEN = "/home/darayavilla/Qt_projects/lobowhat-Proyecto1--Giskard/raya1.jpg";
 
     //***** RANGO MINIMO PARA LA DETECCION DE COLOR RGB DEL ESPACIO BORRADO *****
@@ -25,13 +26,20 @@ public:
 
     //***** RANGO MAXIMO PARA LA DETECCION DE COLOR RGB DEL ESPACIO BORRADO *****
     static const int R_MAXIMO = 255;        //R valor maximo
-    static const int G_MAXIMO = 0;          //R valor maximo
-    static const int B_MAXIMO = 0;          //R valor maximo
+    static const int G_MAXIMO = 0;          //G valor maximo
+    static const int B_MAXIMO = 0;          //B valor maximo
 
     //***** SECCION DE PIXELES ******
     static const int SECCION_FILA = 5;      //tamaño de pixeles por filas
     static const int SECCION_COLUMNA = 5;   //tamaño de pixeles por columnas
 
+    //***** DATOS PARA EL ALGORITMO GENÉTICO ******
+    static const int PROBABILIDAD_CRUCE = 100;                  // 100%
+    static const int TAMANO_POBLACION = 5;                      // tamaño inicial de la poblacion
+    static const int PROBABILIDAD_INVERSION = 50;               // 50%
+    static const int PROBABILIDAD_MUTACION = 50;                // 50%
+    static const int PROBABILIDAD_NACIMIENTO = 50;              // 50%
+    static const int MAX_NACIMIENTOS = 5;                       // maxima cantidad de nacimientos por generacion
 
 };
 
