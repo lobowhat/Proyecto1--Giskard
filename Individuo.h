@@ -13,7 +13,7 @@ public:
     Individuo( int pId );                                               // Constructor
     ~Individuo();                                                       // Destructor
 
-//***** GETTERS Y SETTERS *****
+    //***** GETTERS Y SETTERS *****
     unsigned int getId();                                               // Retorna el ID del individuo
     unsigned int  getGeneracion();                                      // Retorna el numero de generacion
     void setGeneracion( unsigned int pGeneracion );                     // Cambia el numero de generacion
