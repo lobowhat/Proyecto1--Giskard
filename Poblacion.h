@@ -29,7 +29,6 @@ public:
 private:
     int _tamanoPoblacion;                   // tamaño de la poblacion
     int _probabilidadCruce;                 // probabilidad de que hayan apareamientos
-    int _probabilidadMutacion;              // probabilidad de que un cromosoma de individuo mute
     Individuo *_poblacion;                  // representa la poblacion de individuos
     int _contadorIndividuos;                // cantidad de individuos que han sido creados
     int _generacion;                        // generacion a la que pertenece una poblacion

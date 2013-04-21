@@ -8,7 +8,7 @@ Individuo::Individuo( int pId )
     this->_g = rand() % 255;                    //Parte del cromosoma
     this->_b = rand() % 255;                    //Parte del cromosoma
     //srand (time(NULL));                       // reinicia el random//ARREGLAR EL RANDOM
-    this->_cromosoma = new unsigned short[16];  // se crea el arreglo que contendrá los valores RGB
+    this->_cromosoma = new unsigned short[23];  // se crea el arreglo que contendrá los valores RGB
     this->_cromosoma[0] = this->getR_RGB();
     this->_cromosoma[1] = this->getG_RGB();
     this->_cromosoma[2] = this->getB_RGB();
@@ -50,7 +50,7 @@ unsigned int Individuo::getId()
  * Cambia al siguiente Individuo de uno actual
  * @param pSiguienteIndividuo
  */
-void Individuo::setSiguienteIndividuo(Individuo *pSiguienteIndividuo){
+void Individuo::setSiguienteIndividuo( Individuo *pSiguienteIndividuo ){
     this->_siguienteIndividuo = pSiguienteIndividuo;
 }
 
@@ -132,10 +132,8 @@ unsigned short *Individuo::getCromosoma()
 
 /**
  * @brief Individuo::setCromosoma
- * Cambia todos los valores del cromosoma
- * @param pR
- * @param pG
- * @param pB
+ * Cambia el cromosoma del individuo
+ * @param pCromosoma
  */
 void Individuo::setCromosoma( unsigned short *pCromosoma )
 {
