@@ -14,14 +14,16 @@ SOURCES += main.cpp \
     examples/GA/ga2.cpp \
     mouse.cpp \
     CirclesDetecting.cpp \
-    FigureDetection.cpp
+    FigureDetection.cpp \
+    util/baseconversion.cpp
 
 HEADERS += \
     ReconstruccionImagenes.h \
     Poblacion.h \
     Individuo.h \
     IConfiguracionParametros.h \
-    FigureDetection.h
+    FigureDetection.h \
+    util/baseconversion.h
 
 OTHER_FILES += \
     raya1.png
