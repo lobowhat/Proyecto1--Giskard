@@ -15,15 +15,16 @@ SOURCES += main.cpp \
     mouse.cpp \
     CirclesDetecting.cpp \
     FigureDetection.cpp \
-    Reproduccion.cpp
-
+    Reproduccion.cpp \
+    util/baseconversion.cpp
 HEADERS += \
     ReconstruccionImagenes.h \
     Poblacion.h \
     Individuo.h \
     IConfiguracionParametros.h \
     FigureDetection.h \
-    Reproduccion.h
+    Reproduccion.h \
+    util/baseconversion.h
 
 OTHER_FILES += \
     raya1.png
