@@ -8,7 +8,7 @@ using namespace std;
 class Reproduccion{
 
 public:
-    Reproduccion( int pProbabilidadMutacion, int pProbabilidadInversion );     //constructor
+    Reproduccion();     //constructor
     ~Reproduccion();    //destructor
 
     //***** METODOS DE CLASE *****

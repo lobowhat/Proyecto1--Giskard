@@ -6,13 +6,14 @@
 #include <QDebug>
 #include "Individuo.h"
 #include "Reproduccion.h"
+#include "IConfiguracionParametros.h"
 
 using namespace std;
 
 class Poblacion{
 
 public:
-    Poblacion( int pPoblacionInicial );   //constructor
+    Poblacion();   //constructor
     ~Poblacion();                         //destructor
 
     //***** METODOS DE CLASE *****
@@ -27,8 +28,8 @@ public:
 
 private:
     int _tamanoPoblacion;                   // tamaño de la poblacion
-    double _probabilidadCruce;              // probabilidad de que hayan apareamientos
-    double _probabilidadMutacion;           // probabilidad de que un cromosoma de individuo mute
+    int _probabilidadCruce;                 // probabilidad de que hayan apareamientos
+    int _probabilidadMutacion;              // probabilidad de que un cromosoma de individuo mute
     Individuo *_poblacion;                  // representa la poblacion de individuos
     int _contadorIndividuos;                // cantidad de individuos que han sido creados
     int _generacion;                        // generacion a la que pertenece una poblacion

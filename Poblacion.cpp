@@ -1,10 +1,10 @@
 #include "Poblacion.h"
 
-Poblacion::Poblacion(int pPoblacionInicial)
+Poblacion::Poblacion()
 {
-    this->_tamanoPoblacion = pPoblacionInicial;
-    this->_probabilidadCruce = 1.0;                         //1 * 100 = 100% debe tomar valores desde 0.5 hasta 1
-    this->_probabilidadMutacion = 0.5;                      /*50% ###se recomienda: utilizacion de una probabilidad
+    this->_tamanoPoblacion = IConfiguracionParametros::TAMANO_POBLACION;
+    this->_probabilidadCruce = IConfiguracionParametros::PROBABILIDAD_CRUCE;//1 * 100 = 100% debe tomar valores desde 0.5 hasta 1
+    this->_probabilidadMutacion = IConfiguracionParametros::PROBABILIDAD_MUTACION;/*50% ###se recomienda: utilizacion de una probabilidad
                                                             de mutacion del bit de l−1 , siendo l la longitud del string.*/
     this->_contadorIndividuos = 1;
 }//constructor
