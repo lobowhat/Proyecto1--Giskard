@@ -27,11 +27,15 @@ public:
     void setG_RGB( unsigned short pG );
     void setB_RGB( unsigned short pB );
     unsigned short *getCromosoma();
-    void setCromosoma( unsigned short pR, unsigned short pG, unsigned short pB );
+    void setCromosoma( unsigned short *pCromosoma );
     int getValorFitness();
     int setValorFitness( int pValorFitness );
     bool getIndividuoSeleccionado();                                    // Obtiene si el individuo ha sido seleccionado
     void setIndividuoSeleccionado( bool pIndividuoSeleccionado );       // Cambia si el individuo ha sido seleccionado
+    int getPadre();                                                     // Obtiene el ID del padre del individuo
+    void setPadre( int pPadre );                                        // Cambia el padre del individuo
+    int getMadre();                                                     // Obtiene el ID del madre del individuo
+    void setMadre( int pMadre );                                        // Cambia la madre del individuo
 
     //***** METODOS DE CLASE *****
 
@@ -45,7 +49,9 @@ private:
     unsigned short _g;                          // valor de color B en codigo decimal (RGB)
     unsigned short *_cromosoma;                 // Arreglo que contiene los valores RGB del individuo
     int _valorFitness;                          // valor Fitness del individuo
-    bool _individuoSeleccionado;
+    bool _individuoSeleccionado;                // si es seleccionado para la seleccion natural
+    int _padre;                                 // padre del individuo
+    int _madre;                                 // madre del individuo
 
 };
 

@@ -4,15 +4,17 @@ Individuo::Individuo( int pId )
 {
     this->_id = pId;
     this->_individuoSeleccionado = false;
-    this->_r = rand() % 255;            //Parte del cromosoma
-    this->_g = rand() % 255;            //Parte del cromosoma
-    this->_b = rand() % 255;            //Parte del cromosoma
-    //srand (time(NULL));                 //reinicia el random//ARREGLAR EL RANDOM
-    this->_cromosoma = new unsigned short[2];   //se crea el arreglo que contendrá los valores RGB
+    this->_r = rand() % 255;                    //Parte del cromosoma
+    this->_g = rand() % 255;                    //Parte del cromosoma
+    this->_b = rand() % 255;                    //Parte del cromosoma
+    //srand (time(NULL));                       // reinicia el random//ARREGLAR EL RANDOM
+    this->_cromosoma = new unsigned short[16];  // se crea el arreglo que contendrá los valores RGB
     this->_cromosoma[0] = this->getR_RGB();
     this->_cromosoma[1] = this->getG_RGB();
     this->_cromosoma[2] = this->getB_RGB();
     this->_valorFitness = _r + _g + _b;
+    this->_padre = -1;                          // No hay padre
+    this->_madre = -1;                          // No hay madre
 }//constructor
 
 /**
@@ -135,11 +137,9 @@ unsigned short *Individuo::getCromosoma()
  * @param pG
  * @param pB
  */
-void Individuo::setCromosoma(unsigned short pR, unsigned short pG, unsigned short pB)
+void Individuo::setCromosoma( unsigned short *pCromosoma )
 {
-    this->_cromosoma[0] = pR;
-    this->_cromosoma[1] = pB;
-    this->_cromosoma[2] = pG;
+    this->_cromosoma = pCromosoma;
 }
 
 /**
@@ -157,7 +157,7 @@ int Individuo::getValorFitness()
  * @param pValorFitness
  * Cambia el valor fitness del individuo
  */
-int Individuo::setValorFitness(int pValorFitness)
+int Individuo::setValorFitness( int pValorFitness )
 {
     this->_valorFitness = pValorFitness;
 }
@@ -182,6 +182,46 @@ void Individuo::setIndividuoSeleccionado( bool pIndividuoSeleccionado )
     this->_individuoSeleccionado = pIndividuoSeleccionado;
 }
 
+/**
+ * @brief Individuo::getPadre
+ * Obtiene el ID del padre del individuo
+ * @return _padre
+ */
+int Individuo::getPadre()
+{
+    return _padre;
+}
+
+/**
+ * @brief Individuo::setPadre
+ * Cambia el ID del padre del individuo
+ * @param pPadre
+ */
+void Individuo::setPadre( int pPadre )
+{
+    this->_padre = pPadre;
+}
+
+/**
+ * @brief Individuo::getMadre
+ * Obtiene el ID del madre del individuo
+ * @return _madre
+ */
+int Individuo::getMadre()
+{
+    return _madre;
+}
+
+/**
+ * @brief Individuo::setMadre
+ * Cambia el ID del madre del individuo
+ * @param pMadre
+ */
+void Individuo::setMadre( int pMadre )
+{
+    this->_madre = pMadre;
+}
+
 
 /**
  * @brief Individuo::printDatosIndividuo
@@ -189,7 +229,8 @@ void Individuo::setIndividuoSeleccionado( bool pIndividuoSeleccionado )
  */
 void Individuo::printDatosIndividuo()
 {
-    qDebug() << "Individuo ID: " << this->_id << " Generacion: " << this->_generacion << " RGB: "
+    qDebug() << "Individuo ID: " << this->_id << "Padre: " << this->_padre << "Madre: " << this->_madre
+             << " Generacion: " << this->_generacion << " RGB: "
              << "( " << this->_r << ", " << this->_g << ", " << this->_b << " )"
              << " Cromosoma: " << this->_cromosoma[0] << this->_cromosoma[1] << this->_cromosoma[2]
              << "Fitness: " << this->_valorFitness << endl;
