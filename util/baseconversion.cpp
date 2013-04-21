@@ -1,3 +1,4 @@
+#include <cmath>
 #include "baseconversion.h"
 
 BaseConversion::BaseConversion()
