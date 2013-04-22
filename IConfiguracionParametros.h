@@ -36,9 +36,9 @@ public:
     //***** DATOS PARA EL ALGORITMO GENÉTICO ******
     static const int PROBABILIDAD_CRUCE = 100;                  // 100%
     static const int TAMANO_POBLACION = 5;                      // tamaño inicial de la poblacion
-    static const int PROBABILIDAD_INVERSION = 50;               // 50%
-    static const int PROBABILIDAD_MUTACION = 50;                // 50%
-    static const int PROBABILIDAD_NACIMIENTO = 50;              // 50%
+    static const int PROBABILIDAD_INVERSION = 6;                // 10%
+    static const int PROBABILIDAD_MUTACION = 2;                 // 10%
+    static const int PROBABILIDAD_NACIMIENTO = 4;               // 50%
     static const int MAX_NACIMIENTOS = 5;                       // maxima cantidad de nacimientos por generacion
 
 };

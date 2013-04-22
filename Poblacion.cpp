@@ -5,6 +5,7 @@ Poblacion::Poblacion()
     this->_tamanoPoblacion = IConfiguracionParametros::TAMANO_POBLACION;
     this->_probabilidadCruce = IConfiguracionParametros::PROBABILIDAD_CRUCE;//1 * 100 = 100% debe tomar valores desde 0.5 hasta 1
     this->_contadorIndividuos = 1;
+    this->_maxCantidadNacimientos = IConfiguracionParametros::MAX_NACIMIENTOS;
 }//constructor
 
 /**
@@ -13,10 +14,10 @@ Poblacion::Poblacion()
  */
 void Poblacion::crearPoblacionInicial()
 {
-    this->_poblacion = new Individuo(this->_contadorIndividuos);     //individuo inicial(MATUZALEM)
+    this->_poblacion = new Individuo( this->_contadorIndividuos );     //individuo inicial(MATUZALEM)
     for(int i = 0; i < this->_tamanoPoblacion - 1; i++){
         this->_contadorIndividuos++;                                    //lleva la cuenta de la cantidad de individuos
-        Individuo *tmp = new Individuo(this->_contadorIndividuos);   //se crea otro individuo
+        Individuo *tmp = new Individuo( this->_contadorIndividuos );   //se crea otro individuo
         tmp->setSiguienteIndividuo(this->_poblacion);                   //se agrega otro individuo a la lista simple
         this->_poblacion = tmp;
     }//fin del for
@@ -55,6 +56,37 @@ Individuo *Poblacion::seleccionIndividuos()
         tmp = tmp->getSiguienteIndividuo();
     }//fin del while
     return tmp;
+}
+
+/**
+ * @brief Poblacion::nuevaGeneracion
+ * Crea la nueva generacion de individuos
+ */
+void Poblacion::nuevaGeneracion()
+{
+    Individuo *nacimientos = NULL;
+    Individuo *padre1 = NULL;
+    Individuo *padre2 = NULL;
+    for(int i = 0 ; i < this->_maxCantidadNacimientos; i++){
+        if((rand()% 10) < this->_probabilidadCruce){
+
+            padre1 = this->seleccionIndividuos();
+            padre2 = this->seleccionIndividuos();
+            this->_contadorIndividuos++;
+            Individuo *tmp = _reproduccion->cruce( padre1, padre2, this->_contadorIndividuos );
+            //tmp->setSiguienteIndividuo( nacimientos );
+
+            //tmp->setSiguienteIndividuo(this->_poblacion);                   //se agrega otro individuo a la lista simple
+            //this->_poblacion = tmp;
+            nacimientos = tmp;
+            //nacimientos->setGeneracion( this->_generacion );
+
+        }
+    }
+    //mezclarPoblacion(nacimientos);
+    this->_generacion++;
+    qDebug()<<"GENERACION ............................ " << this->_generacion << endl;
+
 }
 
 /**

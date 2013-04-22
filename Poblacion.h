@@ -22,6 +22,8 @@ public:
     void printPoblacion();                  // imprime la poblacion segun las generaciones
     void generarNuevaPoblacion();           // genera una nueva generacion
     Individuo *seleccionIndividuos();       // selecciona un individuo de la poblacion
+    void nuevaGeneracion();                 //genera la nueva poblacion
+
 
     //***** GETTERS Y SETTERS *****
     Individuo *getMejorIndividuo();         // obtiene mejor individuo de la poblacion
@@ -36,7 +38,7 @@ private:
     int _generacion;                        // generacion a la que pertenece una poblacion
     int _probabilidadNacimiento;            // probabilidad de nacimientos
     int _maxCantidadNacimientos;            // cantidad máxima de nacimientos
-
+    Reproduccion *_reproduccion;
 
 };
 

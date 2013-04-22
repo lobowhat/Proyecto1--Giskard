@@ -80,14 +80,14 @@ Individuo *Reproduccion::cruce( Individuo *pPadre, Individuo *pMadre, int pConta
     }
     Individuo *nuevoIndividuo = new Individuo( pContador );
     nuevoIndividuo->setCromosoma( cromosomaFinalHijo );
-    //cout << "Original " << cromosomaHijo << endl;
-//    int probabilidad = rand() % 100;
-//    if(mutar < this->_probabilidadMutacion)
-//        this->mutacion( nuevoIndividuo );
-//    //cout << "Mutado " << nuevoIndividuo->getCromosoma()<< endl;
-//    if(invertir < this->_probabilidadInvertir)
-//        this->nnversion( nuevoIndividuo );
-//    //cout << "Invertido " << nuevoIndividuo->getCromosoma()<< endl;
+    cout << "Nuevo Individuo sin alteraciones " << cromosomaFinalHijo << endl;
+    int probabilidad = rand() % 10;
+    if( probabilidad == this->_probabilidadMutacion ){
+        this->mutacion( nuevoIndividuo );
+        cout << "Mutado " << nuevoIndividuo->getCromosoma() << endl;}
+    if( probabilidad == this->_probabilidadInvertir ){
+        this->inversion( nuevoIndividuo );
+        cout << "Invertido " << nuevoIndividuo->getCromosoma() << endl;}
 //    this->fitness( nuevoIndividuo );
     nuevoIndividuo->setPadre( pPadre->getId() );
     nuevoIndividuo->setMadre( pMadre->getId() );
