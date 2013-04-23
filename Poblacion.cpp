@@ -62,7 +62,7 @@ Individuo *Poblacion::seleccionIndividuos()
  * @brief Poblacion::nuevaGeneracion
  * Crea la nueva generacion de individuos
  */
-void Poblacion::nuevaGeneracion()
+void Poblacion::crearNuevaGeneracion()
 {
     Individuo *nacimientos = NULL;          //se genera una nueva lista simple( nueva generacion)
     Individuo *padre1 = NULL;
@@ -76,11 +76,13 @@ void Poblacion::nuevaGeneracion()
             Individuo *tmp = _reproduccion->cruce( padre1, padre2, this->_contadorIndividuos );
             tmp->setSiguienteIndividuo( nacimientos );
             nacimientos = tmp;
-            nacimientos->setGeneracion( this->_generacion );
+            //nacimientos->setGeneracion( this->_generacion );
 
         }
+        qDebug() << "LULA1" << endl;
+
     }
-    mezclarPoblacion( nacimientos );
+    //mezclarPoblacion( nacimientos );
     this->_generacion++;
     qDebug()<<"GENERACION ............................ " << this->_generacion << endl;
 
