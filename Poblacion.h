@@ -13,9 +13,8 @@ using namespace std;
 class Poblacion{
 
 public:
-    Poblacion();   //constructor
-    ~Poblacion();                         //destructor
-
+    Poblacion();                            // Constructor
+    ~Poblacion();                           // Destructor
     //***** METODOS DE CLASE *****
     void crearPoblacionInicial();           // crea la poblacion inicial de individuos
     void crearNuevaGeneracion();            // crea una nueva generacion de individuos
@@ -23,9 +22,6 @@ public:
     void generarNuevaPoblacion();           // genera una nueva generacion
     Individuo *seleccionIndividuos();       // selecciona un individuo de la poblacion
     void nuevaGeneracion();                 //genera la nueva poblacion
-
-
-    //***** GETTERS Y SETTERS *****
     Individuo *getMejorIndividuo( Individuo *pPoblacion );         // obtiene mejor individuo de la poblacion
     Individuo *getPeorIndividuo( Individuo *pPoblacion );          // obtiene peor individuo de la poblacion
     void mezclarPoblacion( Individuo *pNuevaGeneracion );          // Mezcla la poblacion actual con la nueva generacion

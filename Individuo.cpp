@@ -165,7 +165,7 @@ int Individuo::getValorFitness()
  * @param pValorFitness
  * Cambia el valor fitness del individuo
  */
-int Individuo::setValorFitness( int pValorFitness )
+void Individuo::setValorFitness( int pValorFitness )
 {
     this->_valorFitness = pValorFitness;
 }

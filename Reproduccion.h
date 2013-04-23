@@ -11,8 +11,8 @@ using namespace std;
 class Reproduccion{
 
 public:
-    Reproduccion();     //constructor
-    ~Reproduccion();    //destructor
+    Reproduccion();                                                     // Constructor
+    ~Reproduccion();                                                    // Destructor
 
     //***** METODOS DE CLASE *****
     Individuo *cruce( Individuo *pPadre, Individuo *pMadre, int pContador); // genera el cruce entre 2 individuos

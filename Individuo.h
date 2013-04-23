@@ -12,7 +12,6 @@ class Individuo{
 public:
     Individuo( int pId );                                               // Constructor
     ~Individuo();                                                       // Destructor
-
     //***** GETTERS Y SETTERS *****
     unsigned int getId();                                               // Retorna el ID del individuo
     void setId( unsigned int pId );                                     // Cambia el ID del individuo
@@ -30,16 +29,13 @@ public:
     unsigned short *getCromosoma();                                     // Obtiene el arreglo cromosoma del individuo
     void setCromosoma( unsigned short *pCromosoma );                    // Cambia el arreglo cromosoma del individuo
     int getValorFitness();                                              // Obtiene el valor fitness del individuo
-    int setValorFitness( int pValorFitness );                           // Cambia el valor fitness del individuo
+    void setValorFitness( int pValorFitness );                           // Cambia el valor fitness del individuo
     bool getIndividuoSeleccionado();                                    // Obtiene si el individuo ha sido seleccionado
     void setIndividuoSeleccionado( bool pIndividuoSeleccionado );       // Cambia si el individuo ha sido seleccionado
     int getPadre();                                                     // Obtiene el ID del padre del individuo
     void setPadre( int pPadre );                                        // Cambia el padre del individuo
     int getMadre();                                                     // Obtiene el ID del madre del individuo
     void setMadre( int pMadre );                                        // Cambia la madre del individuo
-
-    //***** METODOS DE CLASE *****
-
 
 private:
     int _id;                                    // Identificador del individuo
