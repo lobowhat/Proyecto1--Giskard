@@ -15,6 +15,7 @@ public:
 
     //***** GETTERS Y SETTERS *****
     unsigned int getId();                                               // Retorna el ID del individuo
+    void setId( unsigned int pId );                                     // Cambia el ID del individuo
     unsigned int  getGeneracion();                                      // Retorna el numero de generacion
     void setGeneracion( unsigned int pGeneracion );                     // Cambia el numero de generacion
     void printDatosIndividuo();                                         // Imprime informacion acerca de un individuo

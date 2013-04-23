@@ -26,9 +26,11 @@ public:
 
 
     //***** GETTERS Y SETTERS *****
-    Individuo *getMejorIndividuo();         // obtiene mejor individuo de la poblacion
-    Individuo *getPeorIndividuo();          // obtiene peor individuo de la poblacion
-
+    Individuo *getMejorIndividuo( Individuo *pPoblacion );         // obtiene mejor individuo de la poblacion
+    Individuo *getPeorIndividuo( Individuo *pPoblacion );          // obtiene peor individuo de la poblacion
+    void mezclarPoblacion( Individuo *pNuevaGeneracion );          // Mezcla la poblacion actual con la nueva generacion
+    void cambiarIndividuos( Individuo *pIndividuo1, Individuo *pIndividuo2 ); // cambia individuos entre generaciones
+    void cambiaValorIndividuoSeleccionado();                        //setea el atributo para poder ser seleccionado en cruce
 
 private:
     int _tamanoPoblacion;                   // tamaño de la poblacion inicial

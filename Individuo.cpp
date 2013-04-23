@@ -46,6 +46,16 @@ unsigned int Individuo::getId()
 }
 
 /**
+ * @brief Individuo::setId
+ * Cambia el ID del individuo
+ * @param pId
+ */
+void Individuo::setId( unsigned int pId )
+{
+    this->_id = pId;
+}
+
+/**
  * @brief Individuo::setSiguienteIndividuo
  * Cambia al siguiente Individuo de uno actual
  * @param pSiguienteIndividuo

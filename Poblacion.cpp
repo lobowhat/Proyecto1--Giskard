@@ -64,7 +64,7 @@ Individuo *Poblacion::seleccionIndividuos()
  */
 void Poblacion::nuevaGeneracion()
 {
-    Individuo *nacimientos = NULL;
+    Individuo *nacimientos = NULL;          //se genera una nueva lista simple( nueva generacion)
     Individuo *padre1 = NULL;
     Individuo *padre2 = NULL;
     for(int i = 0 ; i < this->_maxCantidadNacimientos; i++){
@@ -74,19 +74,83 @@ void Poblacion::nuevaGeneracion()
             padre2 = this->seleccionIndividuos();
             this->_contadorIndividuos++;
             Individuo *tmp = _reproduccion->cruce( padre1, padre2, this->_contadorIndividuos );
-            //tmp->setSiguienteIndividuo( nacimientos );
-
-            //tmp->setSiguienteIndividuo(this->_poblacion);                   //se agrega otro individuo a la lista simple
-            //this->_poblacion = tmp;
+            tmp->setSiguienteIndividuo( nacimientos );
             nacimientos = tmp;
-            //nacimientos->setGeneracion( this->_generacion );
+            nacimientos->setGeneracion( this->_generacion );
 
         }
     }
-    //mezclarPoblacion(nacimientos);
+    mezclarPoblacion( nacimientos );
     this->_generacion++;
     qDebug()<<"GENERACION ............................ " << this->_generacion << endl;
 
+}
+
+/**
+ * @brief Poblacion::mezclarPoblacion
+ * Cambiara a los mejores individuos de la nueva generacion
+ * por los peores de la generacion actual
+ * @param pNuevaGeneracion
+ */
+void Poblacion::mezclarPoblacion( Individuo *pNuevaGeneracion )
+{
+    Individuo *  debilGeneracionActual = this->getPeorIndividuo( this->_poblacion );
+    Individuo *  fuerteNuevaGeneracion = this->getMejorIndividuo( pNuevaGeneracion );
+
+    while( debilGeneracionActual->getValorFitness() < fuerteNuevaGeneracion->getValorFitness() ){
+
+        this->cambiarIndividuos( debilGeneracionActual,fuerteNuevaGeneracion );
+
+        debilGeneracionActual = this->getPeorIndividuo( this->_poblacion );
+        fuerteNuevaGeneracion = this->getMejorIndividuo( pNuevaGeneracion );
+    }
+    cambiaValorIndividuoSeleccionado();
+}
+
+/**
+ * @brief Poblacion::cambiarIndividuos
+ * Cambia a los individuos de la nueva generacion a la anterior(GENERAL)
+ * Modificando sus valores con getters y setters
+ * @param pIndividuo1
+ * @param pIndividuo2
+ */
+void Poblacion::cambiarIndividuos( Individuo *pIndividuo1, Individuo *pIndividuo2 )
+{
+    // Se generan valores temporales para hacer el cambio
+    int id = pIndividuo1->getId();
+    unsigned short *cromosoma = pIndividuo1->getCromosoma();
+    int fitness = pIndividuo1->getValorFitness();
+    int generacion = pIndividuo1->getGeneracion();
+    int padre = pIndividuo1->getPadre();
+    int madre = pIndividuo1->getMadre();
+    // CAMBIO DE VALORES DEL INDIVIDUO 2 HACIA EL INDIVIDUO 1
+    pIndividuo1->setValorFitness( pIndividuo2->getValorFitness() );
+    pIndividuo1->setId( pIndividuo2->getId() );
+    pIndividuo1->setCromosoma( pIndividuo2->getCromosoma() );
+    pIndividuo1->setGeneracion( pIndividuo2->getGeneracion() );
+    pIndividuo1->setPadre( pIndividuo2->getPadre() );
+    pIndividuo1->setMadre( pIndividuo2->getMadre() );
+    // CAMBIO DE VALORES DEL INDIVIDUO 1 HACIA EL INDIVIDUO 2
+    pIndividuo2->setId( id );
+    pIndividuo2->setCromosoma( cromosoma );
+    pIndividuo2->setValorFitness( fitness );
+    pIndividuo2->setGeneracion( generacion );
+    pIndividuo2->setMadre( madre );
+    pIndividuo2->setPadre( padre );
+}
+/**
+ * @brief Poblacion::cambiaValorIndividuoSeleccionado
+ * Cambia el valor de IndividuoSeleccionado para que pueda ser seleccionado para el cruce
+ */
+void Poblacion::cambiaValorIndividuoSeleccionado()
+{
+    Individuo *tmp = this->_poblacion;
+    while ( tmp != NULL ){
+        if( tmp->getIndividuoSeleccionado() == true ){
+            tmp->setIndividuoSeleccionado( false );
+        }
+        tmp = tmp->getSiguienteIndividuo();
+    }
 }
 
 /**
@@ -94,9 +158,9 @@ void Poblacion::nuevaGeneracion()
  * Retorna al mejor Individuo
  * @return mejorIndividuo
  */
-Individuo *Poblacion::getMejorIndividuo()
+Individuo *Poblacion::getMejorIndividuo( Individuo *pPoblacion )
 {
-    Individuo *tmp = this->_poblacion;
+    Individuo *tmp = pPoblacion;
     Individuo *mejorIndividuo = tmp;
     while ( tmp != NULL ){
         if( mejorIndividuo->getValorFitness() < tmp->getValorFitness() ){
@@ -114,9 +178,9 @@ Individuo *Poblacion::getMejorIndividuo()
  * Retorna al peorIndividuo
  * @return peorIndividuo
  */
-Individuo *Poblacion::getPeorIndividuo()
+Individuo *Poblacion::getPeorIndividuo( Individuo *pPoblacion )
 {
-    Individuo *tmp = this->_poblacion;
+    Individuo *tmp = pPoblacion;
     Individuo *peorIndividuo = tmp;
     while ( tmp != NULL ){
         if( peorIndividuo->getValorFitness() > tmp->getValorFitness() ){

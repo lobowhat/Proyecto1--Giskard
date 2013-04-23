@@ -22,8 +22,6 @@ int main()
     Poblacion *po = new Poblacion();
     po->crearPoblacionInicial();
     po->printPoblacion();
-    po->getMejorIndividuo();
-    po->getPeorIndividuo();
     delete po;
 
     return 0;
