@@ -4,7 +4,7 @@
 class Chromosome
 {
 public:
-    Chromosome(int pRvalue, int pGvalue, int pBvalue); // constructor
+    Chromosome(); // constructor
 
     // convierte de binario a decimal
     unsigned long binaryToDecimal(unsigned long pNumber);
@@ -13,7 +13,7 @@ public:
     unsigned long decimalToBinary(unsigned long pNumber);
 
     // convierte el dato ingresado en un arreglo
-    int *convertToArray();
+    int *convertToArray(int pRvalue, int pGvalue, int pBvalue);
 
     // convierte un arreglo de 8 espacios en un nuevo arreglo de binarios
     int convertFromArray(int *pValue);
@@ -22,9 +22,9 @@ public:
     void printChromosome() const;
 
     // getters y setters
-    int getRValue() const;
-    int getGValue() const;
-    int getBValue() const;
+    int getRValue();
+    int getGValue();
+    int getBValue();
     int *getChoromosomePtr();
 
 private:
@@ -33,8 +33,6 @@ private:
 
     // tamaño del arreglo de RBG binario
     static const int RGBARRAY = 3 * CHROMOSOME;
-
-    int _rValue, _gValue, _bValue; // valores de RGB
 
     int _chromosome[RGBARRAY]; // arreglo con cromosomass
 
@@ -46,6 +44,9 @@ private:
 
     // convierte un decimal a arreglo binario
     void binaryArray(unsigned pValue, int *pArray);
+
+    // función auxiliar para retornar valores en el arreglo
+    int getDecimalFromArray(int pBegin);
 };
 
 #endif // CHROMOSOME_H

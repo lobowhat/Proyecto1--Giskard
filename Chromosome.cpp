@@ -2,8 +2,7 @@
 #include <iostream>
 #include "Chromosome.h"
 
-Chromosome::Chromosome(int pRvalue, int pGvalue, int pBvalue)
-    : _rValue(pRvalue), _gValue(pGvalue), _bValue(pBvalue)
+Chromosome::Chromosome()
 {
     // empty body
 }
@@ -18,10 +17,10 @@ unsigned long Chromosome::decimalToBinary(unsigned long pNumber)
     return conversion(pNumber, 10, 2);
 }
 
-int *Chromosome::convertToArray()
+int *Chromosome::convertToArray(int pRvalue, int pGvalue, int pBvalue)
 {
     const int size = 3;
-    int temp[size] = {_rValue, _gValue, _bValue};
+    int temp[size] = {pRvalue, pGvalue, pBvalue};
     int pos = 0;
     int array[CHROMOSOME];
     int *tempPtr = array;
@@ -46,22 +45,22 @@ void Chromosome::printChromosome() const
     std::cout << "\n";
 }
 
-int Chromosome::getRValue() const
+int Chromosome::getRValue()
 {
-    return _rValue;
+    return getDecimalFromArray(0);
 }
 
-int Chromosome::getGValue() const
+int Chromosome::getGValue()
 {
-    return _gValue;
+    return getDecimalFromArray(8);
 }
 
-int Chromosome::getBValue() const
+int Chromosome::getBValue()
 {
-    return _bValue;
+    return getDecimalFromArray(16);
 }
 
-int *Chromosome::choromosomePtr()
+int *Chromosome::getChoromosomePtr()
 {
     return _chromosome;
 }
@@ -89,9 +88,20 @@ void Chromosome::binaryArray(unsigned pValue, int* pArray)
     }
 }
 
+int Chromosome::getDecimalFromArray(int pBegin)
+{
+    int temp = 0, pow = 7;
+    for (int var = pBegin; var < pBegin + CHROMOSOME; ++var) {
+        temp += _chromosome[var] * pow10(pow--);
+    }
+
+    return binaryToDecimal(temp);
+}
+
 int main()
 {
-    Chromosome p(245, 32, 45);
-    p.convertToArray();
+    Chromosome p;
+    p.convertToArray(245, 32, 45);
     p.printChromosome();
+    std::cout << "R: " << p.getRValue() << std::endl;
 }
