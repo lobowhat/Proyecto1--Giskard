@@ -49,6 +49,8 @@ void Reproduccion::setProbabilidadMutacion( int pProbabilidadMutacion )
 
 Individuo *Reproduccion::cruce( Individuo *pPadre, Individuo *pMadre, int pContador )
 {
+    qDebug() << "LULA" << endl;
+
     unsigned short *cromosomaDominante, *cromosomaRecesivo, *cromosomaFinalHijo;
     if ( (rand() % 100) < 50 ){
         cromosomaDominante = pPadre->getCromosoma();

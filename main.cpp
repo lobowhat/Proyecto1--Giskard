@@ -22,6 +22,8 @@ int main7()
     Poblacion *po = new Poblacion();
     po->crearPoblacionInicial();
     po->printPoblacion();
+    po->crearNuevaGeneracion();
+    po->printPoblacion();
     delete po;
 
     return 0;

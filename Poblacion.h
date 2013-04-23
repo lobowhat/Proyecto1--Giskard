@@ -19,9 +19,7 @@ public:
     void crearPoblacionInicial();           // crea la poblacion inicial de individuos
     void crearNuevaGeneracion();            // crea una nueva generacion de individuos
     void printPoblacion();                  // imprime la poblacion segun las generaciones
-    void generarNuevaPoblacion();           // genera una nueva generacion
     Individuo *seleccionIndividuos();       // selecciona un individuo de la poblacion
-    void nuevaGeneracion();                 //genera la nueva poblacion
     Individuo *getMejorIndividuo( Individuo *pPoblacion );         // obtiene mejor individuo de la poblacion
     Individuo *getPeorIndividuo( Individuo *pPoblacion );          // obtiene peor individuo de la poblacion
     void mezclarPoblacion( Individuo *pNuevaGeneracion );          // Mezcla la poblacion actual con la nueva generacion
