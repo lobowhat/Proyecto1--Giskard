@@ -4,7 +4,7 @@
 
 //LIMITACIONES PARA LA IMAGEN DEBE SER FORMATO PNG PARA NO COMPRIMIR LOS BORDES EXTERNOS
 
-int main()
+int main7()
 {
     cout << "Hello Giskard!" << endl;
 

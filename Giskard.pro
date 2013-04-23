@@ -3,8 +3,8 @@ CONFIG += link_pkgconfig
 PKGCONFIG += opencv
 CONFIG += console
 CONFIG += qt
-
 QT +=  core
+QMAKE_CXXFLAGS += -std=c++0x
 
 SOURCES += main.cpp \
     ReconstruccionImagenes.cpp \
@@ -16,7 +16,7 @@ SOURCES += main.cpp \
     CirclesDetecting.cpp \
     FigureDetection.cpp \
     Reproduccion.cpp \
-    util/baseconversion.cpp
+    Chromosome.cpp
 HEADERS += \
     ReconstruccionImagenes.h \
     Poblacion.h \
@@ -24,7 +24,7 @@ HEADERS += \
     IConfiguracionParametros.h \
     FigureDetection.h \
     Reproduccion.h \
-    util/baseconversion.h
+    Chromosome.h
 
 OTHER_FILES += \
     raya1.png
