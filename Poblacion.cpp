@@ -50,12 +50,14 @@ Individuo *Poblacion::seleccionIndividuos()
     int fitnessTotal = 0;               //this->getSumatoriaFitness();
     Individuo *tmp = this->_poblacion;
     while( tmp != NULL ){
-        if( tmp->getIndividuoSeleccionado() == false && fitnessTotal == tmp->getValorFitness() ){
-            tmp->setIndividuoSeleccionado( true );                  //Individuo ha sido seleccionado, no volverá a ser escogido
+        //&& fitnessTotal == tmp->getValorFitness()
+        if( tmp->getIndividuoSeleccionado() != true  ){
+            tmp->setIndividuoSeleccionado( true );      //Individuo ha sido seleccionado, no volverá a ser escogido
             break;
         }//fin del if
-
-        tmp = tmp->getSiguienteIndividuo();
+        else{
+            tmp = tmp->getSiguienteIndividuo();
+        }
     }//fin del while
     return tmp;
 }
@@ -70,7 +72,7 @@ void Poblacion::crearNuevaGeneracion()
     Individuo *padre1 = NULL;
     Individuo *padre2 = NULL;
     for(int i = 0 ; i < this->_maxCantidadNacimientos; i++){
-        if((rand()% 10) < this->_probabilidadCruce){
+        if((rand()% 10) < this->_probabilidadCruce){//habrá hijos si rand es menor que la probabilidad de cruce
 
             padre1 = this->seleccionIndividuos();
             padre2 = this->seleccionIndividuos();
@@ -78,17 +80,26 @@ void Poblacion::crearNuevaGeneracion()
             Individuo *tmp = _reproduccion->cruce( padre1, padre2, this->_contadorIndividuos );
             tmp->setSiguienteIndividuo( nacimientos );
             nacimientos = tmp;
-            //nacimientos->setGeneracion( this->_generacion );
+            nacimientos->setGeneracion( this->_generacion + 1);
 
         }
-        aplicarFitness();
-        qDebug() << "LULA1" << endl;
-
+//        qDebug() << "LULA1" << endl;
     }
-    //mezclarPoblacion( nacimientos );
-    this->_generacion++;
-    qDebug()<<"GENERACION ............................ " << this->_generacion << endl;
+    imprimeNuevaGeneracion( nacimientos);
+    mezclarPoblacion( nacimientos );
+    this->_generacion += 1;
+    //qDebug()<<"GENERACION ............................ " << this->_generacion << endl;
+}
 
+void Poblacion::imprimeNuevaGeneracion(Individuo *p)
+{
+    qDebug() << "---------------- Imprimiendo Poblacion ----------------" << "Generacion # " << this->_generacion << endl;
+    //cout << "Generacion # "<< this->_generacion << endl;    //numero de la generacion poblacional
+    Individuo * tmp = p;                     //inicia a revisar la poblacion(cantidad de individuos)
+    while( tmp != NULL ){
+        tmp->printDatosIndividuo();
+        tmp = tmp->getSiguienteIndividuo();
+    }//fin del while
 }
 
 /**

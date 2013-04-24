@@ -27,6 +27,8 @@ public:
     void cambiaValorIndividuoSeleccionado();                        //setea el atributo para poder ser seleccionado en cruce
     void aplicarFitness();
 
+    void imprimeNuevaGeneracion(Individuo *p);      //BORRAR METODO!!!!
+
 private:
     int _tamanoPoblacion;                   // tamaño de la poblacion inicial
     int _probabilidadCruce;                 // probabilidad de que hayan apareamientos

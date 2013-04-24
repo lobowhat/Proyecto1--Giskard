@@ -47,11 +47,18 @@ void Reproduccion::setProbabilidadMutacion( int pProbabilidadMutacion )
     _probabilidadMutacion = pProbabilidadMutacion;
 }
 
+/**
+ * @brief Reproduccion::cruce
+ * Cruza 2 padres para generar un descendiente
+ * @param pPadre
+ * @param pMadre
+ * @param pContador
+ * @return Individuo
+ */
 Individuo *Reproduccion::cruce( Individuo *pPadre, Individuo *pMadre, int pContador )
 {
-    unsigned short *cromosomaDominante, *cromosomaRecesivo, *cromosomaFinalHijo;
+    unsigned short *cromosomaDominante, *cromosomaRecesivo, cromosomaFinalHijo[23] ;
     int p = rand() % 100;
-    qDebug() << "LULA " << p << endl;
     if ( p < 50 ){
         cromosomaDominante = pPadre->getCromosoma();
         cromosomaRecesivo = pMadre->getCromosoma();
@@ -60,7 +67,7 @@ Individuo *Reproduccion::cruce( Individuo *pPadre, Individuo *pMadre, int pConta
         cromosomaDominante = pMadre->getCromosoma();
         cromosomaRecesivo = pPadre->getCromosoma();
     }
-    for(int i = 0; i < 23; i++){
+    for(int i = 0; i < 24; i++){
         if (i < 4){                         // 0 - 3    division primera parte de las ristra para el valor R
             cromosomaFinalHijo[i] = cromosomaDominante[i];
         }
@@ -76,13 +83,14 @@ Individuo *Reproduccion::cruce( Individuo *pPadre, Individuo *pMadre, int pConta
         else if(i >= 15 && i < 19){         // 16 - 19  division primera parte de las ristra para el valor B
             cromosomaFinalHijo[i] = cromosomaDominante[i];
         }
-        else if(i >= 19 && i < 23){         // 20 - 23  division segunda parte de las ristra para el valor B
+        else if(i >= 19 && i <= 23){         // 20 - 23  division segunda parte de las ristra para el valor B
             cromosomaFinalHijo[i] = cromosomaRecesivo[i];
         }
+        //qDebug() << "Cromosoma Hijo " << cromosomaFinalHijo[i];
     }
     Individuo *nuevoIndividuo = new Individuo( pContador );
     nuevoIndividuo->setCromosoma( cromosomaFinalHijo );
-    cout << "Nuevo Individuo sin alteraciones " << cromosomaFinalHijo << endl;
+//    cout << "Nuevo Individuo sin alteraciones " << cromosomaFinalHijo << endl;
     int probabilidad = rand() % 10;
     if( probabilidad == this->_probabilidadMutacion ){
         this->mutacion( nuevoIndividuo );
@@ -90,7 +98,7 @@ Individuo *Reproduccion::cruce( Individuo *pPadre, Individuo *pMadre, int pConta
     if( probabilidad == this->_probabilidadInvertir ){
         this->inversion( nuevoIndividuo );
         cout << "Invertido " << nuevoIndividuo->getCromosoma() << endl;}
-//    this->fitness( nuevoIndividuo );
+    this->fitness( nuevoIndividuo );
     nuevoIndividuo->setPadre( pPadre->getId() );
     nuevoIndividuo->setMadre( pMadre->getId() );
     return nuevoIndividuo;
@@ -111,7 +119,6 @@ void Reproduccion::mutacion( Individuo *pIndividuo )
     else{
         pIndividuo->getCromosoma()[bitMutado] = 1;  // si es un 0 se muta a 1
     }
-
 }
 
 /**
@@ -123,14 +130,19 @@ void Reproduccion::inversion( Individuo *pIndividuo )
 {
    unsigned short *invertido = new unsigned short[23];
     int j = 23;
-    for(int i = 0; i < 23; i++){
+    for(int i = 0; i < 24; i++){
         invertido[j] = pIndividuo->getCromosoma()[i];
+        j--;
     }
     pIndividuo->setCromosoma(invertido);
 }
 
+/**
+ * @brief Reproduccion::fitness
+ * FUNCION FITNESS, toma los valores rgb y saca el promedio de estos
+ * @param pIndividuo
+ */
 void Reproduccion::fitness(Individuo * pIndividuo){
-    //double resultado = (double)(pow(M_E,(-(1/(pow(150,4)))*pow((pIndividuo->getCromosoma()-32000),2)))*1000);
     int resultado = (pIndividuo->getChromosome()->getRValue() + pIndividuo->getChromosome()->getGValue()
             + pIndividuo->getChromosome()->getBValue()) / 3;
     pIndividuo->setValorFitness( resultado );
