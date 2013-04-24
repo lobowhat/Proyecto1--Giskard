@@ -98,7 +98,7 @@ int Chromosome::getDecimalFromArray(int pBegin)
     return binaryToDecimal(temp);
 }
 
-int main()
+int main7()
 {
     Chromosome p;
     p.convertToArray(245, 32, 45);

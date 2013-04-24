@@ -6,6 +6,7 @@ Poblacion::Poblacion()
     this->_probabilidadCruce = IConfiguracionParametros::PROBABILIDAD_CRUCE;//1 * 100 = 100% debe tomar valores desde 0.5 hasta 1
     this->_contadorIndividuos = 1;
     this->_maxCantidadNacimientos = IConfiguracionParametros::MAX_NACIMIENTOS;
+    this->_reproduccion = new Reproduccion();
 }//constructor
 
 /**
@@ -21,6 +22,7 @@ void Poblacion::crearPoblacionInicial()
         tmp->setSiguienteIndividuo(this->_poblacion);                   //se agrega otro individuo a la lista simple
         this->_poblacion = tmp;
     }//fin del for
+    aplicarFitness();
 }
 
 /**
@@ -79,6 +81,7 @@ void Poblacion::crearNuevaGeneracion()
             //nacimientos->setGeneracion( this->_generacion );
 
         }
+        aplicarFitness();
         qDebug() << "LULA1" << endl;
 
     }

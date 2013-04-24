@@ -9,7 +9,7 @@ Individuo::Individuo( int pId )
     this->_b = rand() % 255;                    //Parte del cromosoma
     //srand (time(NULL));                       // reinicia el random//ARREGLAR EL RANDOM
     this->_chromosome = new Chromosome();
-    this->_cromosoma = this->_chromosome.convertToArray(_r, _g, _b);  // se crea el arreglo que contendrá los valores RGB
+    this->_cromosoma = this->_chromosome->convertToArray(_r, _g, _b);  // se crea el arreglo que contendrá los valores RGB
     this->_valorFitness = 0;
     this->_padre = -1;                          // No hay padre
     this->_madre = -1;                          // No hay
@@ -243,7 +243,7 @@ void Individuo::printDatosIndividuo()
     qDebug() << "Individuo ID: " << this->_id << "Padre: " << this->_padre << "Madre: " << this->_madre
              << " Generacion: " << this->_generacion << " RGB: "
              << "( " << this->_r << ", " << this->_g << ", " << this->_b << " )"
-             << " Cromosoma: " << this->_cromosoma[0] << this->_cromosoma[1] << this->_cromosoma[2]
+             //<< " Cromosoma: " << _chromosome->printChromosome()
              << "Fitness: " << this->_valorFitness << endl;
 }
 
