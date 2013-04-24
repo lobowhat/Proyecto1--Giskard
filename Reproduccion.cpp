@@ -50,7 +50,9 @@ void Reproduccion::setProbabilidadMutacion( int pProbabilidadMutacion )
 Individuo *Reproduccion::cruce( Individuo *pPadre, Individuo *pMadre, int pContador )
 {
     unsigned short *cromosomaDominante, *cromosomaRecesivo, *cromosomaFinalHijo;
-    if ( (rand() % 100) < 50 ){
+    int p = rand() % 100;
+    qDebug() << "LULA " << p << endl;
+    if ( p < 50 ){
         cromosomaDominante = pPadre->getCromosoma();
         cromosomaRecesivo = pMadre->getCromosoma();
     }
@@ -131,7 +133,6 @@ void Reproduccion::fitness(Individuo * pIndividuo){
     //double resultado = (double)(pow(M_E,(-(1/(pow(150,4)))*pow((pIndividuo->getCromosoma()-32000),2)))*1000);
     int resultado = (pIndividuo->getChromosome()->getRValue() + pIndividuo->getChromosome()->getGValue()
             + pIndividuo->getChromosome()->getBValue()) / 3;
-
     pIndividuo->setValorFitness( resultado );
 }
 
