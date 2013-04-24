@@ -81,7 +81,6 @@ void Poblacion::crearNuevaGeneracion()
             tmp->setSiguienteIndividuo( nacimientos );
             nacimientos = tmp;
             nacimientos->setGeneracion( this->_generacion + 1);
-
         }
 //        qDebug() << "LULA1" << endl;
     }
@@ -91,6 +90,11 @@ void Poblacion::crearNuevaGeneracion()
     //qDebug()<<"GENERACION ............................ " << this->_generacion << endl;
 }
 
+/**
+ * @brief Poblacion::imprimeNuevaGeneracion
+ * Imprime solo nuevas generaciones de individuos
+ * @param p
+ */
 void Poblacion::imprimeNuevaGeneracion(Individuo *p)
 {
     qDebug() << "---------------- Imprimiendo Poblacion ----------------" << "Generacion # " << this->_generacion << endl;
