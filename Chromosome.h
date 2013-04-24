@@ -13,7 +13,7 @@ public:
     unsigned long decimalToBinary(unsigned long pNumber);
 
     // convierte el dato ingresado en un arreglo
-    int *convertToArray(int pRvalue, int pGvalue, int pBvalue);
+    unsigned short *convertToArray(int pRvalue, int pGvalue, int pBvalue);
 
     // convierte un arreglo de 8 espacios en un nuevo arreglo de binarios
     int convertFromArray(int *pValue);
@@ -25,7 +25,7 @@ public:
     int getRValue();
     int getGValue();
     int getBValue();
-    int *getChoromosomePtr();
+    unsigned short *getChoromosomePtr();
 
 private:
 
@@ -34,7 +34,7 @@ private:
     // tamaño del arreglo de RBG binario
     static const int RGBARRAY = 3 * CHROMOSOME;
 
-    int _chromosome[RGBARRAY]; // arreglo con cromosomass
+    unsigned short _chromosome[RGBARRAY]; // arreglo con cromosomass
 
     unsigned long _result; // resultado
 

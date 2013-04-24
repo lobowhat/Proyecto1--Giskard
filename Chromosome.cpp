@@ -17,7 +17,7 @@ unsigned long Chromosome::decimalToBinary(unsigned long pNumber)
     return conversion(pNumber, 10, 2);
 }
 
-int *Chromosome::convertToArray(int pRvalue, int pGvalue, int pBvalue)
+unsigned short *Chromosome::convertToArray(int pRvalue, int pGvalue, int pBvalue)
 {
     const int size = 3;
     int temp[size] = {pRvalue, pGvalue, pBvalue};
@@ -60,7 +60,7 @@ int Chromosome::getBValue()
     return getDecimalFromArray(16);
 }
 
-int *Chromosome::getChoromosomePtr()
+unsigned short *Chromosome::getChoromosomePtr()
 {
     return _chromosome;
 }
