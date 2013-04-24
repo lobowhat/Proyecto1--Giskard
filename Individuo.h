@@ -4,6 +4,7 @@
 #include <iostream>
 #include <stdlib.h>
 #include <QDebug>
+#include "Chromosome.h"
 
 using namespace std;
 
@@ -36,6 +37,7 @@ public:
     void setPadre( int pPadre );                                        // Cambia el padre del individuo
     int getMadre();                                                     // Obtiene el ID del madre del individuo
     void setMadre( int pMadre );                                        // Cambia la madre del individuo
+    Chromosome *getChromosome();
 
 private:
     int _id;                                    // Identificador del individuo
@@ -49,6 +51,8 @@ private:
     bool _individuoSeleccionado;                // si es seleccionado para la seleccion natural
     int _padre;                                 // padre del individuo
     int _madre;                                 // madre del individuo
+    Chromosome *_chromosome;
+
 
 };
 

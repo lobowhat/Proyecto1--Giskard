@@ -6,6 +6,7 @@
 #include "Individuo.h"
 #include "IConfiguracionParametros.h"
 
+
 using namespace std;
 
 class Reproduccion{
@@ -29,7 +30,6 @@ public:
 private:
     int _probabilidadMutacion;                                          // probabilidad de mutacion
     int _probabilidadInvertir;                                          // probabilidad de inversion
-
 
 };  //fin de la clase
 

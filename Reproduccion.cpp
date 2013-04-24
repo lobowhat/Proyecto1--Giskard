@@ -129,6 +129,14 @@ void Reproduccion::inversion( Individuo *pIndividuo )
     pIndividuo->setCromosoma(invertido);
 }
 
+void Reproduccion::fitness(Individuo * pIndividuo){
+    //double resultado = (double)(pow(M_E,(-(1/(pow(150,4)))*pow((pIndividuo->getCromosoma()-32000),2)))*1000);
+    int resultado = pIndividuo->getChromosome().getRValue() + pIndividuo->getChromosome().getGValue()
+            + pIndividuo->getChromosome().getBValue();
+
+    pIndividuo->setValorFitness( resultado );
+}
+
 Reproduccion::~Reproduccion(){}
 
 

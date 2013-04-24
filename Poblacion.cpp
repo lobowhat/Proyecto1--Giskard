@@ -175,6 +175,16 @@ Individuo *Poblacion::getMejorIndividuo( Individuo *pPoblacion )
     return mejorIndividuo;
 }
 
+void Poblacion::aplicarFitness()
+{
+    Individuo * tmp = this->_poblacion;
+    while(tmp != NULL)
+    {
+        _reproduccion->fitness( tmp );
+        tmp = tmp->getSiguienteIndividuo();
+    }
+}
+
 /**
  * @brief Poblacion::getPeorIndividuo
  * Retorna al peorIndividuo

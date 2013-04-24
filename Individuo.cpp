@@ -8,13 +8,11 @@ Individuo::Individuo( int pId )
     this->_g = rand() % 255;                    //Parte del cromosoma
     this->_b = rand() % 255;                    //Parte del cromosoma
     //srand (time(NULL));                       // reinicia el random//ARREGLAR EL RANDOM
-    this->_cromosoma = new unsigned short[23];  // se crea el arreglo que contendrá los valores RGB
-    this->_cromosoma[0] = this->getR_RGB();
-    this->_cromosoma[1] = this->getG_RGB();
-    this->_cromosoma[2] = this->getB_RGB();
-    this->_valorFitness = _r + _g + _b;
+    this->_chromosome = new Chromosome();
+    this->_cromosoma = this->_chromosome.convertToArray(_r, _g, _b);  // se crea el arreglo que contendrá los valores RGB
+    this->_valorFitness = 0;
     this->_padre = -1;                          // No hay padre
-    this->_madre = -1;                          // No hay madre
+    this->_madre = -1;                          // No hay
 }//constructor
 
 /**
@@ -228,6 +226,11 @@ int Individuo::getMadre()
 void Individuo::setMadre( int pMadre )
 {
     this->_madre = pMadre;
+}
+
+Chromosome *Individuo::getChromosome()
+{
+    return _chromosome;
 }
 
 
