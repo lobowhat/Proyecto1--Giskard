@@ -2,7 +2,7 @@
 
 Poblacion::Poblacion()
 {
-    this->_tamanoPoblacion = IConfiguracionParametros::TAMANO_POBLACION;
+    this->_tamanoPoblacion = -1;
     this->_probabilidadCruce = IConfiguracionParametros::PROBABILIDAD_CRUCE;
     this->_contadorIndividuos = 1;
     this->_maxCantidadNacimientos = IConfiguracionParametros::MAX_NACIMIENTOS;
