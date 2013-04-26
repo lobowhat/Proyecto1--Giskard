@@ -299,9 +299,9 @@ void ReconstruccionImagenes::construirCuadroRelleno(
         unsigned short &pTamanioVertical,
         unsigned short &pTamanioHorizontal)
 {
-    AlgoritmoGenetico genetico(_r, _g, _b);
     unsigned short tamanio = pTamanioVertical * pTamanioHorizontal;
-    unsigned short *listaPtr = genetico.getValoresRGB(tamanio);
+    AlgoritmoGenetico genetico(tamanio, _r, _g, _b);
+    unsigned short *listaPtr = genetico.getValoresRGB();
 
     unsigned short pos = 0;
     for (short i = _filaInicial; i < _filaInicial + pTamanioVertical; ++i)
