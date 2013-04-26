@@ -1,6 +1,5 @@
 #include <iostream>
 #include "ReconstruccionImagenes.h"
-//#include "Poblacion.h"
 #include "AlgoritmoGenetico.h"
 
 
