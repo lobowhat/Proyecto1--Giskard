@@ -6,7 +6,7 @@
  * @param pValorG
  * @param pValorB
  */
-AlgoritmoGenetico::AlgoritmoGenetico( int pValorR, int pValorG, int pValorB )
+AlgoritmoGenetico::AlgoritmoGenetico( unsigned short pValorR, unsigned short pValorG, unsigned short pValorB )
 {
     this->_poblacion = new Poblacion();
     this->_valorR = pValorR;
