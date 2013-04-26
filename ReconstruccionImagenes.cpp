@@ -118,11 +118,11 @@ void ReconstruccionImagenes::muestraLimitesEspacioBorrado(){
 void ReconstruccionImagenes::crearMatrizColores( int pFila, int pColumna ){
     this->_filas = pFila;
     this->_columnas = pColumna;
-    this->_ptrMatriz = new int**[_filas];
+    this->_ptrMatriz = new unsigned short**[_filas];
     for(int i = 0; i < _filas; ++i){
-        this->_ptrMatriz[i] = new int*[_columnas];
+        this->_ptrMatriz[i] = new unsigned short*[_columnas];
         for(int j = 0; j < _columnas; ++j){
-            this->_ptrMatriz[i][j] = new int[2];
+            this->_ptrMatriz[i][j] = new unsigned short[2];
         }//fin del for
     }//fin del for
     cout << "MATRIZ DE COLORES CREADA" << endl;
@@ -142,13 +142,28 @@ void ReconstruccionImagenes::agregaPixelesAMatriz(){
     cout << "FIN AGREGAR PIXELES" << endl;
 }//fin agregaPixelesAMatriz
 
+/**
+ * @brief ReconstruccionImagenes::setValoresRGB_To_Matriz
+ * Cambia los valores RGB de una celda de la matriz
+ * @param pI
+ * @param pJ
+ * @param pR
+ * @param pG
+ * @param pB
+ */
+void ReconstruccionImagenes::setValoresRGB_To_Matriz( int pI, int pJ, unsigned short pR, unsigned short pG, unsigned short pB)
+{
+    this->_ptrMatriz[pI][pJ][0] = pR;
+    this->_ptrMatriz[pI][pJ][1] = pG;
+    this->_ptrMatriz[pI][pJ][2] = pB;
+}
 
 /**
   Obtiene los pixeles de una imagen completa (SIN REDUCCION DE PIXELES)
   @param pImagen, recibe una imagen para obtener los pixeles de esta
   @return scal.val[pK], devuelve un int con los valores R,G,B de un pixel de una celda de la imagen
   */
-int ReconstruccionImagenes::getPixeles( IplImage *pImagen, int pI, int pJ, int pK ){
+unsigned short ReconstruccionImagenes::getPixeles( IplImage *pImagen, int pI, int pJ, int pK ){
     CvMat mathdr, *mat = cvGetMat( pImagen, &mathdr );
     CvScalar scal = cvGet2D( mat, pI, pJ );
     return scal.val[pK];
