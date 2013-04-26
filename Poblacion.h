@@ -16,10 +16,10 @@ public:
     Poblacion();                            // Constructor
     ~Poblacion();                           // Destructor
     //***** METODOS DE CLASE *****
-    void crearPoblacionInicial();           // crea la poblacion inicial de individuos
-    void crearNuevaGeneracion();            // crea una nueva generacion de individuos
-    void printPoblacion();                  // imprime la poblacion segun las generaciones
-    Individuo *seleccionIndividuos();       // selecciona un individuo de la poblacion
+    void crearPoblacionInicial();                                  // crea la poblacion inicial de individuos
+    void crearNuevaGeneracion();                                   // crea una nueva generacion de individuos
+    void printPoblacion();                                         // imprime la poblacion segun las generaciones
+    Individuo *seleccionIndividuos();                              // selecciona un individuo de la poblacion
     Individuo *getMejorIndividuo( Individuo *pPoblacion );         // obtiene mejor individuo de la poblacion
     Individuo *getPeorIndividuo( Individuo *pPoblacion );          // obtiene peor individuo de la poblacion
     void mezclarPoblacion( Individuo *pNuevaGeneracion );          // Mezcla la poblacion actual con la nueva generacion
@@ -28,8 +28,9 @@ public:
     void aplicarFitness();                                          // Aplica el fitness
     void setValorFitnessPixelEscogido( int pValorFitnessPixel );    // cambia el Valor Fitness del Pixel Escogido
     int getValorFitnessPixelEscogido();                             // obtiene el Valor Fitness del Pixel Escogido
-
     void imprimeNuevaGeneracion(Individuo *p);      //BORRAR METODO!!!!
+    //Obtiene una lista con una cantidad de mejores Individuos
+    unsigned short *mejoresIndividuos( unsigned short pCantidadIndividuos );
 
 private:
     int _tamanoPoblacion;                   // tamaño de la poblacion inicial
@@ -41,6 +42,8 @@ private:
     int _maxCantidadNacimientos;            // cantidad máxima de nacimientos
     Reproduccion *_reproduccion;            // reproduccion de los individuos
     int _valorFitnessPixel;                 // valor fitness (RGB)
+    Individuo *_mejoresIndividuosFinal;     // lista con los mejores individuos de todos los tiempos
+    unsigned short *_individuosSeleccionados;   // individuos seleccionados para ser pixeles
 
 };
 

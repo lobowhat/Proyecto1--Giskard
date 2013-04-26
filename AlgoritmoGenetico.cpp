@@ -30,6 +30,18 @@ void AlgoritmoGenetico::initAlgoritmoGenetico()
     this->_poblacion->printPoblacion();
 }
 
+/**
+ * @brief AlgoritmoGenetico::getValoresRGB
+ * Devuelve un arreglo con los valores RGB
+ * @param pCantidadIndividuos
+ * @return _arregloMejoresIndividuos
+ */
+unsigned short *AlgoritmoGenetico::getValoresRGB(unsigned short pCantidadIndividuos)
+{
+    this->_arregloMejoresIndividuos = this->_poblacion->mejoresIndividuos(pCantidadIndividuos);
+    return _arregloMejoresIndividuos;
+}
+
 AlgoritmoGenetico::~AlgoritmoGenetico()
 {
 }

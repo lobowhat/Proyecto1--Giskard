@@ -246,5 +246,34 @@ Individuo *Poblacion::getPeorIndividuo( Individuo *pPoblacion )
     return peorIndividuo;
 }
 
+/**
+ * @brief Poblacion::mejoresIndividuos
+ * Obtiene una lista con una cierta cantidad de los mejores Individuos de la poblacion en todas las generaciones
+ * @param pCantidadIndividuos
+ * @return _individuosSeleccionados;
+ */
+unsigned short *Poblacion::mejoresIndividuos( unsigned short pCantidadIndividuos )
+{
+    Individuo *tmp;
+    for(int i = 0; i < pCantidadIndividuos; i++){
+        tmp = getMejorIndividuo( this->_poblacion );
+        tmp->setSiguienteIndividuo(this->_mejoresIndividuosFinal);  //se agrega otro individuo a la lista simple
+        this->_mejoresIndividuosFinal = tmp;
+    }//fin del for
+    this->_individuosSeleccionados = new unsigned short[pCantidadIndividuos];
+    Individuo *tmp1 = this->_mejoresIndividuosFinal;
+    for(int i = 0; i < pCantidadIndividuos; i += 3){
+        this->_individuosSeleccionados[i] = _mejoresIndividuosFinal->getChromosome()->getRValue();
+        this->_individuosSeleccionados[i + 1] = _mejoresIndividuosFinal->getChromosome()->getGValue();
+        this->_individuosSeleccionados[i + 2] = _mejoresIndividuosFinal->getChromosome()->getBValue();
+        tmp1 = tmp1->getSiguienteIndividuo();
+    }
+    return _individuosSeleccionados;
+}
+
+
+
+
+
 Poblacion::~Poblacion(){}//destructor
 

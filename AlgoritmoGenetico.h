@@ -13,15 +13,15 @@ public:
     ~AlgoritmoGenetico();                                               // Destructor
 
     void initAlgoritmoGenetico();           // Inicializa el Algoritmo Genético
-    unsigned short valoresRGB();            // Retorna arreglo con los valores RGB para crear el pixel reconstruido
+    unsigned short *getValoresRGB( unsigned short pCantidadIndividuos ); // Retorna arreglo con los valores RGB para crear el pixel reconstruido
 
 private:
-    int _valorR;                            // Valor de R (colores RGB)
-    int _valorG;                            // Valor de G (colores RGB)
-    int _valorB;                            // Valor de B (colores RGB)
-    int _promedioFitnessPixel;              // Promedio Fitness del Pixel
-    Poblacion *_poblacion;                  // Poblacion para inicializar el genetico
-
+    int _valorR;                                        // Valor de R (colores RGB)
+    int _valorG;                                        // Valor de G (colores RGB)
+    int _valorB;                                        // Valor de B (colores RGB)
+    int _promedioFitnessPixel;                          // Promedio Fitness del Pixel
+    Poblacion *_poblacion;                              // Poblacion para inicializar el genetico
+    unsigned short *_arregloMejoresIndividuos;          // Arreglo con los valores RGB
 };
 
 #endif // ALGORITMOGENETICO_H
