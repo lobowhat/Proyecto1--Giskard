@@ -9,6 +9,9 @@
 #include <opencv2/highgui/highgui.hpp>
 #include <opencv2/imgproc/imgproc.hpp>
 #include "IConfiguracionParametros.h"
+#include <cv.h>
+#include <highgui.h>
+#include "AlgoritmoGenetico.h"
 
 using namespace std;
 using namespace cv;
@@ -27,6 +30,13 @@ private:
     short _columnaInicial;          // valor minimo en columnas(y) para la region borrada
     short _columnaFinal;            // valor maximo en columnas(y) para la region borrada
 
+    unsigned short _r, _g, _b; // valores RGB óptimos
+
+    // se encarga de asignarle el RGB a cada pixel dentro de la matriz de la
+    // imagen. El pTamanioVertical corresponde al tamaño en "y" del rectángulo,
+    // del mismo modo pTamanioHorizontal al tamaño "x"
+    void construirCuadroRelleno(unsigned short &pTamanioVertical,
+                                unsigned short &pTamanioHorizontal);
 
 public:
     ReconstruccionImagenes();                                   // constructor

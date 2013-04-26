@@ -50,7 +50,6 @@ void Poblacion::printPoblacion()
  */
 Individuo *Poblacion::seleccionIndividuos()
 {
-    int fitnessTotal = 0;               //this->getSumatoriaFitness();
     Individuo *tmp = this->_poblacion;
     while( tmp != NULL ){
         //&& fitnessTotal == tmp->getValorFitness()

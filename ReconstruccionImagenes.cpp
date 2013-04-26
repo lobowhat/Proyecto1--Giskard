@@ -85,9 +85,9 @@ void ReconstruccionImagenes::detectarEspacioBorrado( IplImage *pImagen )
 void ReconstruccionImagenes::muestraLimitesEspacioBorrado(){
     bool bandera = false;
     int i = 0;
-    for( i; i < _filas; ++i){                                //recorre filas
+    for(; i < _filas; ++i){                                //recorre filas
         int j = 0;
-        for( j; j < _columnas; ++j){                         //recorre columnas
+        for(; j < _columnas; ++j){                         //recorre columnas
             if (this->_ptrMatriz[i][j][2] <= IConfiguracionParametros::R_MAXIMO && this->_ptrMatriz[i][j][2] >=
                     IConfiguracionParametros::R_MINIMO && this->_ptrMatriz[i][j][1] == IConfiguracionParametros::G_MAXIMO
                     && this->_ptrMatriz[i][j][0] == IConfiguracionParametros::B_MAXIMO){
@@ -290,6 +290,26 @@ void ReconstruccionImagenes::setColumnaFinal(int pColumnaFinal)
     this->_columnaFinal = pColumnaFinal;
 }
 
+/**
+ * @brief ReconstruccionImagenes::construirCuadroRelleno
+ * @param pTamanioVertical
+ * @param pTamanioHorizontal
+ */
+void ReconstruccionImagenes::construirCuadroRelleno(
+        unsigned short &pTamanioVertical,
+        unsigned short &pTamanioHorizontal)
+{
+    AlgoritmoGenetico genetico(_r, _g, _b);
+    unsigned short tamanio = pTamanioVertical * pTamanioHorizontal;
+    unsigned short *listaPtr = genetico.getValoresRGB(tamanio);
+
+    unsigned short pos = 0;
+    for (short i = _filaInicial; i < _filaInicial + pTamanioVertical; ++i)
+        for (int j = _columnaInicial; j < _columnaInicial + pTamanioHorizontal;
+             ++j)
+            setValoresRGB_To_Matriz(i, j, listaPtr[pos++], listaPtr[pos++],
+                    listaPtr[pos++]);
+}
 
 /**
   Destructor
