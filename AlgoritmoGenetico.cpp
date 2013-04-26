@@ -6,12 +6,14 @@
  * @param pValorG
  * @param pValorB
  */
-AlgoritmoGenetico::AlgoritmoGenetico( unsigned short pValorR, unsigned short pValorG, unsigned short pValorB )
+AlgoritmoGenetico::AlgoritmoGenetico( unsigned short pArea, unsigned short pValorR,
+                                      unsigned short pValorG, unsigned short pValorB )
 {
     this->_poblacion = new Poblacion();
     this->_valorR = pValorR;
     this->_valorG = pValorG;
     this->_valorB = pValorB;
+    this->_area = pArea;
     this->_promedioFitnessPixel = ( _valorR + _valorG + _valorB ) / 3;
     //this->_poblacion->setTamanhoPoblacion( IConfiguracionParametros::TAMANO_POBLACION );
 }
@@ -39,9 +41,9 @@ void AlgoritmoGenetico::initAlgoritmoGenetico()
  * @param pCantidadIndividuos
  * @return _arregloMejoresIndividuos
  */
-unsigned short *AlgoritmoGenetico::getValoresRGB(unsigned short pCantidadIndividuos)
+unsigned short *AlgoritmoGenetico::getValoresRGB()
 {
-    this->_arregloMejoresIndividuos = this->_poblacion->mejoresIndividuos(pCantidadIndividuos);
+    this->_arregloMejoresIndividuos = this->_poblacion->mejoresIndividuos(_area);
     return _arregloMejoresIndividuos;
 }
 

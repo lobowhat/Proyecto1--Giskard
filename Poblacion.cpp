@@ -3,7 +3,7 @@
 Poblacion::Poblacion()
 {
     this->_tamanoPoblacion = IConfiguracionParametros::TAMANO_POBLACION;
-    this->_probabilidadCruce = IConfiguracionParametros::PROBABILIDAD_CRUCE;//1 * 100 = 100% debe tomar valores desde 0.5 hasta 1
+    this->_probabilidadCruce = IConfiguracionParametros::PROBABILIDAD_CRUCE;
     this->_contadorIndividuos = 1;
     this->_maxCantidadNacimientos = IConfiguracionParametros::MAX_NACIMIENTOS;
     this->_reproduccion = new Reproduccion();
@@ -18,11 +18,11 @@ Poblacion::Poblacion()
  */
 void Poblacion::crearPoblacionInicial()
 {
-    this->_poblacion = new Individuo( this->_contadorIndividuos );     //individuo inicial(MATUZALEM)
+    this->_poblacion = new Individuo( this->_contadorIndividuos );     // individuo inicial(MATUZALEM)
     for(int i = 0; i < this->_tamanoPoblacion - 1; i++){
-        this->_contadorIndividuos++;                                    //lleva la cuenta de la cantidad de individuos
-        Individuo *tmp = new Individuo( this->_contadorIndividuos );   //se crea otro individuo
-        tmp->setSiguienteIndividuo(this->_poblacion);                   //se agrega otro individuo a la lista simple
+        this->_contadorIndividuos++;                                   // lleva la cuenta de la cantidad de individuos
+        Individuo *tmp = new Individuo( this->_contadorIndividuos );   // se crea otro individuo
+        tmp->setSiguienteIndividuo(this->_poblacion);                  // se agrega otro individuo a la lista simple
         this->_poblacion = tmp;
     }//fin del for
     aplicarFitness();
@@ -223,8 +223,6 @@ int Poblacion::getValorFitnessPixelEscogido()
     return _valorFitnessPixel;
 }
 
-
-
 /**
  * @brief Poblacion::getPeorIndividuo
  * Retorna al peorIndividuo
@@ -253,20 +251,27 @@ Individuo *Poblacion::getPeorIndividuo( Individuo *pPoblacion )
  */
 unsigned short *Poblacion::mejoresIndividuos( unsigned short pCantidadIndividuos )
 {
-    Individuo *tmp;
-    for(int i = 0; i < pCantidadIndividuos; i++){
-        tmp = getMejorIndividuo( this->_poblacion );
-        tmp->setSiguienteIndividuo(this->_mejoresIndividuosFinal);  //se agrega otro individuo a la lista simple
-        this->_mejoresIndividuosFinal = tmp;
-    }//fin del for
+    Individuo *tmp = this->_poblacion;
+//    for(int i = 0; i < pCantidadIndividuos; i++){
+//        tmp = getMejorIndividuo( this->_poblacion );
+//        tmp->setSiguienteIndividuo(this->_mejoresIndividuosFinal);  //se agrega otro individuo a la lista simple
+//        this->_mejoresIndividuosFinal = tmp;
+        //tmp->printDatosIndividuo();
     this->_individuosSeleccionados = new unsigned short[pCantidadIndividuos];
-    Individuo *tmp1 = this->_mejoresIndividuosFinal;
     for(int i = 0; i < pCantidadIndividuos; i += 3){
-        this->_individuosSeleccionados[i] = _mejoresIndividuosFinal->getChromosome()->getRValue();
-        this->_individuosSeleccionados[i + 1] = _mejoresIndividuosFinal->getChromosome()->getGValue();
-        this->_individuosSeleccionados[i + 2] = _mejoresIndividuosFinal->getChromosome()->getBValue();
-        tmp1 = tmp1->getSiguienteIndividuo();
-    }
+        this->_individuosSeleccionados[i] = this->_poblacion->getChromosome()->getRValue();
+        this->_individuosSeleccionados[i + 1] = this->_poblacion->getChromosome()->getGValue();
+        this->_individuosSeleccionados[i + 2] = this->_poblacion->getChromosome()->getBValue();
+        tmp = tmp->getSiguienteIndividuo();
+    }//fin del for
+//    this->_individuosSeleccionados = new unsigned short[pCantidadIndividuos];
+//    Individuo *tmp1 = this->_mejoresIndividuosFinal;
+//    for(int i = 0; i < pCantidadIndividuos; i += 3){
+//        this->_individuosSeleccionados[i] = _mejoresIndividuosFinal->getChromosome()->getRValue();
+//        this->_individuosSeleccionados[i + 1] = _mejoresIndividuosFinal->getChromosome()->getGValue();
+//        this->_individuosSeleccionados[i + 2] = _mejoresIndividuosFinal->getChromosome()->getBValue();
+//        tmp1 = tmp1->getSiguienteIndividuo();
+//    }
     return _individuosSeleccionados;
 }
 

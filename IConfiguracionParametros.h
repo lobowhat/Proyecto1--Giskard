@@ -31,8 +31,8 @@ public:
     static const int SECCION_COLUMNA = 5;   //tamaño de pixeles por columnas
 
     //***** DATOS PARA EL ALGORITMO GENÉTICO ******
-    static unsigned const short MAX_GENERACIONES = 5;           // cantidad maxima de generaciones
-    static const int TAMANO_POBLACION = 10;                     // tamaño de la poblacion
+    static unsigned const short MAX_GENERACIONES = 10;           // cantidad maxima de generaciones
+    static const int TAMANO_POBLACION = SECCION_COLUMNA * SECCION_FILA; // tamaño de la poblacion
     static const int PROBABILIDAD_INVERSION = 6;                // 10%
     static const int PROBABILIDAD_MUTACION = 2;                 // 10%
 
