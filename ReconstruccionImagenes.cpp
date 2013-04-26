@@ -58,7 +58,7 @@ void ReconstruccionImagenes::initReconstruccionImagen()
  * @param pImagen
  * @return
  */
-void ReconstruccionImagenes::detectarEspacioBorrado( IplImage *pImagen)
+void ReconstruccionImagenes::detectarEspacioBorrado( IplImage *pImagen )
 {
     Mat sector(pImagen) ;                                                       //se convierte imagen desde IplImage a Mat
     assert( sector.type() == CV_8UC3 );

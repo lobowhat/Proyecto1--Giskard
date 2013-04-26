@@ -1,6 +1,8 @@
 #include <iostream>
 #include "ReconstruccionImagenes.h"
-#include "Poblacion.h"
+//#include "Poblacion.h"
+#include "AlgoritmoGenetico.h"
+
 
 //LIMITACIONES PARA LA IMAGEN DEBE SER FORMATO PNG PARA NO COMPRIMIR LOS BORDES EXTERNOS
 
@@ -16,14 +18,11 @@ int main()
 //    ReconstruccionImagenes *p = new ReconstruccionImagenes();
 //    p->recibeImagenGuardada( "raya1.png" );//insertar path de imagen
 ////    p->recibeImagenCapturada();//inicia la captura de video
-//    p->initReconstruccionImagen();
+//    p->initReconstruccionImagen();  // aqui se obtiene ubicacion del espacio borrado
 //    delete p;
 
-    Poblacion *po = new Poblacion();
-    po->crearPoblacionInicial();
-    po->printPoblacion();
-    po->crearNuevaGeneracion();
-    po->printPoblacion();
+    AlgoritmoGenetico *po = new AlgoritmoGenetico( 255, 255, 255 );
+    po->initAlgoritmoGenetico();
     delete po;
 
     return 0;

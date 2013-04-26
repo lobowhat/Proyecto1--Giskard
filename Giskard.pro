@@ -16,7 +16,8 @@ SOURCES += main.cpp \
     CirclesDetecting.cpp \
     FigureDetection.cpp \
     Reproduccion.cpp \
-    Chromosome.cpp
+    Chromosome.cpp \
+    AlgoritmoGenetico.cpp
 HEADERS += \
     ReconstruccionImagenes.h \
     Poblacion.h \
@@ -24,7 +25,8 @@ HEADERS += \
     IConfiguracionParametros.h \
     FigureDetection.h \
     Reproduccion.h \
-    Chromosome.h
+    Chromosome.h \
+    AlgoritmoGenetico.h
 
 OTHER_FILES += \
     raya1.png

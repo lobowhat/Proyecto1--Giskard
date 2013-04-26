@@ -30,7 +30,7 @@ public:
     unsigned short *getCromosoma();                                     // Obtiene el arreglo cromosoma del individuo
     void setCromosoma( unsigned short *pCromosoma );                    // Cambia el arreglo cromosoma del individuo
     int getValorFitness();                                              // Obtiene el valor fitness del individuo
-    void setValorFitness( int pValorFitness );                           // Cambia el valor fitness del individuo
+    void setValorFitness( int pValorFitness );                          // Cambia el valor fitness del individuo
     bool getIndividuoSeleccionado();                                    // Obtiene si el individuo ha sido seleccionado
     void setIndividuoSeleccionado( bool pIndividuoSeleccionado );       // Cambia si el individuo ha sido seleccionado
     int getPadre();                                                     // Obtiene el ID del padre del individuo

@@ -24,8 +24,10 @@ public:
     Individuo *getPeorIndividuo( Individuo *pPoblacion );          // obtiene peor individuo de la poblacion
     void mezclarPoblacion( Individuo *pNuevaGeneracion );          // Mezcla la poblacion actual con la nueva generacion
     void cambiarIndividuos( Individuo *pIndividuo1, Individuo *pIndividuo2 ); // cambia individuos entre generaciones
-    void cambiaValorIndividuoSeleccionado();                        //setea el atributo para poder ser seleccionado en cruce
-    void aplicarFitness();
+    void cambiaValorIndividuoSeleccionado();                        // setea el atributo para poder ser seleccionado en cruce
+    void aplicarFitness();                                          // Aplica el fitness
+    void setValorFitnessPixelEscogido( int pValorFitnessPixel );    // cambia el Valor Fitness del Pixel Escogido
+    int getValorFitnessPixelEscogido();                             // obtiene el Valor Fitness del Pixel Escogido
 
     void imprimeNuevaGeneracion(Individuo *p);      //BORRAR METODO!!!!
 
@@ -37,7 +39,8 @@ private:
     int _generacion;                        // generacion a la que pertenece una poblacion
     int _probabilidadNacimiento;            // probabilidad de nacimientos
     int _maxCantidadNacimientos;            // cantidad máxima de nacimientos
-    Reproduccion *_reproduccion;
+    Reproduccion *_reproduccion;            // reproduccion de los individuos
+    int _valorFitnessPixel;                 // valor fitness (RGB)
 
 };
 

@@ -7,7 +7,10 @@ Poblacion::Poblacion()
     this->_contadorIndividuos = 1;
     this->_maxCantidadNacimientos = IConfiguracionParametros::MAX_NACIMIENTOS;
     this->_reproduccion = new Reproduccion();
+    this->_valorFitnessPixel = -1;          // no ha recibido el valor del pixel
 }//constructor
+
+
 
 /**
  * @brief Poblacion::crearPoblacionInicial
@@ -202,6 +205,26 @@ void Poblacion::aplicarFitness()
         tmp = tmp->getSiguienteIndividuo();
     }
 }
+
+/**
+ * @brief Poblacion::setValorFitnessPixelEscogido
+ * @param pValorFitnessPixel
+ */
+void Poblacion::setValorFitnessPixelEscogido(int pValorFitnessPixel)
+{
+    this->_valorFitnessPixel = pValorFitnessPixel;
+}
+
+/**
+ * @brief Poblacion::getValorFitnessPixelEscogido
+ * @return _valorFitnessPixel
+ */
+int Poblacion::getValorFitnessPixelEscogido()
+{
+    return _valorFitnessPixel;
+}
+
+
 
 /**
  * @brief Poblacion::getPeorIndividuo
