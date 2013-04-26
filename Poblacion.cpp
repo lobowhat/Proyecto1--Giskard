@@ -195,6 +195,10 @@ Individuo *Poblacion::getMejorIndividuo( Individuo *pPoblacion )
     return mejorIndividuo;
 }
 
+/**
+ * @brief Poblacion::aplicarFitness
+ * Llamada para aplicar la funcion fitness
+ */
 void Poblacion::aplicarFitness()
 {
     Individuo * tmp = this->_poblacion;
@@ -257,12 +261,18 @@ unsigned short *Poblacion::mejoresIndividuos( unsigned short pCantidadIndividuos
 //        tmp->setSiguienteIndividuo(this->_mejoresIndividuosFinal);  //se agrega otro individuo a la lista simple
 //        this->_mejoresIndividuosFinal = tmp;
         //tmp->printDatosIndividuo();
-    this->_individuosSeleccionados = new unsigned short[pCantidadIndividuos];
-    for(int i = 0; i < pCantidadIndividuos; i += 3){
-        this->_individuosSeleccionados[i] = this->_poblacion->getChromosome()->getRValue();
-        this->_individuosSeleccionados[i + 1] = this->_poblacion->getChromosome()->getGValue();
-        this->_individuosSeleccionados[i + 2] = this->_poblacion->getChromosome()->getBValue();
+    this->_individuosSeleccionados = new unsigned short[pCantidadIndividuos * 3];
+    for(int i = 0; i < (pCantidadIndividuos * 3); i += 3){
+        cout << "tmp " << i << endl;
+        cout << "tmpR " << tmp->getChromosome()->getRValue() << endl;
+        cout << "tmpG " << tmp->getChromosome()->getGValue() << endl;
+        cout << "tmpB " << tmp->getChromosome()->getBValue() << endl;
+        cout << "-------------------------------------- "<< endl;
+        this->_individuosSeleccionados[i] = tmp->getChromosome()->getRValue();
+        this->_individuosSeleccionados[i + 1] = tmp->getChromosome()->getGValue();
+        this->_individuosSeleccionados[i + 2] = tmp->getChromosome()->getBValue();
         tmp = tmp->getSiguienteIndividuo();
+
     }//fin del for
 //    this->_individuosSeleccionados = new unsigned short[pCantidadIndividuos];
 //    Individuo *tmp1 = this->_mejoresIndividuosFinal;

@@ -50,6 +50,11 @@ void ReconstruccionImagenes::initReconstruccionImagen()
     agregaPixelesAMatriz();
     cout << "MUESTRA COORDENADAS" << endl;
     muestraLimitesEspacioBorrado();
+    cout << "Construir Cuadro Relleno" << endl;
+    unsigned short a = 5;
+    construirCuadroRelleno( a,a );
+    cout << "Crea Imagen Reconstruida" << endl;
+    creaImagenReconstruida();
 }//Fin de initReconstruccionImagen()
 
 /**
@@ -95,12 +100,12 @@ void ReconstruccionImagenes::muestraLimitesEspacioBorrado(){
                 cout << "(" << j << "," << i << ")" << " ---> " << "(" << this->_ptrMatriz[i][j][2] << ","
                      << this->_ptrMatriz[i][j][1] << "," << this->_ptrMatriz[i][j][0] << ")" << endl;
                 if(!bandera){
-                   _filaInicial = j;
-                   _columnaInicial = i;
+                   _filaInicial = i;
+                   _columnaInicial = j;
                    bandera = true;
                 }
-                _filaFinal = j;
-                _columnaFinal = i;
+                _filaFinal = i;
+                _columnaFinal = j;
             }
         }//fin for interno
 
@@ -301,6 +306,8 @@ void ReconstruccionImagenes::construirCuadroRelleno(
 {
     unsigned short tamanio = pTamanioVertical * pTamanioHorizontal;
     AlgoritmoGenetico genetico(tamanio, _r, _g, _b);
+    genetico.initAlgoritmoGenetico();
+    cout << "AQUI SE CAE" << endl;
     unsigned short *listaPtr = genetico.getValoresRGB();
 
     unsigned short pos = 0;

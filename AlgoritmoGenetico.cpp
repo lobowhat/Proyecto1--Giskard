@@ -19,7 +19,6 @@ AlgoritmoGenetico::AlgoritmoGenetico( unsigned short pArea, unsigned short pValo
     //this->_poblacion->setTamanhoPoblacion( _area );
 }
 
-
 /**
  * @brief AlgoritmoGenetico::initAlgoritmoGenetico
  * Inicializará el Algoritmo Genetico
