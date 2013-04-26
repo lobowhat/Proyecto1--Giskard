@@ -31,6 +31,7 @@ public:
     void imprimeNuevaGeneracion(Individuo *p);      //BORRAR METODO!!!!
     //Obtiene una lista con una cantidad de mejores Individuos
     unsigned short *mejoresIndividuos( unsigned short pCantidadIndividuos );
+    void setTamanhoPoblacion( unsigned short pTamanhoPoblacion );   // modifica el tamaño de la poblacion
 
 private:
     int _tamanoPoblacion;                   // tamaño de la poblacion inicial

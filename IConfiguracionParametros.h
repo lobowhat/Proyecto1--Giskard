@@ -31,7 +31,8 @@ public:
     static const int SECCION_COLUMNA = 5;   //tamaño de pixeles por columnas
 
     //***** DATOS PARA EL ALGORITMO GENÉTICO ******
-    static const int TAMANO_POBLACION = 6;                      // tamaño inicial de la poblacion
+    static unsigned const short MAX_GENERACIONES = 5;           // cantidad maxima de generaciones
+    static const int TAMANO_POBLACION = 10;                     // tamaño de la poblacion
     static const int PROBABILIDAD_INVERSION = 6;                // 10%
     static const int PROBABILIDAD_MUTACION = 2;                 // 10%
 
@@ -39,6 +40,7 @@ public:
     static const int PROBABILIDAD_NACIMIENTO = 4;               // 50%
     static const int MAX_NACIMIENTOS = 3;                       // maxima cantidad de nacimientos por generacion
 
+    //***** DATOS PARA LA RECONSTRUCCION DE IMAGENES ******
     // cantidad de pixeles por un lado
     static unsigned const short LADO = 5;
 

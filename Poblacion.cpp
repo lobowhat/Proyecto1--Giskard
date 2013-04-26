@@ -270,6 +270,11 @@ unsigned short *Poblacion::mejoresIndividuos( unsigned short pCantidadIndividuos
     return _individuosSeleccionados;
 }
 
+void Poblacion::setTamanhoPoblacion(unsigned short pTamanhoPoblacion)
+{
+    this->_tamanoPoblacion = pTamanhoPoblacion;
+}
+
 
 
 

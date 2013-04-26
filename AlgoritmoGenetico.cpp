@@ -13,6 +13,7 @@ AlgoritmoGenetico::AlgoritmoGenetico( unsigned short pValorR, unsigned short pVa
     this->_valorG = pValorG;
     this->_valorB = pValorB;
     this->_promedioFitnessPixel = ( _valorR + _valorG + _valorB ) / 3;
+    //this->_poblacion->setTamanhoPoblacion( IConfiguracionParametros::TAMANO_POBLACION );
 }
 
 
@@ -26,8 +27,10 @@ void AlgoritmoGenetico::initAlgoritmoGenetico()
     //cout << "Valor del PIXEL: " << _poblacion->getValorFitnessPixelEscogido() << endl;
     this->_poblacion->crearPoblacionInicial();
     this->_poblacion->printPoblacion();
-    this->_poblacion->crearNuevaGeneracion();
-    this->_poblacion->printPoblacion();
+    for( unsigned short i = 0; i < IConfiguracionParametros::MAX_GENERACIONES; i++ ){
+        this->_poblacion->crearNuevaGeneracion();
+        this->_poblacion->printPoblacion();
+    }
 }
 
 /**

@@ -3,6 +3,7 @@
 
 #include <iostream>
 #include "Poblacion.h"
+#include "IConfiguracionParametros.h"
 
 using namespace std;
 

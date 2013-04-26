@@ -12,15 +12,15 @@ int main()
      * Working directory, cambian el que tienen por la dirección donde está el
      * proyecto
      */
-    ReconstruccionImagenes *p = new ReconstruccionImagenes();
-    p->recibeImagenGuardada( "raya1.png" );//insertar path de imagen
-//    p->recibeImagenCapturada();//inicia la captura de video
-    p->initReconstruccionImagen();  // aqui se obtiene ubicacion del espacio borrado
-    delete p;
+//    ReconstruccionImagenes *p = new ReconstruccionImagenes();
+//    p->recibeImagenGuardada( "raya1.png" );//insertar path de imagen
+////    p->recibeImagenCapturada();//inicia la captura de video
+//    p->initReconstruccionImagen();  // aqui se obtiene ubicacion del espacio borrado
+//    delete p;
 
-//    AlgoritmoGenetico *po = new AlgoritmoGenetico( 255, 255, 255 );
-//    po->initAlgoritmoGenetico();
-//    delete po;
+    AlgoritmoGenetico *po = new AlgoritmoGenetico( 255, 255, 255 );
+    po->initAlgoritmoGenetico();
+    delete po;
 
     return 0;
 }
