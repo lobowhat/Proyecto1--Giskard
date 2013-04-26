@@ -23,6 +23,7 @@ AlgoritmoGenetico::AlgoritmoGenetico( int pValorR, int pValorG, int pValorB )
 void AlgoritmoGenetico::initAlgoritmoGenetico()
 {
     this->_poblacion->setValorFitnessPixelEscogido( _promedioFitnessPixel );
+    //cout << "Valor del PIXEL: " << _poblacion->getValorFitnessPixelEscogido() << endl;
     this->_poblacion->crearPoblacionInicial();
     this->_poblacion->printPoblacion();
     this->_poblacion->crearNuevaGeneracion();

@@ -13,6 +13,7 @@ public:
     ~AlgoritmoGenetico();                                               // Destructor
 
     void initAlgoritmoGenetico();           // Inicializa el Algoritmo Genético
+    unsigned short valoresRGB();            // Retorna arreglo con los valores RGB para crear el pixel reconstruido
 
 private:
     int _valorR;                            // Valor de R (colores RGB)
