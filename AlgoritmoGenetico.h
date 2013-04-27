@@ -3,24 +3,27 @@
 
 #include <iostream>
 #include "Poblacion.h"
+#include "IConfiguracionParametros.h"
 
 using namespace std;
 
 class AlgoritmoGenetico{
 
 public:
-    AlgoritmoGenetico( int pValorR, int pValorG, int pValorB  );        // Constructor
+    AlgoritmoGenetico( unsigned short pArea, unsigned short pValorR, unsigned short pValorG, unsigned short pValorB );        // Constructor
     ~AlgoritmoGenetico();                                               // Destructor
 
     void initAlgoritmoGenetico();           // Inicializa el Algoritmo Genético
+    unsigned short *getValoresRGB();        // Retorna arreglo con los valores RGB para crear el pixel reconstruido
 
 private:
-    int _valorR;                            // Valor de R (colores RGB)
-    int _valorG;                            // Valor de G (colores RGB)
-    int _valorB;                            // Valor de B (colores RGB)
-    int _promedioFitnessPixel;              // Promedio Fitness del Pixel
-    Poblacion *_poblacion;                  // Poblacion para inicializar el genetico
-
+    unsigned short _valorR;                                        // Valor de R (colores RGB)
+    unsigned short _valorG;                                        // Valor de G (colores RGB)
+    unsigned short _valorB;                                        // Valor de B (colores RGB)
+    int _promedioFitnessPixel;                          // Promedio Fitness del Pixel
+    Poblacion *_poblacion;                              // Poblacion para inicializar el genetico
+    unsigned short *_arregloMejoresIndividuos;          // Arreglo con los valores RGB
+    unsigned short _area;                               // Cantidad maxima de individuos para reconstruccion
 };
 
 #endif // ALGORITMOGENETICO_H

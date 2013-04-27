@@ -50,6 +50,11 @@ void ReconstruccionImagenes::initReconstruccionImagen()
     agregaPixelesAMatriz();
     cout << "MUESTRA COORDENADAS" << endl;
     muestraLimitesEspacioBorrado();
+    cout << "Construir Cuadro Relleno" << endl;
+    unsigned short a = 5;
+    construirCuadroRelleno( a,a );
+    cout << "Crea Imagen Reconstruida" << endl;
+    creaImagenReconstruida();
 }//Fin de initReconstruccionImagen()
 
 /**
@@ -85,9 +90,9 @@ void ReconstruccionImagenes::detectarEspacioBorrado( IplImage *pImagen )
 void ReconstruccionImagenes::muestraLimitesEspacioBorrado(){
     bool bandera = false;
     int i = 0;
-    for( i; i < _filas; ++i){                                //recorre filas
+    for(; i < _filas; ++i){                                //recorre filas
         int j = 0;
-        for( j; j < _columnas; ++j){                         //recorre columnas
+        for(; j < _columnas; ++j){                         //recorre columnas
             if (this->_ptrMatriz[i][j][2] <= IConfiguracionParametros::R_MAXIMO && this->_ptrMatriz[i][j][2] >=
                     IConfiguracionParametros::R_MINIMO && this->_ptrMatriz[i][j][1] == IConfiguracionParametros::G_MAXIMO
                     && this->_ptrMatriz[i][j][0] == IConfiguracionParametros::B_MAXIMO){
@@ -95,12 +100,12 @@ void ReconstruccionImagenes::muestraLimitesEspacioBorrado(){
                 cout << "(" << j << "," << i << ")" << " ---> " << "(" << this->_ptrMatriz[i][j][2] << ","
                      << this->_ptrMatriz[i][j][1] << "," << this->_ptrMatriz[i][j][0] << ")" << endl;
                 if(!bandera){
-                   _filaInicial = j;
-                   _columnaInicial = i;
+                   _filaInicial = i;
+                   _columnaInicial = j;
                    bandera = true;
                 }
-                _filaFinal = j;
-                _columnaFinal = i;
+                _filaFinal = i;
+                _columnaFinal = j;
             }
         }//fin for interno
 
@@ -118,11 +123,11 @@ void ReconstruccionImagenes::muestraLimitesEspacioBorrado(){
 void ReconstruccionImagenes::crearMatrizColores( int pFila, int pColumna ){
     this->_filas = pFila;
     this->_columnas = pColumna;
-    this->_ptrMatriz = new int**[_filas];
+    this->_ptrMatriz = new unsigned short**[_filas];
     for(int i = 0; i < _filas; ++i){
-        this->_ptrMatriz[i] = new int*[_columnas];
+        this->_ptrMatriz[i] = new unsigned short*[_columnas];
         for(int j = 0; j < _columnas; ++j){
-            this->_ptrMatriz[i][j] = new int[2];
+            this->_ptrMatriz[i][j] = new unsigned short[2];
         }//fin del for
     }//fin del for
     cout << "MATRIZ DE COLORES CREADA" << endl;
@@ -142,13 +147,28 @@ void ReconstruccionImagenes::agregaPixelesAMatriz(){
     cout << "FIN AGREGAR PIXELES" << endl;
 }//fin agregaPixelesAMatriz
 
+/**
+ * @brief ReconstruccionImagenes::setValoresRGB_To_Matriz
+ * Cambia los valores RGB de una celda de la matriz
+ * @param pI
+ * @param pJ
+ * @param pR
+ * @param pG
+ * @param pB
+ */
+void ReconstruccionImagenes::setValoresRGB_To_Matriz( int pI, int pJ, unsigned short pR, unsigned short pG, unsigned short pB)
+{
+    this->_ptrMatriz[pI][pJ][0] = pR;
+    this->_ptrMatriz[pI][pJ][1] = pG;
+    this->_ptrMatriz[pI][pJ][2] = pB;
+}
 
 /**
   Obtiene los pixeles de una imagen completa (SIN REDUCCION DE PIXELES)
   @param pImagen, recibe una imagen para obtener los pixeles de esta
   @return scal.val[pK], devuelve un int con los valores R,G,B de un pixel de una celda de la imagen
   */
-int ReconstruccionImagenes::getPixeles( IplImage *pImagen, int pI, int pJ, int pK ){
+unsigned short ReconstruccionImagenes::getPixeles( IplImage *pImagen, int pI, int pJ, int pK ){
     CvMat mathdr, *mat = cvGetMat( pImagen, &mathdr );
     CvScalar scal = cvGet2D( mat, pI, pJ );
     return scal.val[pK];
@@ -275,6 +295,28 @@ void ReconstruccionImagenes::setColumnaFinal(int pColumnaFinal)
     this->_columnaFinal = pColumnaFinal;
 }
 
+/**
+ * @brief ReconstruccionImagenes::construirCuadroRelleno
+ * @param pTamanioVertical
+ * @param pTamanioHorizontal
+ */
+void ReconstruccionImagenes::construirCuadroRelleno(
+        unsigned short &pTamanioVertical,
+        unsigned short &pTamanioHorizontal)
+{
+    unsigned short tamanio = pTamanioVertical * pTamanioHorizontal;
+    AlgoritmoGenetico genetico(tamanio, _r, _g, _b);
+    genetico.initAlgoritmoGenetico();
+    cout << "AQUI SE CAE" << endl;
+    unsigned short *listaPtr = genetico.getValoresRGB();
+
+    unsigned short pos = 0;
+    for (short i = _filaInicial; i < _filaInicial + pTamanioVertical; ++i)
+        for (int j = _columnaInicial; j < _columnaInicial + pTamanioHorizontal;
+             ++j)
+            setValoresRGB_To_Matriz(i, j, listaPtr[pos++], listaPtr[pos++],
+                    listaPtr[pos++]);
+}
 
 /**
   Destructor

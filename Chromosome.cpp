@@ -97,11 +97,3 @@ int Chromosome::getDecimalFromArray(int pBegin)
 
     return binaryToDecimal(temp);
 }
-
-int main7()
-{
-    Chromosome p;
-    p.convertToArray(245, 32, 45);
-    p.printChromosome();
-    std::cout << "R: " << p.getRValue() << std::endl;
-}
