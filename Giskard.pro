@@ -20,7 +20,12 @@ SOURCES += main.cpp \
     FigureDetection.cpp \
     figure.cpp \
     SimpleNode.cpp \
-    SimpleList.cpp
+    SimpleList.cpp \
+    graphnode.cpp \
+    graph.cpp \
+    DoubleNode.cpp \
+    DoubleCircularList.cpp \
+    connection.cpp
 HEADERS += \
     ReconstruccionImagenes.h \
     Poblacion.h \
@@ -33,7 +38,13 @@ HEADERS += \
     figure.h \
     SimpleNode.h \
     SimpleList.h \
-    ListADT.h
+    ListADT.h \
+    graphnode.h \
+    graph.h \
+    DoubleNode.h \
+    DoubleCircularList.h \
+    connection.h
 
 OTHER_FILES += \
-    raya1.png
+    raya1.png \
+    Giskard.pro.user
