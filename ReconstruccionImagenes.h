@@ -9,9 +9,8 @@
 #include <opencv2/highgui/highgui.hpp>
 #include <opencv2/imgproc/imgproc.hpp>
 #include "IConfiguracionParametros.h"
-#include <cv.h>
-#include <highgui.h>
 #include "AlgoritmoGenetico.h"
+
 
 using namespace std;
 using namespace cv;
