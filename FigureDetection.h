@@ -9,6 +9,11 @@
 #include "SimpleList.h"
 #include "SimpleList.cpp"
 #include "figure.h"
+#include <iostream>
+#include <stdio.h>
+#include <opencv2/opencv.hpp>
+
+#include <math.h>
 
 using namespace std;
 using namespace cv;

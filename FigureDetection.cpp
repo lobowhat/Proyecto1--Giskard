@@ -31,6 +31,8 @@ IplImage* FigureDetection::get(IplImage* pImg){
 
     //Se clona la imagen original
     IplImage* result = cvCloneImage(pImg);
+    this->circles=cvHoughCircles(grayImage, storage, CV_HOUGH_GRADIENT, 1,pImg->height/6, 100, 50);
+    cvCvtColor(grayImage,pImg, CV_GRAY2BGR);//agrego
 
     //Obtenemos la imagen de contornos
     this->getImageContour(pImg);
@@ -39,7 +41,7 @@ IplImage* FigureDetection::get(IplImage* pImg){
 
         //Se obtienen las secuencias
         this->sec = cvApproxPoly(this->contour, sizeof(CvContour), storage, CV_POLY_APPROX_DP, cvContourPerimeter(this->contour)*0.02,0);
-        this->circles=cvHoughCircles(grayImage, storage, CV_HOUGH_GRADIENT, 1,pImg->height/6, 100, 50);
+
 
         //Verificacion en caso de ser cuadrilateros
         if(this->sec->total == 4 && fabs(cvContourArea(this->sec, CV_WHOLE_SEQ)) > 100){
@@ -58,21 +60,20 @@ IplImage* FigureDetection::get(IplImage* pImg){
             cvLine(result, *ptr[3], *ptr[0], CV_RGB(255,0,255),2);
         }
         //verificacion de circulos
-        for (size_t i = 0; i < circles->total; i++)
-                {
-                     // detecta x  y y ,radios
-                     float* p = (float*)cvGetSeqElem(circles, i);
-                     cv::Point center(cvRound(p[0]), cvRound(p[1]));
-                     int radio = cvRound(p[2]); //agrego
+        for (size_t i = 0; i < circles->total; i++)//
+               {
+                    // alrededor de circulos
+                    float* p = (float*)cvGetSeqElem(circles, i);
+                    cv::Point center(cvRound(p[0]), cvRound(p[1]));
+                    int radius = cvRound(p[2]);
 
 
 
-                     // dibuja circulo afuera  0,0,255
-                     cvCircle(result, center, radio+1, CV_RGB(255,0,0), 2, 8, 0 );
+                    // dibuja circulo  0,0,255
+                    cvCircle(result, center, radius+1, CV_RGB(0,0,255), 2, 8, 0 );
 
-                     //printf("x: %d y: %d r: %d\n", center.x, center.y, radius);
-                     printcircles(center.x,center.y,radio);
-                }
+                    printf("x: %d y: %d r: %d\n", center.x, center.y, radius);
+               }
 
 
         //Verificacion en caso de ser triangulo
