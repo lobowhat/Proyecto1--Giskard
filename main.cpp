@@ -7,6 +7,8 @@
 int main()
 {
     cout << "Hello Giskard!" << endl;
+//    Chromosome p;
+//    std::cout << p.decimalToBinary(1023);
     /*
      * Para hacerlo con QtCreator, se van a Projects, Build & Run, Run, y en
      * Working directory, cambian el que tienen por la dirección donde está el

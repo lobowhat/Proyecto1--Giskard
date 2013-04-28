@@ -143,6 +143,7 @@ void Reproduccion::inversion( Individuo *pIndividuo )
  * @param pIndividuo
  */
 void Reproduccion::fitness(Individuo * pIndividuo){
+    cout << "\n+++++++++++++++++++pIndividuo->getChromosome()->getRValue()"<< pIndividuo->getChromosome()->getRValue();
     int resultado = (pIndividuo->getChromosome()->getRValue() + pIndividuo->getChromosome()->getGValue()
             + pIndividuo->getChromosome()->getBValue()) / 3;
     pIndividuo->setValorFitness( resultado );

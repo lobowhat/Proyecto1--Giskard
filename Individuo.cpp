@@ -1,6 +1,16 @@
 #include "Individuo.h"
 
-Individuo::Individuo( int pId )
+Individuo::Individuo(int pId)
+/*    : _id(pId),
+      _r(rand() % 255),
+      _g(rand() % 255),
+      _b(rand() % 255),
+      _chromosome(new Chromosome()),
+      _cromosoma(_chromosome->convertToArray(_r, _g, _b)),
+      _valorFitness(0),
+      _individuoSeleccionado(false),
+      _padre(-1),                           // No hay padre
+      _madre(-1)*/                           // No hay
 {
     this->_id = pId;
     this->_individuoSeleccionado = false;
@@ -12,7 +22,7 @@ Individuo::Individuo( int pId )
     this->_cromosoma = this->_chromosome->convertToArray(_r, _g, _b);  // se crea el arreglo que contendrá los valores RGB
     this->_valorFitness = 0;
     this->_padre = -1;                          // No hay padre
-    this->_madre = -1;                          // No hay
+    this->_madre = -1;                       // No hay
 }//constructor
 
 /**
@@ -21,7 +31,7 @@ Individuo::Individuo( int pId )
  */
 unsigned int Individuo::getGeneracion()
 {
-   return this->_generacion;
+    return this->_generacion;
 }
 
 /**
@@ -29,7 +39,7 @@ unsigned int Individuo::getGeneracion()
  * Cambia el numero de la generacion de un Individuo
  * @param pGeneracion
  */
-void Individuo::setGeneracion( unsigned int pGeneracion )
+void Individuo::setGeneracion(unsigned int pGeneracion)
 {
     this->_generacion = pGeneracion;
 }
@@ -48,7 +58,7 @@ unsigned int Individuo::getId()
  * Cambia el ID del individuo
  * @param pId
  */
-void Individuo::setId( unsigned int pId )
+void Individuo::setId(unsigned int pId)
 {
     this->_id = pId;
 }
@@ -58,7 +68,8 @@ void Individuo::setId( unsigned int pId )
  * Cambia al siguiente Individuo de uno actual
  * @param pSiguienteIndividuo
  */
-void Individuo::setSiguienteIndividuo( Individuo *pSiguienteIndividuo ){
+void Individuo::setSiguienteIndividuo(Individuo *pSiguienteIndividuo)
+{
     this->_siguienteIndividuo = pSiguienteIndividuo;
 }
 
@@ -67,7 +78,8 @@ void Individuo::setSiguienteIndividuo( Individuo *pSiguienteIndividuo ){
  * Cambia al siguiente Individuo de uno actual
  * @return _siguienteIndividuo
  */
-Individuo* Individuo::getSiguienteIndividuo(){
+Individuo* Individuo::getSiguienteIndividuo()
+{
     return this->_siguienteIndividuo;
 }
 
@@ -143,7 +155,7 @@ unsigned short *Individuo::getCromosoma()
  * Cambia el cromosoma del individuo
  * @param pCromosoma
  */
-void Individuo::setCromosoma( unsigned short *pCromosoma )
+void Individuo::setCromosoma(unsigned short *pCromosoma)
 {
     this->_cromosoma = pCromosoma;
 }
@@ -163,7 +175,7 @@ int Individuo::getValorFitness()
  * @param pValorFitness
  * Cambia el valor fitness del individuo
  */
-void Individuo::setValorFitness( int pValorFitness )
+void Individuo::setValorFitness(int pValorFitness)
 {
     this->_valorFitness = pValorFitness;
 }
@@ -183,7 +195,7 @@ bool Individuo::getIndividuoSeleccionado()
  * Cambia si el individuo ha sido seleccionado
  * @param pIndividuoSeleccionado
  */
-void Individuo::setIndividuoSeleccionado( bool pIndividuoSeleccionado )
+void Individuo::setIndividuoSeleccionado(bool pIndividuoSeleccionado)
 {
     this->_individuoSeleccionado = pIndividuoSeleccionado;
 }
@@ -203,7 +215,7 @@ int Individuo::getPadre()
  * Cambia el ID del padre del individuo
  * @param pPadre
  */
-void Individuo::setPadre( int pPadre )
+void Individuo::setPadre(int pPadre)
 {
     this->_padre = pPadre;
 }
@@ -223,7 +235,7 @@ int Individuo::getMadre()
  * Cambia el ID del madre del individuo
  * @param pMadre
  */
-void Individuo::setMadre( int pMadre )
+void Individuo::setMadre(int pMadre)
 {
     this->_madre = pMadre;
 }
@@ -248,5 +260,5 @@ void Individuo::printDatosIndividuo()
 }
 
 
-Individuo::~Individuo(){}//destructor
+Individuo::~Individuo() {} //destructor
 

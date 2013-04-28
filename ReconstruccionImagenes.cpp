@@ -327,8 +327,11 @@ void ReconstruccionImagenes::construirCuadroRelleno(
             setValoresRGB_To_Matriz(i, j, listaPtr[pos++], listaPtr[pos++],
                                     listaPtr[pos++]);
             cout << "pos: " << pos << endl; // TEST
+            cout << "j: " << j << endl; // TEST
         }
+        cout << "terminado j" << endl;
     }
+    cout << "terminado i" << endl;
 }
 
 /**
@@ -359,12 +362,13 @@ void ReconstruccionImagenes::construirFila()
 
     unsigned short cuadros = 2;
     while (cuadros > 0) {
-        cout << "iniciado relleno\n";
+        cout << "\n:::::::::iniciado relleno:::::::::\n"; // TEST
         construirCuadroRelleno(lado, lado);
-        cout << "terminado relleno\n";
+        cout << "\n:::::::::terminado relleno:::::::::\n"; // TEST
 //        _filaInicial += lado;
         cuadros--;
     }
 
 //    construirCuadroRelleno(lado, relleno);
+    cout << "&&&&&&CONSTRUIR FILA FINALIZADO&&&&&&" << endl;
 }
