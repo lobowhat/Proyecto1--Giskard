@@ -66,6 +66,7 @@ IplImage* FigureDetection::get(IplImage* pImg){
                     float* p = (float*)cvGetSeqElem(circles, i);
                     cv::Point center(cvRound(p[0]), cvRound(p[1]));
                     int radius = cvRound(p[2]);
+                    //identifica radio con respecto a sus circulos
 
 
 
