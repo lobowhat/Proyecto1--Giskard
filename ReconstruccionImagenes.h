@@ -9,8 +9,6 @@
 #include <opencv2/highgui/highgui.hpp>
 #include <opencv2/imgproc/imgproc.hpp>
 #include "IConfiguracionParametros.h"
-#include <cv.h>
-#include <highgui.h>
 #include "AlgoritmoGenetico.h"
 
 using namespace std;
@@ -37,6 +35,15 @@ private:
     // del mismo modo pTamanioHorizontal al tamaño "x"
     void construirCuadroRelleno(unsigned short &pTamanioVertical,
                                 unsigned short &pTamanioHorizontal);
+
+    // se encarga de
+    void recorridoEspiral();
+    void construirFila();
+    void construirColumna();
+    void construirEsquina();
+    void rellenarFaltante();
+
+    unsigned short* escogerOptimo();
 
 public:
     ReconstruccionImagenes();                                   // constructor

@@ -14,30 +14,30 @@ ReconstruccionImagenes::ReconstruccionImagenes()
   */
 void ReconstruccionImagenes::recibeImagenCapturada()
 {
-    this->_capturaCamara = cvCaptureFromCAM( 0 );//inicializa la cámara de la computadora
-    cvNamedWindow( "Giskard" );//crea una ventana con el título "Video"
+    this->_capturaCamara = cvCaptureFromCAM(0);  //inicializa la cámara de la computadora
+    cvNamedWindow("Giskard");  //crea una ventana con el título "Video"
 
-    while( true ){
-        IplImage* frame = cvQueryFrame( _capturaCamara );//toma y recupera cada frame del video en secuencia
+    while (true) {
+        IplImage* frame = cvQueryFrame(_capturaCamara);  //toma y recupera cada frame del video en secuencia
 
         //#############################################
 
-        cvShowImage( "Giskard", frame );//muestra el video
+        cvShowImage("Giskard", frame);  //muestra el video
         int c = cvWaitKey(40);//espera 40 ms
         //exit the loop if user press "Esc" key  (ASCII value of "Esc" is 27)
-        if((char)c == 27 ) break;
+        if ((char)c == 27) break;
     }//fin del while
-    cvDestroyWindow( "Giskard" );//destroy the opened window
-    cvReleaseCapture( &_capturaCamara );//release memory
+    cvDestroyWindow("Giskard");  //destroy the opened window
+    cvReleaseCapture(&_capturaCamara);  //release memory
 }//recibeImagenCapturada
 
 /**
   Recibe el path de la imagen almacenada en la computadora
   @param pPathImagen
   */
-void ReconstruccionImagenes::recibeImagenGuardada( char* pPathImagenGuardada )
+void ReconstruccionImagenes::recibeImagenGuardada(char* pPathImagenGuardada)
 {
-    this->_imagenGuardada = cvLoadImage( pPathImagenGuardada );
+    this->_imagenGuardada = cvLoadImage(pPathImagenGuardada);
     //muestraImagen( _imagenGuardada );
     //detectarEspacioBorrado(_imagenGuardada);
 }//recibeImagenGuardada
@@ -45,14 +45,13 @@ void ReconstruccionImagenes::recibeImagenGuardada( char* pPathImagenGuardada )
 void ReconstruccionImagenes::initReconstruccionImagen()
 {
     cout << "Crear Matriz de la Imagen" << endl;
-    crearMatrizColores( _imagenGuardada->height, _imagenGuardada->width );//CAMBIAR EL TAMAÑO DE LA MATRIZ
+    crearMatrizColores(_imagenGuardada->height, _imagenGuardada->width);  //CAMBIAR EL TAMAÑO DE LA MATRIZ
     cout << "Se agregan Pixeles a la Matriz" << endl;
     agregaPixelesAMatriz();
     cout << "MUESTRA COORDENADAS" << endl;
     muestraLimitesEspacioBorrado();
     cout << "Construir Cuadro Relleno" << endl;
-    unsigned short a = 5;
-    construirCuadroRelleno( a,a );
+    construirFila();
     cout << "Crea Imagen Reconstruida" << endl;
     creaImagenReconstruida();
 }//Fin de initReconstruccionImagen()
@@ -63,22 +62,22 @@ void ReconstruccionImagenes::initReconstruccionImagen()
  * @param pImagen
  * @return
  */
-void ReconstruccionImagenes::detectarEspacioBorrado( IplImage *pImagen )
+void ReconstruccionImagenes::detectarEspacioBorrado(IplImage *pImagen)
 {
     Mat sector(pImagen) ;                                                       //se convierte imagen desde IplImage a Mat
-    assert( sector.type() == CV_8UC3 );
+    assert(sector.type() == CV_8UC3);
     _espacioBorradoImagen = sector;
-    inRange( sector,
-             Scalar(IConfiguracionParametros::R_MINIMO, IConfiguracionParametros::G_MINIMO, IConfiguracionParametros::B_MINIMO),
-             Scalar(IConfiguracionParametros::R_MAXIMO, IConfiguracionParametros::G_MAXIMO, IConfiguracionParametros::B_MAXIMO),
-             _espacioBorradoImagen );//rango a detectar del color ROJO (color por default)
+    inRange(sector,
+            Scalar(IConfiguracionParametros::R_MINIMO, IConfiguracionParametros::G_MINIMO, IConfiguracionParametros::B_MINIMO),
+            Scalar(IConfiguracionParametros::R_MAXIMO, IConfiguracionParametros::G_MAXIMO, IConfiguracionParametros::B_MAXIMO),
+            _espacioBorradoImagen); //rango a detectar del color ROJO (color por default)
 //    IplImage ipl_img = _espacioBorradoImagen;                                   //conversion de Mat imagen a IplImage
 //    IplImage *_imagenEspacioBorrado = &ipl_img;                                 //conversion de IplImage a IplImage*
     //muestraImagen(_imagenEspacioBorrado );                                      //hay que poner el Ampersand
     imshow("Giskard: Espacio Borrado de la imagen", _espacioBorradoImagen);
     imshow("Giskard: Imagen Actual", sector);
     waitKey(0);
-    cvReleaseImage( &pImagen );
+    cvReleaseImage(&pImagen);
     cvDestroyAllWindows();
 }
 
@@ -87,22 +86,23 @@ void ReconstruccionImagenes::detectarEspacioBorrado( IplImage *pImagen )
  * Imprime las coordenadas xy del espacio borrado
  * Recordar que los valores en la imagen vienen dados BGR
  */
-void ReconstruccionImagenes::muestraLimitesEspacioBorrado(){
+void ReconstruccionImagenes::muestraLimitesEspacioBorrado()
+{
     bool bandera = false;
     int i = 0;
-    for(; i < _filas; ++i){                                //recorre filas
+    for (; i < _filas; ++i) {                              //recorre filas
         int j = 0;
-        for(; j < _columnas; ++j){                         //recorre columnas
+        for (; j < _columnas; ++j) {                       //recorre columnas
             if (this->_ptrMatriz[i][j][2] <= IConfiguracionParametros::R_MAXIMO && this->_ptrMatriz[i][j][2] >=
-                    IConfiguracionParametros::R_MINIMO && this->_ptrMatriz[i][j][1] == IConfiguracionParametros::G_MAXIMO
-                    && this->_ptrMatriz[i][j][0] == IConfiguracionParametros::B_MAXIMO){
+                IConfiguracionParametros::R_MINIMO && this->_ptrMatriz[i][j][1] == IConfiguracionParametros::G_MAXIMO
+                && this->_ptrMatriz[i][j][0] == IConfiguracionParametros::B_MAXIMO) {
 
                 cout << "(" << j << "," << i << ")" << " ---> " << "(" << this->_ptrMatriz[i][j][2] << ","
                      << this->_ptrMatriz[i][j][1] << "," << this->_ptrMatriz[i][j][0] << ")" << endl;
-                if(!bandera){
-                   _filaInicial = i;
-                   _columnaInicial = j;
-                   bandera = true;
+                if (!bandera) {
+                    _filaInicial = i;
+                    _columnaInicial = j;
+                    bandera = true;
                 }
                 _filaFinal = i;
                 _columnaFinal = j;
@@ -120,13 +120,14 @@ void ReconstruccionImagenes::muestraLimitesEspacioBorrado(){
   @param pFila, cantidad de filas de la matriz
   @param pColumna, cantidad de columnas de la matriz
   */
-void ReconstruccionImagenes::crearMatrizColores( int pFila, int pColumna ){
+void ReconstruccionImagenes::crearMatrizColores(int pFila, int pColumna)
+{
     this->_filas = pFila;
     this->_columnas = pColumna;
     this->_ptrMatriz = new unsigned short**[_filas];
-    for(int i = 0; i < _filas; ++i){
+    for (int i = 0; i < _filas; ++i) {
         this->_ptrMatriz[i] = new unsigned short*[_columnas];
-        for(int j = 0; j < _columnas; ++j){
+        for (int j = 0; j < _columnas; ++j) {
             this->_ptrMatriz[i][j] = new unsigned short[2];
         }//fin del for
     }//fin del for
@@ -136,11 +137,12 @@ void ReconstruccionImagenes::crearMatrizColores( int pFila, int pColumna ){
 /**
   Agrega arreglosRGB a cada celda de la matriz
   */
-void ReconstruccionImagenes::agregaPixelesAMatriz(){
-    for(int i = 0; i < _filas; ++i){//recorre filas
-        for(int j = 0; j < _columnas; ++j){//recorre columnas
-            for(int k = 0; k <= 2; ++k){
-                this->_ptrMatriz[i][j][k] = getPixeles( _imagenGuardada, i, j, k );
+void ReconstruccionImagenes::agregaPixelesAMatriz()
+{
+    for (int i = 0; i < _filas; ++i) { //recorre filas
+        for (int j = 0; j < _columnas; ++j) { //recorre columnas
+            for (int k = 0; k <= 2; ++k) {
+                this->_ptrMatriz[i][j][k] = getPixeles(_imagenGuardada, i, j, k);
             }//fin for
         }//fin for interno
     }//fin for externo
@@ -156,7 +158,7 @@ void ReconstruccionImagenes::agregaPixelesAMatriz(){
  * @param pG
  * @param pB
  */
-void ReconstruccionImagenes::setValoresRGB_To_Matriz( int pI, int pJ, unsigned short pR, unsigned short pG, unsigned short pB)
+void ReconstruccionImagenes::setValoresRGB_To_Matriz(int pI, int pJ, unsigned short pR, unsigned short pG, unsigned short pB)
 {
     this->_ptrMatriz[pI][pJ][0] = pR;
     this->_ptrMatriz[pI][pJ][1] = pG;
@@ -168,58 +170,62 @@ void ReconstruccionImagenes::setValoresRGB_To_Matriz( int pI, int pJ, unsigned s
   @param pImagen, recibe una imagen para obtener los pixeles de esta
   @return scal.val[pK], devuelve un int con los valores R,G,B de un pixel de una celda de la imagen
   */
-unsigned short ReconstruccionImagenes::getPixeles( IplImage *pImagen, int pI, int pJ, int pK ){
-    CvMat mathdr, *mat = cvGetMat( pImagen, &mathdr );
-    CvScalar scal = cvGet2D( mat, pI, pJ );
+unsigned short ReconstruccionImagenes::getPixeles(IplImage *pImagen, int pI, int pJ, int pK)
+{
+    CvMat mathdr, *mat = cvGetMat(pImagen, &mathdr);
+    CvScalar scal = cvGet2D(mat, pI, pJ);
     return scal.val[pK];
 }//fin de getPixeles
 
 /**
   Crea la imagen ya reconstruida desde la matriz 3D
   */
-void ReconstruccionImagenes::creaImagenReconstruida(){
+void ReconstruccionImagenes::creaImagenReconstruida()
+{
     IplImage * img = cvCreateImage(cvSize(_filas, _columnas), IPL_DEPTH_8U, 3);
-    for(int i = 0; i < _filas; i++) {
-        for (int j = 0; j < _columnas; j++){
-            ((uchar *)(img->imageData + i*img->widthStep))[j*img->nChannels + 0] = this->_ptrMatriz[i][j][0]; // B
-            ((uchar *)(img->imageData + i*img->widthStep))[j*img->nChannels + 1] = this->_ptrMatriz[i][j][1]; // G
-            ((uchar *)(img->imageData + i*img->widthStep))[j*img->nChannels + 2] = this->_ptrMatriz[i][j][2]; // R
+    for (int i = 0; i < _filas; i++) {
+        for (int j = 0; j < _columnas; j++) {
+            ((uchar *)(img->imageData + i * img->widthStep))[j * img->nChannels + 0] = this->_ptrMatriz[i][j][0]; // B
+            ((uchar *)(img->imageData + i * img->widthStep))[j * img->nChannels + 1] = this->_ptrMatriz[i][j][1]; // G
+            ((uchar *)(img->imageData + i * img->widthStep))[j * img->nChannels + 2] = this->_ptrMatriz[i][j][2]; // R
         }//fin for de filas o ancho
     }//fin for de columnas o largo
-    muestraImagen( img );
+    muestraImagen(img);
 }//fin de creaImagenAnalizada
 
 /**
   Muestra la imagen en pantalla
   @param pImagenAMostrar, imagen que se desea mostrar
   */
-void ReconstruccionImagenes::muestraImagen( IplImage *pImagenAMostrar ){
-    if( !pImagenAMostrar ){
+void ReconstruccionImagenes::muestraImagen(IplImage *pImagenAMostrar)
+{
+    if (!pImagenAMostrar) {
         cout << "¡Error!, No se puede mostrar imagen." << endl;
     }//fin del if
-    else{
-        cvNamedWindow( "Giskard", CV_WINDOW_AUTOSIZE );             //nombre a la ventana que contiene la imagen
-        cvShowImage( "Giskard", pImagenAMostrar );                  // muestra la imagen
-        cvWaitKey( 0 );
-        cvReleaseImage( &pImagenAMostrar );                         // Wait for a keystroke in the window
-        cvDestroyWindow( "Giskard" );
+    else {
+        cvNamedWindow("Giskard", CV_WINDOW_AUTOSIZE);               //nombre a la ventana que contiene la imagen
+        cvShowImage("Giskard", pImagenAMostrar);                    // muestra la imagen
+        cvWaitKey(0);
+        cvReleaseImage(&pImagenAMostrar);                           // Wait for a keystroke in the window
+        cvDestroyWindow("Giskard");
     }//fin del else
 }//fin de muestraImagen
 
 /**
   Imprime la matriz 3D que se usa para almacenar los dator RGB de una imagen
   */
-void ReconstruccionImagenes::imprimeMatriz(){
-    for(int i = 0; i < _filas; ++i){                                //recorre filas
+void ReconstruccionImagenes::imprimeMatriz()
+{
+    for (int i = 0; i < _filas; ++i) {                              //recorre filas
         cout << i << endl;
-        for(int j = 0; j < _columnas; ++j){                         //recorre columnas
+        for (int j = 0; j < _columnas; ++j) {                       //recorre columnas
             cout << endl;
-            for(int k = 0; k <= 2; ++k){
+            for (int k = 0; k <= 2; ++k) {
                 cout << '\t' << this->_ptrMatriz[i][j][k];
             }//fin for
-           // cout << " " << endl;
+            // cout << " " << endl;
         }//fin for interno
-    cout << endl << endl;
+        cout << endl << endl;
     }//fin for externo
 }//fin agregaPixelesAMatriz
 
@@ -245,7 +251,7 @@ int ReconstruccionImagenes::getFilaFinal()
  * @brief ReconstruccionImagenes::setFilaInicial
  * @param pFilaInicial
  */
-void ReconstruccionImagenes::setFilaInicial( int pFilaInicial )
+void ReconstruccionImagenes::setFilaInicial(int pFilaInicial)
 {
     this->_filaInicial = pFilaInicial;
 }
@@ -254,7 +260,7 @@ void ReconstruccionImagenes::setFilaInicial( int pFilaInicial )
  * @brief ReconstruccionImagenes::setFilaFinal
  * @param pFilaFinal
  */
-void ReconstruccionImagenes::setFilaFinal( int pFilaFinal )
+void ReconstruccionImagenes::setFilaFinal(int pFilaFinal)
 {
     this->_filaFinal = pFilaFinal;
 }
@@ -301,27 +307,26 @@ void ReconstruccionImagenes::setColumnaFinal(int pColumnaFinal)
  * @param pTamanioHorizontal
  */
 void ReconstruccionImagenes::construirCuadroRelleno(
-        unsigned short &pTamanioVertical,
-        unsigned short &pTamanioHorizontal)
+    unsigned short &pTamanioVertical,
+    unsigned short &pTamanioHorizontal)
 {
     unsigned short tamanio = pTamanioVertical * pTamanioHorizontal;
     AlgoritmoGenetico genetico(tamanio, _r, _g, _b);
     genetico.initAlgoritmoGenetico();
-    cout << "AQUI SE CAE" << endl;
     unsigned short *listaPtr = genetico.getValoresRGB();
 
     unsigned short pos = 0;
     for (short i = _filaInicial; i < _filaInicial + pTamanioVertical; ++i)
-        for (int j = _columnaInicial; j < _columnaInicial + pTamanioHorizontal;
+        for (short j = _columnaInicial; j < _columnaInicial + pTamanioHorizontal;
              ++j)
             setValoresRGB_To_Matriz(i, j, listaPtr[pos++], listaPtr[pos++],
-                    listaPtr[pos++]);
+                                    listaPtr[pos++]);
 }
 
 /**
   Destructor
   */
-ReconstruccionImagenes::~ReconstruccionImagenes(){}//fin del destructor
+ReconstruccionImagenes::~ReconstruccionImagenes() {} //fin del destructor
 
 
 
@@ -333,3 +338,23 @@ ReconstruccionImagenes::~ReconstruccionImagenes(){}//fin del destructor
 
 
 
+
+
+void ReconstruccionImagenes::construirFila()
+{
+    unsigned short inicio = _filaInicial;
+    unsigned short final = _filaFinal;
+    unsigned short lado = IConfiguracionParametros::LADO;
+    cout << "lado: " << lado;
+//    unsigned short cuadros = (final - inicio) / IConfiguracionParametros::LADO;
+    unsigned short relleno = (final - inicio) % IConfiguracionParametros::LADO;
+
+    unsigned short cuadros = 2;
+    while (cuadros > 0) {
+        construirCuadroRelleno(lado, lado);
+        _filaInicial += lado;
+        cuadros--;
+    }
+
+//    construirCuadroRelleno(lado, relleno);
+}
