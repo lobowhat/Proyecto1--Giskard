@@ -68,9 +68,10 @@ IplImage* FigureDetection::get(IplImage* pImg){
 
 
                      // dibuja circulo afuera  0,0,255
-                     cvCircle(result, center, radio+1, CV_RGB(255,0,0), 2, 8, 0 ); //agrego
+                     cvCircle(result, center, radio+1, CV_RGB(255,0,0), 2, 8, 0 );
 
-                     printf("x: %d y: %d r: %d\n", center.x, center.y, radius); //agrego
+                     //printf("x: %d y: %d r: %d\n", center.x, center.y, radius);
+                     printcircles(center.x,center.y,radio);
                 }
 
 
@@ -215,6 +216,9 @@ void FigureDetection::getImageLines(IplImage* pImg){
  */
 SimpleList<Figure*>* FigureDetection::getListFigure(){
     return this->_list;//Devolvemos la lista
+}
+void FigureDetection::printcircles(int px, int py, int pradio){
+     cout<<"x de circulo:" <<px<<"y de circulo:"<<py<<"radio de circulo"<<pradio<<endl;
 }
 
 void FigureDetection::getImageCircules(IplImage* pImg){
