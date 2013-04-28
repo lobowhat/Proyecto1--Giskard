@@ -316,13 +316,19 @@ void ReconstruccionImagenes::construirCuadroRelleno(
     genetico.initAlgoritmoGenetico();
     cout << "all right here!";
     unsigned short *listaPtr = genetico.getValoresRGB(); // FIXME
-    cout << "all right here!2";
+    cout << "listaPtr is null (0 is false): " << (listaPtr == nullptr) << endl; // TEST
     unsigned short pos = 0;
-    for (short i = _filaInicial; i < _filaInicial + pTamanioVertical; ++i)
+    cout << "condiciones parada (i): " << (_filaInicial + pTamanioVertical) << endl; // TEST
+    for (short i = _filaInicial; i < _filaInicial + pTamanioVertical; ++i) {
+        cout << "condiciones parada (j): " << (_columnaInicial + pTamanioHorizontal) << endl; // TEST
         for (short j = _columnaInicial; j < _columnaInicial + pTamanioHorizontal;
-             ++j)
+             ++j) {
+            cout << "i: " << i << " j: " << j << " pos: " << pos << endl; // TEST
             setValoresRGB_To_Matriz(i, j, listaPtr[pos++], listaPtr[pos++],
                                     listaPtr[pos++]);
+            cout << "pos: " << pos << endl; // TEST
+        }
+    }
 }
 
 /**
@@ -353,7 +359,9 @@ void ReconstruccionImagenes::construirFila()
 
     unsigned short cuadros = 2;
     while (cuadros > 0) {
+        cout << "iniciado relleno\n";
         construirCuadroRelleno(lado, lado);
+        cout << "terminado relleno\n";
 //        _filaInicial += lado;
         cuadros--;
     }
