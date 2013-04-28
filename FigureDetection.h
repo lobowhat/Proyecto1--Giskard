@@ -23,6 +23,7 @@ private:
     CvMemStorage* storage;//Memoria
     CvSeq* contour;//Contornos
     CvSeq* sec;//Lineas de figuras
+    CvSeq* circles;
     IplImage *copyImage, *grayImage, *grayImage1;//Imagenes
     SimpleList<Figure*>* _list;
 
@@ -43,6 +44,8 @@ public:
     void webCam(int);
     //Se imprimen y se obtienen las caracteristicas de figuras
     void printCharateristic(CvPoint**, int);
+    //se imprimen datos de circulos
+    void printcircles(int px,int py,int pradio);
     //Se obtiene la lista de figuras
     SimpleList<Figure*>* getListFigure();
 };

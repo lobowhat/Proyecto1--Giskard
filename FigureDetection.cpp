@@ -39,7 +39,7 @@ IplImage* FigureDetection::get(IplImage* pImg){
 
         //Se obtienen las secuencias
         this->sec = cvApproxPoly(this->contour, sizeof(CvContour), storage, CV_POLY_APPROX_DP, cvContourPerimeter(this->contour)*0.02,0);
-
+        this->circles=cvHoughCircles(grayImage, storage, CV_HOUGH_GRADIENT, 1,pImg->height/6, 100, 50);
 
         //Verificacion en caso de ser cuadrilateros
         if(this->sec->total == 4 && fabs(cvContourArea(this->sec, CV_WHOLE_SEQ)) > 100){
@@ -57,6 +57,22 @@ IplImage* FigureDetection::get(IplImage* pImg){
             cvLine(result, *ptr[2], *ptr[3], CV_RGB(255,0,255),2);
             cvLine(result, *ptr[3], *ptr[0], CV_RGB(255,0,255),2);
         }
+        //verificacion de circulos
+        for (size_t i = 0; i < circles->total; i++)
+                {
+                     // detecta x  y y ,radios
+                     float* p = (float*)cvGetSeqElem(circles, i);
+                     cv::Point center(cvRound(p[0]), cvRound(p[1]));
+                     int radio = cvRound(p[2]); //agrego
+
+
+
+                     // dibuja circulo afuera  0,0,255
+                     cvCircle(result, center, radio+1, CV_RGB(255,0,0), 2, 8, 0 ); //agrego
+
+                     printf("x: %d y: %d r: %d\n", center.x, center.y, radius); //agrego
+                }
+
 
         //Verificacion en caso de ser triangulo
         if(this->sec->total == 3 && fabs(cvContourArea(this->sec, CV_WHOLE_SEQ)) > 100){
