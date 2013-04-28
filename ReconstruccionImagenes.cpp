@@ -311,10 +311,12 @@ void ReconstruccionImagenes::construirCuadroRelleno(
     unsigned short &pTamanioHorizontal)
 {
     unsigned short tamanio = pTamanioVertical * pTamanioHorizontal;
+    cout << "\n***R: " << _r << "***G: " << _g << "***B: " << _b << "\n"; // TEST
     AlgoritmoGenetico genetico(tamanio, _r, _g, _b);
     genetico.initAlgoritmoGenetico();
-    unsigned short *listaPtr = genetico.getValoresRGB();
-
+    cout << "all right here!";
+    unsigned short *listaPtr = genetico.getValoresRGB(); // FIXME
+    cout << "all right here!2";
     unsigned short pos = 0;
     for (short i = _filaInicial; i < _filaInicial + pTamanioVertical; ++i)
         for (short j = _columnaInicial; j < _columnaInicial + pTamanioHorizontal;
@@ -352,7 +354,7 @@ void ReconstruccionImagenes::construirFila()
     unsigned short cuadros = 2;
     while (cuadros > 0) {
         construirCuadroRelleno(lado, lado);
-        _filaInicial += lado;
+//        _filaInicial += lado;
         cuadros--;
     }
 

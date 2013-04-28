@@ -18,10 +18,10 @@ int main()
     p->initReconstruccionImagen();  // aqui se obtiene ubicacion del espacio borrado
     delete p;
 
-    AlgoritmoGenetico *po = new AlgoritmoGenetico( 255, 255, 255 );
-    cout << "hola" << endl;
-    po->initAlgoritmoGenetico();
-    delete po;
+//    AlgoritmoGenetico *po = new AlgoritmoGenetico( 255, 255, 255 );
+//    cout << "hola" << endl;
+//    po->initAlgoritmoGenetico();
+//    delete po;
 
     return 0;
 }
