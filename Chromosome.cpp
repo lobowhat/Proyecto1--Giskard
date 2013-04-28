@@ -97,3 +97,4 @@ int Chromosome::getDecimalFromArray(int pBegin)
 
     return binaryToDecimal(temp);
 }
+

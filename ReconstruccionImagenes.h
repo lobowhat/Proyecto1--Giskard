@@ -11,6 +11,7 @@
 #include "IConfiguracionParametros.h"
 #include "AlgoritmoGenetico.h"
 
+
 using namespace std;
 using namespace cv;
 

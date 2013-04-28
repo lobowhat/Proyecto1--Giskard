@@ -14,20 +14,37 @@ SOURCES += main.cpp \
     examples/GA/ga2.cpp \
     mouse.cpp \
     CirclesDetecting.cpp \
-    FigureDetection.cpp \
     Reproduccion.cpp \
     Chromosome.cpp \
-    AlgoritmoGenetico.cpp
+    AlgoritmoGenetico.cpp \
+    FigureDetection.cpp \
+    figure.cpp \
+    SimpleNode.cpp \
+    SimpleList.cpp \
+    graphnode.cpp \
+    graph.cpp \
+    DoubleNode.cpp \
+    DoubleCircularList.cpp \
+    connection.cpp
 HEADERS += \
     ReconstruccionImagenes.h \
     Poblacion.h \
     Individuo.h \
     IConfiguracionParametros.h \
-    FigureDetection.h \
     Reproduccion.h \
     Chromosome.h \
-    AlgoritmoGenetico.h
+    AlgoritmoGenetico.h \
+    FigureDetection.h \
+    figure.h \
+    SimpleNode.h \
+    SimpleList.h \
+    ListADT.h \
+    graphnode.h \
+    graph.h \
+    DoubleNode.h \
+    DoubleCircularList.h \
+    connection.h
 
 OTHER_FILES += \
-    raya1.png
-
+    raya1.png \
+    Giskard.pro.user
