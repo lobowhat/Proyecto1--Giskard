@@ -360,7 +360,7 @@ void ReconstruccionImagenes::construirFila()
 //    unsigned short cuadros = (final - inicio) / IConfiguracionParametros::LADO;
     unsigned short relleno = (final - inicio) % IConfiguracionParametros::LADO;
 
-    unsigned short cuadros = 2;
+    unsigned short cuadros = 1;
     while (cuadros > 0) {
         cout << "\n:::::::::iniciado relleno:::::::::\n"; // TEST
         construirCuadroRelleno(lado, lado);
