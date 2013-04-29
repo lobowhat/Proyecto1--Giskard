@@ -48,5 +48,4 @@ HEADERS += \
     DrawFigure.h
 
 OTHER_FILES += \
-    raya1.png \
-    Giskard.pro.user
+    raya1.png

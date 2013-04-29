@@ -311,64 +311,43 @@ void ReconstruccionImagenes::construirCuadroRelleno(
     unsigned short &pTamanioHorizontal)
 {
     unsigned short tamanio = pTamanioVertical * pTamanioHorizontal;
-    cout << "\n***R: " << _r << "***G: " << _g << "***B: " << _b << "\n"; // TEST
     AlgoritmoGenetico genetico(tamanio, _r, _g, _b);
     genetico.initAlgoritmoGenetico();
-    cout << "all right here!";
-    unsigned short *listaPtr = genetico.getValoresRGB(); // FIXME
-    cout << "listaPtr is null (0 is false): " << (listaPtr == nullptr) << endl; // TEST
+    unsigned short *listaPtr = genetico.getValoresRGB();
     unsigned short pos = 0;
-    cout << "condiciones parada (i): " << (_filaInicial + pTamanioVertical) << endl; // TEST
     for (short i = _filaInicial; i < _filaInicial + pTamanioVertical; ++i) {
-        cout << "condiciones parada (j): " << (_columnaInicial + pTamanioHorizontal) << endl; // TEST
         for (short j = _columnaInicial; j < _columnaInicial + pTamanioHorizontal;
              ++j) {
-            cout << "i: " << i << " j: " << j << " pos: " << pos << endl; // TEST
             setValoresRGB_To_Matriz(i, j, listaPtr[pos++], listaPtr[pos++],
                                     listaPtr[pos++]);
-            cout << "pos: " << pos << endl; // TEST
-            cout << "j: " << j << endl; // TEST
         }
         cout << "terminado j" << endl;
     }
     cout << "terminado i" << endl;
 }
 
-/**
-  Destructor
-  */
-ReconstruccionImagenes::~ReconstruccionImagenes() {} //fin del destructor
-
-
-
-
-
-
-
-
-
-
-
-
-
 void ReconstruccionImagenes::construirFila()
 {
     unsigned short inicio = _filaInicial;
     unsigned short final = _filaFinal;
     unsigned short lado = IConfiguracionParametros::LADO;
-    cout << "lado: " << lado;
 //    unsigned short cuadros = (final - inicio) / IConfiguracionParametros::LADO;
     unsigned short relleno = (final - inicio) % IConfiguracionParametros::LADO;
 
     unsigned short cuadros = 1;
     while (cuadros > 0) {
-        cout << "\n:::::::::iniciado relleno:::::::::\n"; // TEST
+        if (cuadros == 1) {
+            std::cout << "listo :)";
+        }
         construirCuadroRelleno(lado, lado);
-        cout << "\n:::::::::terminado relleno:::::::::\n"; // TEST
 //        _filaInicial += lado;
         cuadros--;
     }
 
 //    construirCuadroRelleno(lado, relleno);
-    cout << "&&&&&&CONSTRUIR FILA FINALIZADO&&&&&&" << endl;
 }
+
+/**
+  Destructor
+  */
+ReconstruccionImagenes::~ReconstruccionImagenes() {} //fin del destructor

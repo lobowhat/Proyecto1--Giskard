@@ -10,8 +10,6 @@ Poblacion::Poblacion()
     this->_valorFitnessPixel = -1;          // no ha recibido el valor del pixel
 }//constructor
 
-
-
 /**
  * @brief Poblacion::crearPoblacionInicial
  * Crea una poblacion con una cantidad n de Individuos
@@ -279,12 +277,8 @@ unsigned short *Poblacion::mejoresIndividuos( unsigned short pCantidadIndividuos
 //        tmp->setSiguienteIndividuo(this->_mejoresIndividuosFinal);  //se agrega otro individuo a la lista simple
 //        this->_mejoresIndividuosFinal = tmp;
         //tmp->printDatosIndividuo();
-    cout << "\nValor Chromosome nulo (0 es false): " << (tmp->getChromosome() == nullptr) << endl; // TEST
-    cout << "pCantidadIndividuos * 3: " << pCantidadIndividuos * 3 << endl; // TEST
     this->_individuosSeleccionados = new unsigned short[pCantidadIndividuos * 3];
     for(int i = 0; i < (pCantidadIndividuos * 3); i += 3){
-        cout << "i: " << i << endl; // TEST
-        cout << "\nValor test nulo (0 es false): " << (tmp == nullptr) << endl; // TEST
         cout << "tmp " << i << endl;
         cout << "tmpR " << tmp->getChromosome()->getRValue() << endl;
         cout << "tmpG " << tmp->getChromosome()->getGValue() << endl;
@@ -311,10 +305,6 @@ void Poblacion::setTamanhoPoblacion(unsigned short pTamanhoPoblacion)
 {
     this->_tamanoPoblacion = pTamanhoPoblacion;
 }
-
-
-
-
 
 Poblacion::~Poblacion(){}//destructor
 

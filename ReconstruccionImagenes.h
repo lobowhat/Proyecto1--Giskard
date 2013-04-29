@@ -10,7 +10,6 @@
 #include "IConfiguracionParametros.h"
 #include "AlgoritmoGenetico.h"
 
-
 using namespace std;
 using namespace cv;
 
@@ -36,7 +35,8 @@ private:
     void construirCuadroRelleno(unsigned short &pTamanioVertical,
                                 unsigned short &pTamanioHorizontal);
 
-    // se encarga de
+    // se encarga de realizar las reconstrucciones en fila, columna, rellenar
+    // algún espacio faltante y construir esquinas
     void recorridoEspiral();
     void construirFila();
     void construirColumna();

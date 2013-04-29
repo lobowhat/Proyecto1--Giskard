@@ -93,21 +93,10 @@ void Chromosome::binaryArray(unsigned pValue, int* pArray)
 
 int Chromosome::getDecimalFromArray(int pBegin)
 {
-
-    std::cout << "\n%%%%%%%%%INICIADO getDecimalFromArray"; // TEST
-    std::cout << "\n%%%%%%%%%pBegin: " << pBegin << "\n"; // TEST
-    std::cout << "_chromosome length: " << RGBARRAY << std::endl; // TEST
-    std::cout << "_chromosome is null (0 is false): " << (_chromosome == nullptr) << std::endl; // TEST
-    std::cout << "print: "; printChromosome(); // TEST
     int temp = 0, pow = 7;
     for (int var = pBegin; var < pBegin + CHROMOSOME; ++var) {
-        std::cout << "var: " << var << std::endl; // TEST
-        std::cout << " _chromosome[var]: " << _chromosome[var] << std::endl; // TEST
-        std::cout << " temp: " << temp << std::endl; // TEST
         temp += _chromosome[var] * pow10(pow--);
-        std::cout << "\n%%%%%%%%%FINALIZADO FOR\n"; // TEST
     }
-    std::cout << "%%%%%%%%%FINALIZADO getDecimalFromArray"; // TEST
     return binaryToDecimal(temp);
 }
 

@@ -43,10 +43,6 @@ void AlgoritmoGenetico::initAlgoritmoGenetico()
  */
 unsigned short *AlgoritmoGenetico::getValoresRGB()
 {
-
-    cout << "$$_area: " << _area
-         << "\n_poblacion->mejoresIndividuos(_area): "
-         << _poblacion->mejoresIndividuos(_area) << endl; // TEST
     this->_arregloMejoresIndividuos = this->_poblacion->mejoresIndividuos(_area);
     return _arregloMejoresIndividuos;
 }
