@@ -38,10 +38,7 @@ unsigned short *Chromosome::convertToArray(int pRvalue, int pGvalue, int pBvalue
 
 void Chromosome::printChromosome() const
 {
-    std::cout << "INIT PRINT";
     for (int var = 0; var < RGBARRAY; ++var) {
-        std::cout << "var: " << var ;
-        std::cout << " _chromosome[var]: " << _chromosome[var] << std::endl;
         std::cout << _chromosome[var] << " ";
     }
 
@@ -97,6 +94,6 @@ int Chromosome::getDecimalFromArray(int pBegin)
     for (int var = pBegin; var < pBegin + CHROMOSOME; ++var) {
         temp += _chromosome[var] * pow10(pow--);
     }
+
     return binaryToDecimal(temp);
 }
-

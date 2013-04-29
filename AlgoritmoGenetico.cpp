@@ -15,8 +15,8 @@ AlgoritmoGenetico::AlgoritmoGenetico( unsigned short pArea, unsigned short pValo
     this->_valorB = pValorB;
     this->_area = pArea;
     this->_promedioFitnessPixel = ( _valorR + _valorG + _valorB ) / 3;
-    this->_poblacion->setTamanhoPoblacion( IConfiguracionParametros::TAMANO_POBLACION );
-    //this->_poblacion->setTamanhoPoblacion( _area );
+//    this->_poblacion->setTamanhoPoblacion( IConfiguracionParametros::TAMANO_POBLACION );
+    this->_poblacion->setTamanhoPoblacion( _area );
 }
 
 /**

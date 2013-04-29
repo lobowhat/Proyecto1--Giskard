@@ -4,10 +4,13 @@
 #include <iostream>
 #include <stdlib.h>
 #include <iomanip>
+#include <opencv/cv.h>
 #include <opencv2/core/core.hpp>
 #include <opencv2/highgui/highgui.hpp>
 #include <opencv2/imgproc/imgproc.hpp>
 #include "IConfiguracionParametros.h"
+#include <cv.h>
+#include <highgui.h>
 #include "AlgoritmoGenetico.h"
 
 using namespace std;
@@ -34,16 +37,6 @@ private:
     // del mismo modo pTamanioHorizontal al tamaño "x"
     void construirCuadroRelleno(unsigned short &pTamanioVertical,
                                 unsigned short &pTamanioHorizontal);
-
-    // se encarga de realizar las reconstrucciones en fila, columna, rellenar
-    // algún espacio faltante y construir esquinas
-    void recorridoEspiral();
-    void construirFila();
-    void construirColumna();
-    void construirEsquina();
-    void rellenarFaltante();
-
-    unsigned short* escogerOptimo();
 
 public:
     ReconstruccionImagenes();                                   // constructor
@@ -79,4 +72,4 @@ public:
 
 };//fin de la clase
 
-#endif /*RECONSTRUCCIONIMAGENES_H*/
+#endif // RECONSTRUCCIONIMAGENES_H

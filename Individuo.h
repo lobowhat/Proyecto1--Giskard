@@ -44,8 +44,8 @@ private:
     Individuo *_siguienteIndividuo;             // siguiente individuo (lista simple de individuos)
     int _generacion;                            // generacion a la que pertenece un individuo
     unsigned short _r;                          // valor de color R en codigo decimal (RGB)
-    unsigned short _g;                          // valor de color G en codigo decimal (RGB)
-    unsigned short _b;                          // valor de color B en codigo decimal (RGB)
+    unsigned short _b;                          // valor de color G en codigo decimal (RGB)
+    unsigned short _g;                          // valor de color B en codigo decimal (RGB)
     unsigned short *_cromosoma;                 // Arreglo que contiene los valores RGB del individuo
     int _valorFitness;                          // valor Fitness del individuo
     bool _individuoSeleccionado;                // si es seleccionado para la seleccion natural
