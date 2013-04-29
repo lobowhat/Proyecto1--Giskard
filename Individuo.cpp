@@ -1,6 +1,5 @@
 #include "Individuo.h"
 
-Individuo::Individuo(int pId)
 /*    : _id(pId),
       _r(rand() % 255),
       _g(rand() % 255),
@@ -11,18 +10,25 @@ Individuo::Individuo(int pId)
       _individuoSeleccionado(false),
       _padre(-1),                           // No hay padre
       _madre(-1)*/                           // No hay
+Individuo::Individuo( int pId )
 {
+    if (rand() % 2 == 1){
+        this->_r = (rand() % 10);                    //Parte del cromosoma
+        this->_g = (rand() % 10);                    //Parte del cromosoma
+        this->_b = (rand() % 10);                    //Parte del cromosoma
+    }
+    else{
+        this->_r = 255 - (rand() % 10);                    //Parte del cromosoma
+        this->_g = 255 - (rand() % 10);             //Parte del cromosoma
+        this->_b = 255 - (rand() % 10);              //Parte del cromosoma
+    }
     this->_id = pId;
     this->_individuoSeleccionado = false;
-    this->_r = rand() % 255;                    //Parte del cromosoma
-    this->_g = rand() % 255;                    //Parte del cromosoma
-    this->_b = rand() % 255;                    //Parte del cromosoma
-    //srand (time(NULL));                       // reinicia el random//ARREGLAR EL RANDOM
     this->_chromosome = new Chromosome();
     this->_cromosoma = this->_chromosome->convertToArray(_r, _g, _b);  // se crea el arreglo que contendrá los valores RGB
     this->_valorFitness = 0;
     this->_padre = -1;                          // No hay padre
-    this->_madre = -1;                       // No hay
+    this->_madre = -1;                          // No hay
 }//constructor
 
 /**
