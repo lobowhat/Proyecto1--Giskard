@@ -38,7 +38,7 @@ public:
 
     static const int PROBABILIDAD_CRUCE = 10;                   // 10 se reprocucen todos
     static const int PROBABILIDAD_NACIMIENTO = 4;               // 50%
-    static const int MAX_NACIMIENTOS = 3;                       // maxima cantidad de nacimientos por generacion
+    static const int MAX_NACIMIENTOS = 8;                       // maxima cantidad de nacimientos por generacion
 
     //***** DATOS PARA LA RECONSTRUCCION DE IMAGENES ******
     // cantidad de pixeles por un lado

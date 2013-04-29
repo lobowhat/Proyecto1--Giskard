@@ -52,16 +52,29 @@ Individuo *Poblacion::seleccionIndividuos()
 {
     Individuo *tmp = this->_poblacion;
     while( tmp != NULL ){
-        //&& fitnessTotal == tmp->getValorFitness()
-        if( tmp->getIndividuoSeleccionado() != true  ){
-            tmp->setIndividuoSeleccionado( true );      //Individuo ha sido seleccionado, no volverá a ser escogido
-            break;
-        }//fin del if
+        unsigned short cercaNegro = abs(_valorFitnessPixel - tmp->getValorFitness());
+        unsigned short cercaBlanco = abs(_valorFitnessPixel - tmp->getValorFitness());
+        if ( cercaBlanco < cercaNegro ){
+            if( tmp->getIndividuoSeleccionado() != true && (tmp->getValorFitness() >= 245)){
+                tmp->setIndividuoSeleccionado( true );      //Individuo ha sido seleccionado, no volverá a ser escogido
+            //cout << "READY " << _valorFitnessPixel << "," << tmp->getValorFitness() << endl;
+                return tmp;
+            }//fin del if
+            else{
+                tmp = tmp->getSiguienteIndividuo();}
+        }
         else{
-            tmp = tmp->getSiguienteIndividuo();
+            if( tmp->getIndividuoSeleccionado() != true && (tmp->getValorFitness() <= 10)){
+                tmp->setIndividuoSeleccionado( true );      //Individuo ha sido seleccionado, no volverá a ser escogido
+            //cout << "READY " << _valorFitnessPixel << "," << tmp->getValorFitness() << endl;
+                return tmp;
+            }//fin del if
+            else{
+                tmp = tmp->getSiguienteIndividuo();}
         }
     }//fin del while
-    return tmp;
+    Individuo *tmp1 = NULL;// No se encontró individuo con los requerimientos especificados
+    return tmp1;
 }
 
 /**
@@ -78,17 +91,22 @@ void Poblacion::crearNuevaGeneracion()
 
             padre1 = this->seleccionIndividuos();
             padre2 = this->seleccionIndividuos();
+            if( padre1 == NULL || padre2 == NULL){
+                break;
+            }
+            else{
             this->_contadorIndividuos++;
             Individuo *tmp = _reproduccion->cruce( padre1, padre2, this->_contadorIndividuos );
             tmp->setSiguienteIndividuo( nacimientos );
             nacimientos = tmp;
-            nacimientos->setGeneracion( this->_generacion + 1);
+            nacimientos->setGeneracion( this->_generacion + 1);}
         }
-//        qDebug() << "LULA1" << endl;
+        cout << "READY " << endl;
     }
-    imprimeNuevaGeneracion( nacimientos);
-    mezclarPoblacion( nacimientos );
-    this->_generacion += 1;
+    if( padre1 != NULL || padre2 != NULL){
+        imprimeNuevaGeneracion( nacimientos);
+        mezclarPoblacion( nacimientos );
+        this->_generacion += 1;}
     //qDebug()<<"GENERACION ............................ " << this->_generacion << endl;
 }
 
