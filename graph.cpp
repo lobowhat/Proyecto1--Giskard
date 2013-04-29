@@ -14,6 +14,11 @@ Graph<Data>::~Graph(){
 }
 
 template<typename Data>
+DoubleNode<GraphNode<Data>*>* Graph<Data>::getHeader(){
+    return this->_graph->getHead();
+}
+
+template<typename Data>
 int Graph<Data>::getCountNodes(){
     return this->_length;
 }

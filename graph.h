@@ -24,6 +24,7 @@ public:
     int getCountNodes();//Regresa el tamaño del grafo
     void insertNodes(Data);//Inserta los nodos en orden
     void insertVertex(Data, Data, int);//Inserta el nodo y su coneccion
+    DoubleNode<GraphNode<Data>*>* getHeader();//Se obtiene el nodo inicial
     GraphNode<Data> *searchVertex(Data);//Busca un nodo en el grafo
     DoubleCircularList<Connection<Data>*>* getListConnections(GraphNode<Data>*);//Se obtiene la lista de conecciones
     Data deleteNode(Data);//Se borra un nodo del grafo
