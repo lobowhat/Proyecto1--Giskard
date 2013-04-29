@@ -1,15 +1,5 @@
 #include "Individuo.h"
 
-/*    : _id(pId),
-      _r(rand() % 255),
-      _g(rand() % 255),
-      _b(rand() % 255),
-      _chromosome(new Chromosome()),
-      _cromosoma(_chromosome->convertToArray(_r, _g, _b)),
-      _valorFitness(0),
-      _individuoSeleccionado(false),
-      _padre(-1),                           // No hay padre
-      _madre(-1)*/                           // No hay
 Individuo::Individuo( int pId )
 {
     if (rand() % 2 == 1){
