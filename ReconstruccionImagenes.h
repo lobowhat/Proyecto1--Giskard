@@ -4,7 +4,6 @@
 #include <iostream>
 #include <stdlib.h>
 #include <iomanip>
-#include <opencv/cv.h>
 #include <opencv2/core/core.hpp>
 #include <opencv2/highgui/highgui.hpp>
 #include <opencv2/imgproc/imgproc.hpp>
@@ -80,4 +79,4 @@ public:
 
 };//fin de la clase
 
-#endif // RECONSTRUCCIONIMAGENES_H
+#endif /*RECONSTRUCCIONIMAGENES_H*/

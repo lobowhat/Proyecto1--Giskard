@@ -27,15 +27,17 @@ FigureDetection::~FigureDetection(){
  * @param pImg
  * @return _result
  */
-IplImage* FigureDetection::get(IplImage* pImg){
+IplImage* FigureDetection::getImageFigure(IplImage* pImg){
 
     //Se clona la imagen original
     IplImage* result = cvCloneImage(pImg);
-    this->circles=cvHoughCircles(grayImage, storage, CV_HOUGH_GRADIENT, 1,pImg->height/6, 100, 50);
-    cvCvtColor(grayImage,pImg, CV_GRAY2BGR);//agrego
 
     //Obtenemos la imagen de contornos
     this->getImageContour(pImg);
+
+    cvCvtColor(grayImage,pImg, CV_GRAY2BGR);//agrego
+    this->circles=cvHoughCircles(grayImage, storage, CV_HOUGH_GRADIENT, 1,pImg->height/6, 100, 50);
+
 
     while(this->contour){//Ciclo de busquedas de contornos
 
@@ -72,8 +74,9 @@ IplImage* FigureDetection::get(IplImage* pImg){
 
                     // dibuja circulo  0,0,255
                     cvCircle(result, center, radius+1, CV_RGB(0,0,255), 2, 8, 0 );
-
+                    std::cout << "Circulo" << std::endl;
                     printf("x: %d y: %d r: %d\n", center.x, center.y, radius);
+                    this->_list->insertFinal(new Figure(center.x,center.y,0,0,0,"Circulo", radius));
                }
 
 
@@ -110,13 +113,12 @@ void FigureDetection::webCam(int pCamara){
 
     int time = 0;
     int input;
-    while ((input = cvWaitKey(100)) != 27)
+    while ((input = cvWaitKey(40)) != 27)
     { //Ciclo de capturas de la camara
         frame = cvQueryFrame(capture); //Se obtiene la imagen a partir de la camara
-        if(time%50 == 0){
-            frame = get(frame); //Se llama a la funcion para que defina los contornos e identifique las figuras
-            this->getImageCircules(frame);
-            this->getImageCircules(frame);
+        if(time%30 == 0){
+            frame = getImageFigure(frame); //Se llama a la funcion para que defina los contornos e identifique las figuras
+            this->getImageLines(frame);
         }
         cvShowImage("Color detection", frame); //Se muestra en pantalla la captura
         time++;
@@ -158,7 +160,7 @@ void FigureDetection::printCharateristic(CvPoint ** pPoints, int pSides){
         //Imprime las caracteristicas
         cout << "Ancho: "<< width <<" Largo: "<< height << endl;
         //Insertar caracteristicas
-        this->_list->insertFinal(new Figure(pPoints[0]->x,pPoints[0]->y,height,width,pSides,"Cuadrilatero"));
+        this->_list->insertFinal(new Figure(pPoints[0]->x,pPoints[0]->y,height,width,4,"Cuadrilatero"));
 
     }else if(pSides == 3){
         int width, height, x, y;
@@ -171,7 +173,7 @@ void FigureDetection::printCharateristic(CvPoint ** pPoints, int pSides){
         //Imprimimos las caracteristicas
         cout << "Base: "<< abs(width) <<" Altura: "<< abs(height) << endl;
         //Insertamos las caracteristicas de la figura
-        this->_list->insertFinal(new Figure(pPoints[0]->x,pPoints[0]->y,height,width,pSides,"Triangulo"));
+        this->_list->insertFinal(new Figure(pPoints[0]->x,pPoints[0]->y,height,width,3,"Triangulo"));
     }
 }
 
@@ -205,8 +207,12 @@ void FigureDetection::getImageLines(IplImage* pImg){
         CvPoint* line = (CvPoint*)cvGetSeqElem(lines,i);
         //Se dibuja la linea
         cvLine( pImg, line[0], line[1], CV_RGB(0,255,0), 2, 8 );
+
+        int largo = sqrt(pow(line[1].x - line[0].x,2) + pow(line[1].y - line[0].y,2));
         //Se imprime los valores de la linea
-        std::cout << "Linea: " << sqrt(pow(line[1].x - line[0].x,2) + pow(line[1].y - line[0].y,2)) << std::endl;
+        std::cout << "Linea: " << largo << std::endl;
+
+        this->_list->insertFinal(new Figure(line[0].x,line[0].y,largo,0,1,"Linea"));
     }
 }
 
@@ -221,32 +227,5 @@ SimpleList<Figure*>* FigureDetection::getListFigure(){
 }
 void FigureDetection::printcircles(int px, int py, int pradio){
      cout<<"x de circulo:" <<px<<"y de circulo:"<<py<<"radio de circulo"<<pradio<<endl;
-}
-
-void FigureDetection::getImageCircules(IplImage* pImg){
-    Mat Image(pImg), Image_gray;
-
-    // La convierte a gris para detectar
-    cvtColor( Image, Image_gray, CV_BGR2GRAY );
-
-    // Reduce la conjetura para evitar circulos falsos
-    GaussianBlur( Image_gray, Image_gray, Size(19,19 ), 0, 0 );
-
-    vector<Vec3f> circles;
-
-    // Encontrar los circulos
-    HoughCircles( Image_gray, circles, CV_HOUGH_GRADIENT, 1, Image_gray.rows/8, 10, 100, 0, 0 );
-
-    // Dibuja circulos detectados                       //  Image_gray.rows/90
-    for( size_t i = 0; i < circles.size(); i++ )
-    {
-        Point center(cvRound(circles[i][0]), cvRound(circles[i][1]));
-        int radius = cvRound(circles[i][2]);
-        // centro de circulo
-//        circle( Image, center, 3, Scalar(0,255,0), -1, 8, 0);
-        // fuera del circulo
-        circle( Image, center, radius, Scalar(0,0,255), 3, 8, 0 );
-
-        std::cout << "Radio: " << radius << std::endl;
-    }
+     this->_list->insertFinal(new Figure(px,py,0,0,0,"Circulo",pradio));
 }

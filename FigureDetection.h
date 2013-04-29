@@ -9,11 +9,11 @@
 #include "SimpleList.h"
 #include "SimpleList.cpp"
 #include "figure.h"
-#include <iostream>
 #include <stdio.h>
 #include <opencv2/opencv.hpp>
 
 #include <math.h>
+
 
 using namespace std;
 using namespace cv;
@@ -38,13 +38,11 @@ public:
     //Destructor
     ~FigureDetection();
     //Se obtiene la imagen identificando figuras
-    IplImage* get(IplImage*);
+    IplImage* getImageFigure(IplImage*);
     //Se obtiene los contornos en una figura
     void getImageContour(IplImage*);
     //Se obtienen las lineas de una figura
     void getImageLines(IplImage*);
-    //Se obtiene los circulos
-    void getImageCircules(IplImage* pImg);
     //Web Cam
     void webCam(int);
     //Se imprimen y se obtienen las caracteristicas de figuras

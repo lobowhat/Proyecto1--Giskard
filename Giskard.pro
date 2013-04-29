@@ -25,7 +25,8 @@ SOURCES += main.cpp \
     graph.cpp \
     DoubleNode.cpp \
     DoubleCircularList.cpp \
-    connection.cpp
+    connection.cpp \
+    DrawFigure.cpp
 HEADERS += \
     ReconstruccionImagenes.h \
     Poblacion.h \
@@ -43,7 +44,8 @@ HEADERS += \
     graph.h \
     DoubleNode.h \
     DoubleCircularList.h \
-    connection.h
+    connection.h \
+    DrawFigure.h
 
 OTHER_FILES += \
     raya1.png \
