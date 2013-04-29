@@ -48,4 +48,5 @@ HEADERS += \
     DrawFigure.h
 
 OTHER_FILES += \
-    raya1.png
+    raya1.png \
+    GiskardUML.xmi
